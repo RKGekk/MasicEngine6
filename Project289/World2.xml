@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<World>
+  <Actors>
+    <Actor name="nano_suit" type="MeshRenderComponent" resource="data\actors\MeshRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="-2.000000" z="7.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader.cso</PixelShader>
+        <VertexShader>vertex_shader.cso</VertexShader>
+      </MeshRenderComponent>
+      <MeshComponent>
+        <Obj>data\objects\nanosuit\nanosuit.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="0.000000" y="1.000000" z="0.000000" />
+        <Acceleration x="0.000000" y="1.000000" z="0.000000" />
+        <Mass>1.0f</Mass>
+        <Damping>1.0f</Damping>
+        <Radius>1.0f</Radius>
+      </ParticleComponent>
+    </Actor>
+  </Actors>
+</World>

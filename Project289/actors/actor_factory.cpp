@@ -1,0 +1,126 @@
+#include "actor_factory.h"
+
+#include "transform_component.h"
+#include "physics_component.h"
+#include "light_render_component.h"
+#include "mesh_component.h"
+#include "mesh_render_component.h"
+#include "particle_component.h"
+#include "particle_contact_generator_component.h"
+#include "particle_force_generator_component.h"
+#include "smoke_component.h"
+#include "mesh_render_light_component.h"
+
+
+unsigned int ActorFactory::GetNextActorId() {
+    return ++m_lastActorId;
+}
+
+ActorFactory::ActorFactory() {
+    m_lastActorId = 0;
+
+    m_componentFactory.Register<TransformComponent>(ActorComponent::GetIdFromName(TransformComponent::g_Name), TransformComponent::g_Name);
+    m_componentFactory.Register<PhysicsComponent>(ActorComponent::GetIdFromName(PhysicsComponent::g_Name), PhysicsComponent::g_Name);
+    m_componentFactory.Register<LightRenderComponent>(ActorComponent::GetIdFromName(LightRenderComponent::g_Name), LightRenderComponent::g_Name);
+    m_componentFactory.Register<MeshComponent>(ActorComponent::GetIdFromName(MeshComponent::g_Name), MeshComponent::g_Name);
+    m_componentFactory.Register<MeshRenderComponent>(ActorComponent::GetIdFromName(MeshRenderComponent::g_Name), MeshRenderComponent::g_Name);
+    m_componentFactory.Register<ParticleComponent>(ActorComponent::GetIdFromName(ParticleComponent::g_Name), ParticleComponent::g_Name);
+    m_componentFactory.Register<ParticleContactGeneratorComponent>(ActorComponent::GetIdFromName(ParticleContactGeneratorComponent::g_Name), ParticleContactGeneratorComponent::g_Name);
+    m_componentFactory.Register<ParticleForceGeneratorComponent>(ActorComponent::GetIdFromName(ParticleForceGeneratorComponent::g_Name), ParticleForceGeneratorComponent::g_Name);
+    m_componentFactory.Register<SmokeComponent>(ActorComponent::GetIdFromName(SmokeComponent::g_Name), SmokeComponent::g_Name);
+    m_componentFactory.Register<MeshRenderLightComponent>(ActorComponent::GetIdFromName(MeshRenderLightComponent::g_Name), MeshRenderLightComponent::g_Name);
+}
+
+std::shared_ptr<Actor> ActorFactory::CreateActor(const char* actorResource, TiXmlElement* overrides, const DirectX::XMFLOAT4X4* pinitialTransform, const ActorId serversActorId) {
+
+    TiXmlDocument xml;
+    xml.LoadFile(actorResource);
+
+    TiXmlElement* pRoot = xml.RootElement();
+    if (!pRoot) {
+        return std::shared_ptr<Actor>();
+    }
+
+    ActorId nextActorId = serversActorId;
+    if (nextActorId == 0) {
+        nextActorId = GetNextActorId();
+    }
+    std::shared_ptr<Actor> pActor(new Actor(nextActorId));
+    if (!pActor->Init(pRoot)) {
+        return std::shared_ptr<Actor>();
+    }
+
+    bool initialTransformSet = false;
+
+    for (TiXmlElement* pNode = pRoot->FirstChildElement(); pNode; pNode = pNode->NextSiblingElement()) {
+        std::shared_ptr<ActorComponent> pComponent(VCreateComponent(pNode));
+        if (pComponent) {
+            pActor->AddComponent(pComponent);
+            pComponent->SetOwner(pActor);
+        }
+        else {
+            return std::shared_ptr<Actor>();
+        }
+    }
+
+    if (overrides) {
+        ModifyActor(pActor, overrides);
+    }
+
+    std::shared_ptr<TransformComponent> pTransformComponent = MakeStrongPtr(pActor->GetComponent<TransformComponent>(TransformComponent::g_Name));
+    if (pinitialTransform && pTransformComponent) {
+        pTransformComponent->SetPosition4x4f(*pinitialTransform);
+    }
+
+    pActor->PostInit();
+
+    return pActor;
+}
+
+std::shared_ptr<ActorComponent> ActorFactory::VCreateComponent(TiXmlElement* pData) {
+    const char* name = pData->Value();
+    std::shared_ptr<ActorComponent> pComponent(m_componentFactory.Create(ActorComponent::GetIdFromName(name)));
+
+    if (pComponent) {
+        if (!pComponent->VInit(pData)) {
+            return std::shared_ptr<ActorComponent>();
+        }
+    }
+    else {
+        return std::shared_ptr<ActorComponent>();
+    }
+
+    return pComponent;
+}
+
+std::shared_ptr<Actor> ActorFactory::CreateActor(const std::string& actorResource, TiXmlElement* overrides, const DirectX::XMFLOAT4X4* initialTransform, const ActorId serversActorId) {
+    return CreateActor(actorResource.c_str(), overrides, initialTransform, serversActorId);
+}
+
+std::shared_ptr<Actor> ActorFactory::CreateActor(const std::string& actorResource, TiXmlElement* overrides, DirectX::FXMMATRIX initialTransform, const ActorId serversActorId) {
+    DirectX::XMFLOAT4X4 T;
+    DirectX::XMStoreFloat4x4(&T, initialTransform);
+    return CreateActor(actorResource.c_str(), overrides, &T, serversActorId);
+}
+
+void ActorFactory::ModifyActor(std::shared_ptr<Actor> pActor, TiXmlElement* overrides) {
+    if (overrides->Attribute("name")) {
+        pActor->SetName(overrides->Attribute("name"));
+    };
+    for (TiXmlElement* pNode = overrides->FirstChildElement(); pNode; pNode = pNode->NextSiblingElement()) {
+        unsigned int componentId = ActorComponent::GetIdFromName(pNode->Value());
+        std::shared_ptr<ActorComponent> pComponent = MakeStrongPtr(pActor->GetComponent<ActorComponent>(componentId));
+        if (pComponent) {
+            pComponent->VInit(pNode);
+
+            pComponent->VOnChanged();
+        }
+        else {
+            pComponent = VCreateComponent(pNode);
+            if (pComponent) {
+                pActor->AddComponent(pComponent);
+                pComponent->SetOwner(pActor);
+            }
+        }
+    }
+}

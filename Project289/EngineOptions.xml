@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PlayerOptions>
+  <Graphics renderer="Direct3D 11" width="1280" height="720" runfullspeed="no" fullscreen="no" screenFar="1000" screenNear="0.1" />
+  <Sound sfxVolume="50" musicVolume="25"/>
+</PlayerOptions>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<World>
+  <Actors>
+    <Actor name="logo" type="MeshRenderComponent" resource="data\actors\MeshRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="0.000000" z="3.500000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>logo_ps.cso</PixelShader>
+        <VertexShader>logo_vs.cso</VertexShader>
+      </MeshRenderComponent>
+      <MeshComponent>
+        <Obj>data\objects\logo.obj</Obj>
+      </MeshComponent>
+    </Actor>
+    <Actor name="loading" type="MeshRenderComponent" resource="data\actors\MeshRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="0.000000" z="3.500000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>logo_ps.cso</PixelShader>
+        <VertexShader>logo_vs.cso</VertexShader>
+      </MeshRenderComponent>
+      <MeshComponent>
+        <Obj>data\objects\loading.obj</Obj>
+      </MeshComponent>
+    </Actor>
+  </Actors>
+</World>

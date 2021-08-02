@@ -1,0 +1,1500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\actors">
+      <UniqueIdentifier>{995b3443-d1fa-4412-b577-6f0e1f8649ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{a5aa43e9-1bec-45c7-bf89-08777ac7b395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\imgui">
+      <UniqueIdentifier>{943bde9a-ae98-4ec6-bca8-1a2d93b86606}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\keyboard">
+      <UniqueIdentifier>{fd97dc8a-0c3a-431c-a711-e656a5bd2ea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\mouse">
+      <UniqueIdentifier>{309949b3-8d75-40bd-87a0-91453d3d4188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\fonts">
+      <UniqueIdentifier>{49619b67-6971-4e44-8de1-2754571dfcee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\models">
+      <UniqueIdentifier>{42b0a96c-408d-4bd2-ab27-000ce3ccbaac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\samples">
+      <UniqueIdentifier>{9983b813-8133-4fa3-b624-0b85a276976e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\shaders">
+      <UniqueIdentifier>{755c62dd-5904-42d4-9ffd-abdbed570a05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\textures">
+      <UniqueIdentifier>{9afc9cf4-2f0b-4b40-aa67-2642ccb307ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\actors">
+      <UniqueIdentifier>{a66675aa-df2d-4c96-a6db-36b97eecddbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{4340eba9-e386-4b08-ac1d-89259c9cb569}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\imgui">
+      <UniqueIdentifier>{7e8b4111-49b5-4787-a072-393861d2b24f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\keyboard">
+      <UniqueIdentifier>{c3644220-73e8-448f-a622-53b70dfbe2e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mouse">
+      <UniqueIdentifier>{f283650e-6173-4113-be14-6362dea37628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools">
+      <UniqueIdentifier>{f0a94f68-af2e-4897-b786-d5ef90ddc864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools\tinyxml">
+      <UniqueIdentifier>{7cdd4e32-0486-42cf-ad33-7bda911b9c69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools">
+      <UniqueIdentifier>{fe1d9170-8564-4f68-97ad-a1531a89e646}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools\tinyxml">
+      <UniqueIdentifier>{b1a1dca4-53c6-463f-9ad7-1ae1a9b5c198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\actors">
+      <UniqueIdentifier>{4e02c431-ba78-4309-8913-63977f22411c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\processes">
+      <UniqueIdentifier>{72efcd6f-2a42-435e-9392-8beadddd17b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\processes">
+      <UniqueIdentifier>{e66202d1-e8b5-4cfc-b07c-5d5d3f36fb08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\events">
+      <UniqueIdentifier>{752b7ce7-baa6-44b8-9fc4-bb7602384d47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\events">
+      <UniqueIdentifier>{af301f55-e129-43d1-8deb-151b38c52923}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\engine">
+      <UniqueIdentifier>{3d549744-5712-4556-8840-3901db36a9d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\engine">
+      <UniqueIdentifier>{3d459f23-0170-4dc2-aee6-663216a2af31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nodes">
+      <UniqueIdentifier>{1e8a0494-9468-4c39-9311-9495a9fbff7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nodes">
+      <UniqueIdentifier>{27ecab7f-ada6-4b5a-aec9-e23431f35ddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\bindable">
+      <UniqueIdentifier>{58c39076-2287-470a-8ac8-c1798d3354b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bindable">
+      <UniqueIdentifier>{98193a25-fc4f-4127-8d4a-0024c3104074}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\physics">
+      <UniqueIdentifier>{c2577354-17c6-4107-8823-855e0e5a23a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\physics">
+      <UniqueIdentifier>{88b285ed-0674-41c6-a04e-f2e03ffccd8f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard\keyboard_event.cpp">
+      <Filter>Source Files\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard\keyboard_class.cpp">
+      <Filter>Source Files\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="mouse\mouse_class.cpp">
+      <Filter>Source Files\mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="mouse\mouse_event.cpp">
+      <Filter>Source Files\mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\adapter_reader.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shader.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\camera.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\model.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\mesh.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\game_object.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\material_color.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\material_texture.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\renderable_game_object.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\light.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\imgui\imgui.cpp">
+      <Filter>Source Files\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\imgui\imgui_draw.cpp">
+      <Filter>Source Files\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\imgui\imgui_impl_dx11.cpp">
+      <Filter>Source Files\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\imgui\imgui_impl_win32.cpp">
+      <Filter>Source Files\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\imgui\imgui_tables.cpp">
+      <Filter>Source Files\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\imgui\imgui_widgets.cpp">
+      <Filter>Source Files\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\tinyxml\tinyxmlparser.cpp">
+      <Filter>Source Files\tools\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\tinyxml\tinyxmlerror.cpp">
+      <Filter>Source Files\tools\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\tinyxml\tinyxml.cpp">
+      <Filter>Source Files\tools\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\tinyxml\tinystr.cpp">
+      <Filter>Source Files\tools\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\actor.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\actor_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\game_timer.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\string_utility.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\transform_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="processes\process.cpp">
+      <Filter>Source Files\processes</Filter>
+    </ClCompile>
+    <ClCompile Include="processes\process_manager.cpp">
+      <Filter>Source Files\processes</Filter>
+    </ClCompile>
+    <ClCompile Include="processes\count_process.cpp">
+      <Filter>Source Files\processes</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\error_logger.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="events\i_event_manager.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\event_manager.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\base_event_data.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_new_actor.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_move_actor.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_destroy_actor.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\engine.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\level_manager.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\mt_random.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\base_engine_logic.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\material.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\scene_node_properties.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\ray_cast.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\base_render_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_new_render_component.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\scene_node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\light_node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\d3d_light_node_11.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\light_render_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_modified_render_component.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\matrix_stack.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\scene.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\camera_node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\plane.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\frustum.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\math_utitity.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\root_node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\light_manager.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_environment_loaded.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\render_window.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_request_new_actor.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="engine_options.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\d3d_renderer11.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\physics_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\human_view.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\screen_element_scene.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\base_ui.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\main_menu_ui.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\x_human_view.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\movement_controller.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_update_tick.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_request_destroy_actor.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\actor_factory.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\x_logic.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\x_physics.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_start_thrust.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_request_start_game.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_end_thrust.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\main_menu_view.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="processes\delay_process.cpp">
+      <Filter>Source Files\processes</Filter>
+    </ClCompile>
+    <ClCompile Include="processes\exec_process.cpp">
+      <Filter>Source Files\processes</Filter>
+    </ClCompile>
+    <ClCompile Include="bindable\blend_state_bindable.cpp">
+      <Filter>Source Files\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="bindable\depth_stencil_state_bindable.cpp">
+      <Filter>Source Files\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="bindable\index_buffer_bindable.cpp">
+      <Filter>Source Files\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="bindable\input_layout_bindable.cpp">
+      <Filter>Source Files\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="bindable\pixel_shader_bindable.cpp">
+      <Filter>Source Files\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="bindable\rasterizer_state_bindable.cpp">
+      <Filter>Source Files\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="bindable\sampler_state_bindable.cpp">
+      <Filter>Source Files\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="bindable\shader_resource_bindable.cpp">
+      <Filter>Source Files\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="bindable\topology_bindable.cpp">
+      <Filter>Source Files\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="bindable\vertex_buffer_bindable.cpp">
+      <Filter>Source Files\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="bindable\vertex_shader_bindable.cpp">
+      <Filter>Source Files\bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\d3d_11_drawable.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\mesh_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\mesh_render_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\d3d_11_mesh.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_gravity.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_drag.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_force_registry.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_world.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_contact.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_contact_resolver.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\ground_contacts.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_anchored_spring.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_anchored_bungee.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_fake_spring.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_spring.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_bungee.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_buoyancy.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_link.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_cable.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_rod.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_constraint.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_cable_constraint.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_rod_constraint.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\rigid_body.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\collision_primitive.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\intersection_tests.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\collision_data.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\contact.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\gravity.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\spring.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\explosion.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\aero.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\aero_control.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\angled_aero.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\buoyancy.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\force_registry.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\joint.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\contact_resolver.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\particle_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_sphere_contact.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\actor_menu_ui.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_new_particle_component.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\particle_contact_generator_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_new_particle_contact_generator.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_destroy_particle_component.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_destroy_particle_contact_generator.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\i_engine_physics.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\particle_force_generator_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_destroy_particle_force_generator.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_new_particle_force_generator.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\smoke_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\geometry_generator.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\d3d_11_basic_pipeline.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\d3d_11_geometry_pipeline.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="events\evt_data_new_smoke_component.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\d3d_11_light_pipeline.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\mesh_render_light_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\shadow_manager.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="keyboard\keyboard_event.h">
+      <Filter>Header Files\keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboard\keyboard_class.h">
+      <Filter>Header Files\keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="mouse\mouse_class.h">
+      <Filter>Header Files\mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="mouse\mouse_event.h">
+      <Filter>Header Files\mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\adapter_reader.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\vertex.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shader.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\vertex_buffer.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\index_buffer.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\constant_buffer_types.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\constant_buffer.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\camera.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\model.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\mesh.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\game_object.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\material_color.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\material_texture.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\renderable_game_object.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\light.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\actor.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\imgui\imgui.h">
+      <Filter>Header Files\graphics\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\imgui\imconfig.h">
+      <Filter>Header Files\graphics\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\imgui\imgui_impl_dx11.h">
+      <Filter>Header Files\graphics\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\imgui\imgui_impl_win32.h">
+      <Filter>Header Files\graphics\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\imgui\imgui_internal.h">
+      <Filter>Header Files\graphics\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\imgui\imstb_rectpack.h">
+      <Filter>Header Files\graphics\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\imgui\imstb_textedit.h">
+      <Filter>Header Files\graphics\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\imgui\imstb_truetype.h">
+      <Filter>Header Files\graphics\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\tinyxml\tinystr.h">
+      <Filter>Header Files\tools\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\tinyxml\tinyxml.h">
+      <Filter>Header Files\tools\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\actor_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\string_utility.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\game_timer.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\transform_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="processes\process.h">
+      <Filter>Header Files\processes</Filter>
+    </ClInclude>
+    <ClInclude Include="processes\process_manager.h">
+      <Filter>Header Files\processes</Filter>
+    </ClInclude>
+    <ClInclude Include="processes\count_process.h">
+      <Filter>Header Files\processes</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\com_exception.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\error_logger.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="events\i_event_manager.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\delegate.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="events\i_event_data.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\generic_object_factory.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="events\event_manager.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_new_actor.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\base_event_data.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_move_actor.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_destroy_actor.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\base_engine_logic.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\engine.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\level_manager.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\i_engine_logic.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\i_engine_physics.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\base_engine_state.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\mt_random.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\i_engine_view.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\engine_view_type.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\i_screen_element.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\i_renderer.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\i_render_state.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\i_scene_node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\scene_node_properties.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\render_pass.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\material_dx.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\material.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\alpha_type.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\scene.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\ray_cast.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\point.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\rectangle.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\intersection.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\scene_node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\render_component_interface.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\base_render_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_new_render_component.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_modified_render_component.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\light_node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\light_properties.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\d3d_light_node_11.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\light_render_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\light_type.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\memory_utility.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\renderer_enum.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\matrix_stack.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\alpha_scene_node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\camera_node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\frustum.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\plane.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\math_utitity.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\root_node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\light_manager.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\directional_light.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\point_light.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\spot_light.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\material_shader.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_environment_loaded.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\render_window.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_request_new_actor.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="engine_options.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\d3d_renderer11.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\physics_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\human_view.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\i_pointer_handler.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\i_keyboard_handler.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\screen_element_scene.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\base_ui.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\main_menu_ui.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\x_human_view.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\movement_controller.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_update_tick.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_request_destroy_actor.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\actor_factory.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\x_logic.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\x_physics.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_start_thrust.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_request_start_game.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_end_thrust.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\main_menu_view.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="processes\delay_process.h">
+      <Filter>Header Files\processes</Filter>
+    </ClInclude>
+    <ClInclude Include="processes\exec_process.h">
+      <Filter>Header Files\processes</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\blend_state_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\constant_buffer_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\depth_stencil_state_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\index_buffer_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\input_layout_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\pixel_constant_buffer_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\pixel_shader_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\rasterizer_state_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\sampler_state_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\shader_resource_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\topology_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\vertex_buffer_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\vertex_constant_buffer_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="bindable\vertex_shader_bindable.h">
+      <Filter>Header Files\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\d3d_11_drawable.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\mesh_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\mesh_render_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\d3d_11_mesh.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_force_generator.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_gravity.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_drag.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_force_registry.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_world.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_contact.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_contact_resolver.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_contact_generator.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\ground_contacts.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_anchored_spring.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_anchored_bungee.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_fake_spring.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_spring.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_bungee.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_buoyancy.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_link.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_cable.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_rod.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_constraint.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_cable_constraint.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_rod_constraint.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\rigid_body.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\collision_primitive.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\collision_sphere.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\collision_plane.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\collision_box.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\intersection_tests.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\collision_data.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\contact.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\gravity.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\force_generator.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\spring.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\explosion.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\aero.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\aero_control.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\angled_aero.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\buoyancy.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\force_registry.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\joint.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\contact_resolver.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\contact_generator.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\particle_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_sphere_contact.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\actor_menu_ui.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_new_particle_component.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\particle_contact_generator_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_new_particle_contact_generator.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_destroy_particle_component.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_destroy_particle_contact_generator.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\particle_force_generator_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_destroy_particle_force_generator.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_new_particle_force_generator.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\smoke_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\geometry_generator.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\mesh_holder.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\d3d_11_basic_pipeline.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\d3d_11_geometry_pipeline.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_new_smoke_component.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\d3d_11_light_pipeline.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\mesh_render_light_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\shadow_manager.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="data\shaders\pixel_shader.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\vertex_shader.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\logo_ps.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\logo_vs.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\pixel_shader_alpha.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\pixel_shader_smoke.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\vertex_shader_smoke.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\geometry_shader_smoke.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\vertex_shader_light.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\pixel_shader_light.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\vertex_shader_shadow.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\pixel_shader_shadow.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\pixel_shader_light_inv_ny.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\objects\nanosuit\arm_dif.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\arm_showroom_ddn.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\arm_showroom_spec.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\body_dif.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\body_showroom_ddn.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\body_showroom_spec.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\glass_ddn.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\glass_dif.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\hand_dif.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\hand_showroom_ddn.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\hand_showroom_spec.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\helmet_diff.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\helmet_showroom_ddn.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\helmet_showroom_spec.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\leg_dif.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\leg_showroom_ddn.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\leg_showroom_spec.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\pinksquare.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\seamless_grass.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\seamless_pavement.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\storage-container2-albedo.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\storage-container2-ao.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\storage-container2-height.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\storage-container2-metallic.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\storage-container2-normal-ogl.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\storage-container2-preview.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\storage-container2-roughness.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\fonts\comic_sans_ms_16.sprite">
+      <Filter>Resource Files\fonts</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\nanosuit.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\nanosuit\nanosuit.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\samples\blue_cube_notexture.fbx">
+      <Filter>Resource Files\samples</Filter>
+    </None>
+    <None Include="data\samples\orange_disktexture.fbx">
+      <Filter>Resource Files\samples</Filter>
+    </None>
+    <None Include="data\samples\orange_embeddedtexture.fbx">
+      <Filter>Resource Files\samples</Filter>
+    </None>
+    <None Include="data\samples\person_embeddedindexed.blend">
+      <Filter>Resource Files\samples</Filter>
+    </None>
+    <None Include="data\samples\Credits.txt">
+      <Filter>Resource Files\samples</Filter>
+    </None>
+    <None Include="data\samples\Color.jpg">
+      <Filter>Resource Files\samples</Filter>
+    </None>
+    <None Include="data\samples\Normal.jpg">
+      <Filter>Resource Files\samples</Filter>
+    </None>
+    <None Include="data\samples\dodge_challenger.fbx">
+      <Filter>Resource Files\samples</Filter>
+    </None>
+    <None Include="data\light.fbx">
+      <Filter>Resource Files\samples</Filter>
+    </None>
+    <None Include="data\actors\MeshRenderComponent.xml">
+      <Filter>Resource Files\actors</Filter>
+    </None>
+    <None Include="EngineOptions.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\textures\logo.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\logo.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\logo.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="MainMenu.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\textures\logo2.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="World.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\objects\loading.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\loading.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\textures\loading.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\feisar\lights_glow_e.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\feisar\lights_glow_a.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\feisar\lights_glow.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\feisar\feisar_r.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\feisar\feisar_n.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\feisar\feisar_m.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\feisar\feisar.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\feisar\feis_glass_a.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\feisar\feis_glass.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\feisar\feisar.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\feisar\feisar.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="World2.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\textures\sandyground1_Roughness.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\sandyground1_Normal.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\sandyground1_Metallic.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\sandyground1_Height.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\sandyground1_Base_Color.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\sandyground1_Ambient_Occlusion.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\ground.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\ground.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\sphere.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\sphere.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\textures\fancy-brass-pattern1_roughness.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\fancy-brass-pattern1_normal-ogl.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\fancy-brass-pattern1_metallic.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\fancy-brass-pattern1_height.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\fancy-brass-pattern1_ao.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\fancy-brass-pattern1_albedo.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\actors\ContactGeneratorComponent.xml">
+      <Filter>Resource Files\actors</Filter>
+    </None>
+    <None Include="data\actors\MeshParticleRenderComponent.xml">
+      <Filter>Resource Files\actors</Filter>
+    </None>
+    <None Include="data\actors\ForceGeneratorComponent.xml">
+      <Filter>Resource Files\actors</Filter>
+    </None>
+    <None Include="data\textures\aletter.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\aletter.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\aletter.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\textures\fireatlas.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\actors\LightRenderComponent.xml">
+      <Filter>Resource Files\actors</Filter>
+    </None>
+    <None Include="data\actors\MeshRenderLightComponent.xml">
+      <Filter>Resource Files\actors</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="data\actors\MeshParticleRenderLightComponent.xml">
+      <Filter>Resource Files\actors</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>
