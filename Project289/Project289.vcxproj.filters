@@ -1491,10 +1491,8 @@
     <None Include="data\actors\MeshRenderLightComponent.xml">
       <Filter>Resource Files\actors</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="data\actors\MeshParticleRenderLightComponent.xml">
+    <None Include="data\actors\MeshParticleRenderLightComponent.xml">
       <Filter>Resource Files\actors</Filter>
-    </Xml>
+    </None>
   </ItemGroup>
 </Project>

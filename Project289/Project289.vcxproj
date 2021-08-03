@@ -879,9 +879,9 @@
     <None Include="data\actors\MeshRenderLightComponent.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="data\actors\MeshParticleRenderLightComponent.xml" />
+    <None Include="data\actors\MeshParticleRenderLightComponent.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
