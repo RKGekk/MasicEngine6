@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <iostream>
+#include <iomanip>
 
 #include "base_event_data.h"
 #include "../actors/actor.h"

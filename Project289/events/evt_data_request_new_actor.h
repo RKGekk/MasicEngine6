@@ -1,5 +1,8 @@
 #pragma once
 
+#include <iostream>
+#include <iomanip>
+
 #include <DirectXMath.h>
 
 #include "base_event_data.h"
