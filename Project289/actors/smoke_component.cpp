@@ -45,8 +45,8 @@ void SmokeComponent::VPostInit() {
         //particle->setPosition(pTransformComponent->GetPosition());
         particle->setPosition(pTransformComponent->GetPosition() + XMVectorSet(0.0f, m_radius * 0.25f, 0.0f, 0.0f));
         //particle->setPosition(0.0f, 0.0f, 0.0f);
-        float vx = rnd.Random() * 0.3f; float vy = rnd.Random() * 0.3f; float vz = rnd.Random() * 0.3f;
-        particle->setVelocity(vx, 0.0f, vz);
+        float vx = ((2.0f * rnd.Random()) - 1.0f) * 0.2f; float vy = ((2.0f * rnd.Random()) - 1.0f) * 0.2f; float vz = ((2.0f * rnd.Random()) - 1.0f) * 0.2f;
+        particle->setVelocity(vx, vy, vz);
         particle->setAcceleration(0.0f, 0.0f, 0.0f);
         particle->setMass(1.0f);
         particle->setDamping(0.9f);

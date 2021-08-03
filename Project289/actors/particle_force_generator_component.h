@@ -8,7 +8,7 @@
 #include "actor_component.h"
 #include "../engine/i_engine_physics.h"
 #include "../physics/particle.h"
-#include "../physics/particle_gravity.h"
+#include "../physics/particle_force_generator.h"
 
 using namespace std::literals;
 

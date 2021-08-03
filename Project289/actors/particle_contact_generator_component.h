@@ -9,10 +9,6 @@
 #include "../engine/i_engine_physics.h"
 #include "../physics/particle.h"
 #include "../physics/contact_generator.h"
-#include "../physics/ground_contacts.h"
-#include "../physics/particle_constraint.h"
-#include "../physics/particle_link.h"
-#include "../physics/particle_rod.h"
 
 using namespace std::literals;
 

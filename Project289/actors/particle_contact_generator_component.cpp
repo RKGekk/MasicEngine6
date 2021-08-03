@@ -1,6 +1,13 @@
 #include "particle_contact_generator_component.h"
 #include "../events/evt_data_new_particle_contact_generator.h"
 #include "../events/i_event_manager.h"
+#include "../physics/ground_contacts.h"
+#include "../physics/particle_constraint.h"
+#include "../physics/particle_link.h"
+#include "../physics/particle_rod.h"
+#include "../physics/geo_ground_contacts.h"
+#include "transform_component.h"
+#include "../tools/memory_utility.h"
 
 const std::string ParticleContactGeneratorComponent::g_Name = "ParticleContactGeneratorComponent"s;
 
@@ -47,9 +54,14 @@ bool ParticleContactGeneratorComponent::VInit(TiXmlElement* pData) {
 }
 
 void ParticleContactGeneratorComponent::VPostInit() {
+    std::shared_ptr<TransformComponent> pTransformComponent = MakeStrongPtr(m_pOwner->GetComponent<TransformComponent>(TransformComponent::g_Name));
     if (m_contact_generator_type_name == "GroundContact") {
         m_contact_generator = std::make_shared<GroundContacts>(m_ground_level, m_restitution);
     }
+    if (m_contact_generator_type_name == "GeoGroundContact") {
+        m_contact_generator = std::make_shared<GeoGroundContacts>(pTransformComponent->GetPosition(), m_ground_level, m_restitution);
+    }
+
     std::shared_ptr<EvtData_New_Particle_Contact_Generator> pEvent(new EvtData_New_Particle_Contact_Generator(m_pOwner->GetId(), m_contact_generator));
     IEventManager::Get()->VTriggerEvent(pEvent);
 }

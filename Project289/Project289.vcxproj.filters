@@ -579,6 +579,12 @@
     <ClCompile Include="nodes\shadow_manager.cpp">
       <Filter>Source Files\nodes</Filter>
     </ClCompile>
+    <ClCompile Include="physics\particle_geo_gravity.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\geo_ground_contacts.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard\keyboard_event.h">
@@ -1187,6 +1193,12 @@
     <ClInclude Include="nodes\shadow_manager.h">
       <Filter>Header Files\nodes</Filter>
     </ClInclude>
+    <ClInclude Include="physics\particle_geo_gravity.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\geo_ground_contacts.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shaders\pixel_shader.hlsl">
@@ -1494,5 +1506,10 @@
     <None Include="data\actors\MeshParticleRenderLightComponent.xml">
       <Filter>Resource Files\actors</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="World3.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

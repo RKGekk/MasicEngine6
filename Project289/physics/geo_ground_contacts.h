@@ -8,13 +8,15 @@
 
 #include "../engine/i_engine_physics.h"
 
-class GroundContacts : public ParticleContactGenerator {
+class GeoGroundContacts : public ParticleContactGenerator {
     float m_ground_level;
     float m_restitution;
+    DirectX::XMFLOAT3 m_center;
     IEnginePhysics* m_physics;
 
 public:
-    GroundContacts(float ground_level, float restitution);
+    GeoGroundContacts(const DirectX::XMFLOAT3& center, float ground_level, float restitution);
+    GeoGroundContacts(DirectX::XMVECTOR center, float ground_level, float restitution);
 
     virtual unsigned addContact(ParticleContact* contact, unsigned limit) const;
 };

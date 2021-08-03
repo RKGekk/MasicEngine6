@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<World>
+  <Actors>
+    <!--<Actor name="nano_suit" type="MeshRenderComponent" resource="data\actors\MeshRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="-2.000000" z="7.000000" />
+        <YawPitchRoll x="90.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader.cso</PixelShader>
+        <VertexShader>vertex_shader.cso</VertexShader>
+      </MeshRenderComponent>
+      <MeshComponent>
+        <Obj>data\objects\feisar\feisar.obj</Obj>
+      </MeshComponent>
+    </Actor>-->
+    <Actor name="feisar" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="-0.700000" z="2.000000" />
+        <YawPitchRoll x="45.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <FogStart>10.0</FogStart>
+        <FogRange>100.0</FogRange>
+        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\feisar\feisar.obj</Obj>
+      </MeshComponent>
+    </Actor>
+
+    <!--<Actor name="aletter" type="MeshRenderComponent" resource="data\actors\MeshRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="0.000000" z="2.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="0.500000" />
+        <PixelShader>pixel_shader_alpha.cso</PixelShader>
+        <VertexShader>vertex_shader.cso</VertexShader>
+        <Radius>auto</Radius>
+        <AlphaBlend>true</AlphaBlend>
+      </MeshRenderComponent>
+      <MeshComponent>
+        <Obj>data\objects\aletter.obj</Obj>
+      </MeshComponent>
+    </Actor>-->
+
+    <Actor name="sphere" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="0.000000" z="2.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="0.125000" y="0.125000" z="0.125000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <FogStart>10.0</FogStart>
+        <FogRange>100.0</FogRange>
+        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\sphere.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="1.000000" y="0.000000" z="1.000000" />
+        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
+        <Mass>100.0f</Mass>
+        <Damping>0.4f</Damping>
+        <Radius>0.125f</Radius>
+      </ParticleComponent>
+      <SmokeComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="0.500000" />
+        <AtlasName>data\textures\fireatlas.jpg</AtlasName>
+        <AtlasWidth>4</AtlasWidth>
+        <AtlasHeight>4</AtlasHeight>
+        <Radius>0.5f</Radius>
+        <PixelShader>pixel_shader_smoke.cso</PixelShader>
+        <VertexShader>vertex_shader_smoke.cso</VertexShader>
+        <GeometryShader>geometry_shader_smoke.cso</GeometryShader>
+      </SmokeComponent>
+    </Actor>
+
+    <Actor name="directLight1" type="LightRenderComponent" resource="data\actors\LightRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="0.000000" z="0.000000" />
+        <YawPitchRoll x="0.000000" y="45.000000" z="0.000000" />
+        <Scale x="1.000000" y="1.000000" z="1.000000" />
+      </TransformComponent>
+      <LightRenderComponent>
+        <Color r="0.9" g="0.9" b="0.9" a="1.0"/>
+        <Light type="DirectionalLight" lantern="false">
+          <Ambient r="0.3" g="0.3" b="0.3" a="1.0" />
+          <Diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+          <Specular r="0.6" g="0.6" b="0.6" a="1.0" />
+          <Attenuation const="0.1" linear="0.0" exp="0.0" />
+          <Shape range="100.0" spot="24.0"/>
+        </Light>
+      </LightRenderComponent>
+    </Actor>
+
+    <Actor name="groundContact" type="ContactGeneratorComponent" resource="data\actors\ContactGeneratorComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="1.000000" z="0.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="1.0" y="1.0" z="1.0" />
+      </TransformComponent>
+      <ParticleContactGeneratorComponent>
+        <ContactGeneratorTypeName>GroundContact</ContactGeneratorTypeName>
+        <GroundLevel>-0.5</GroundLevel>
+        <Restitution>0.2</Restitution>
+      </ParticleContactGeneratorComponent>
+    </Actor>
+
+    <Actor name="groundGravity" type="ForceGeneratorComponent" resource="data\actors\ForceGeneratorComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="-1.000000" z="0.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="1.000000" y="1.000000" z="1.000000" />
+      </TransformComponent>
+      <ParticleForceGeneratorComponent>
+        <ForceGeneratorTypeName>Gravity</ForceGeneratorTypeName>
+        <Gravity>9.8</Gravity>
+      </ParticleForceGeneratorComponent>
+    </Actor>
+
+    <Actor name="ground1" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="-0.500000" z="3.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <FogStart>10.0</FogStart>
+        <FogRange>100.0</FogRange>
+        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\ground.obj</Obj>
+      </MeshComponent>
+    </Actor>
+    <Actor name="ground2" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="-6.000000" y="-0.500000" z="3.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <FogStart>10.0</FogStart>
+        <FogRange>100.0</FogRange>
+        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\ground.obj</Obj>
+      </MeshComponent>
+    </Actor>
+    <Actor name="ground3" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="6.000000" y="-0.500000" z="3.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <FogStart>10.0</FogStart>
+        <FogRange>100.0</FogRange>
+        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\ground.obj</Obj>
+      </MeshComponent>
+    </Actor>
+
+    <Actor name="ground4" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="-0.500000" z="9.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <FogStart>10.0</FogStart>
+        <FogRange>100.0</FogRange>
+        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\ground.obj</Obj>
+      </MeshComponent>
+    </Actor>
+    <Actor name="ground5" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="-6.000000" y="-0.500000" z="9.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <FogStart>10.0</FogStart>
+        <FogRange>100.0</FogRange>
+        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\ground.obj</Obj>
+      </MeshComponent>
+    </Actor>
+    <Actor name="ground6" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="6.000000" y="-0.500000" z="9.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <FogStart>10.0</FogStart>
+        <FogRange>100.0</FogRange>
+        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\ground.obj</Obj>
+      </MeshComponent>
+    </Actor>
+  </Actors>
+</World>
