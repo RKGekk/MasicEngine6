@@ -232,11 +232,11 @@ void BaseEngineLogic::VOnUpdate(float time, float elapsedTime) {
 		break;
 	}
 
-	for (GameViewList::iterator it = m_game_views.begin(); it != m_game_views.end(); ++it) 	{
+	for (GameViewList::iterator it = m_game_views.begin(); it != m_game_views.end(); ++it) {
 		(*it)->VOnUpdate(elapsedTime);
 	}
 
-	for (ActorMap::const_iterator it = m_actors.begin(); it != m_actors.end(); ++it)     {
+	for (ActorMap::const_iterator it = m_actors.begin(); it != m_actors.end(); ++it) {
 		it->second->Update(elapsedTime);
 	}
 }

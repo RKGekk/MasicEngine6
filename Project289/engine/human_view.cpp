@@ -83,48 +83,63 @@ LRESULT HumanView::VOnMsgProc(HWND m_hWnd, UINT m_uMsg, WPARAM m_wParam, LPARAM 
 	LRESULT result = 0;
 	switch (m_uMsg) {
 		case WM_KEYDOWN: {
-			if (m_keyboard_handler) {
-				result = m_keyboard_handler->VOnKeyDown(static_cast<const BYTE>(m_wParam));
+			if (m_keyboard_handlers.size()) {
+				for (auto& handler : m_keyboard_handlers) {
+					result |= handler->VOnKeyDown(static_cast<const BYTE>(m_wParam));
+				}
 			}
 		}
 		break;
 		case WM_KEYUP: {
-			if (m_keyboard_handler) {
-				result = m_keyboard_handler->VOnKeyUp(static_cast<const BYTE>(m_wParam));
+			if (m_keyboard_handlers.size()) {
+				for (auto& handler : m_keyboard_handlers) {
+					result |= handler->VOnKeyUp(static_cast<const BYTE>(m_wParam));
+				}
 			}
+			result = true;
 		}
 		break;
 		case WM_MOUSEMOVE: {
-			if (m_pointer_handler) {
-				result = m_pointer_handler->VOnPointerMove(LOWORD(m_lParam), HIWORD(m_lParam), 1);
+			if (m_pointer_handlers.size()) {
+				for (auto& handler : m_pointer_handlers) {
+					result |= handler->VOnPointerMove(LOWORD(m_lParam), HIWORD(m_lParam), 1);
+				}
 			}
 		}
 		break;
 		case WM_LBUTTONDOWN: {
-			if (m_pointer_handler) {
+			if (m_pointer_handlers.size()) {
 				SetCapture(m_hWnd);
-				result = m_pointer_handler->VOnPointerButtonDown(LOWORD(m_lParam), HIWORD(m_lParam), 1, "PointerLeft");
+				for (auto& handler : m_pointer_handlers) {
+					result |= handler->VOnPointerButtonDown(LOWORD(m_lParam), HIWORD(m_lParam), 1, "PointerLeft");
+				}
 			}
 		}
 		break;
 		case WM_LBUTTONUP: {
-			if (m_pointer_handler) {
+			if (m_pointer_handlers.size()) {
 				ReleaseCapture();
-				result = m_pointer_handler->VOnPointerButtonUp(LOWORD(m_lParam), HIWORD(m_lParam), 1, "PointerLeft");
+				for (auto& handler : m_pointer_handlers) {
+					result |= handler->VOnPointerButtonUp(LOWORD(m_lParam), HIWORD(m_lParam), 1, "PointerLeft");
+				}
 			}
 		}
 		break;
 		case WM_RBUTTONDOWN: {
-			if (m_pointer_handler) {
+			if (m_pointer_handlers.size()) {
 				SetCapture(m_hWnd);
-				result = m_pointer_handler->VOnPointerButtonDown(LOWORD(m_lParam), HIWORD(m_lParam), 1, "PointerRight");
+				for (auto& handler : m_pointer_handlers) {
+					result |= handler->VOnPointerButtonDown(LOWORD(m_lParam), HIWORD(m_lParam), 1, "PointerRight");
+				}
 			}
 		}
 		break;
 		case WM_RBUTTONUP: {
-			if (m_pointer_handler) {
+			if (m_pointer_handlers.size()) {
 				ReleaseCapture();
-				result = m_pointer_handler->VOnPointerButtonUp(LOWORD(m_lParam), HIWORD(m_lParam), 1, "PointerRight");
+				for (auto& handler : m_pointer_handlers) {
+					result = handler->VOnPointerButtonUp(LOWORD(m_lParam), HIWORD(m_lParam), 1, "PointerRight");
+				}
 			}
 		}
 		break;

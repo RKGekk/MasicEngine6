@@ -157,6 +157,7 @@
     <ClCompile Include="actors\actor_factory.cpp" />
     <ClCompile Include="actors\particle_component.cpp" />
     <ClCompile Include="actors\mesh_render_light_component.cpp" />
+    <ClCompile Include="actors\orientation_relation_component.cpp" />
     <ClCompile Include="physics\geo_ground_contacts.cpp" />
     <ClCompile Include="nodes\d3d_11_light_pipeline.cpp" />
     <ClCompile Include="events\evt_data_new_smoke_component.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="events\evt_data_new_particle_force_generator.cpp" />
     <ClCompile Include="nodes\shadow_manager.cpp" />
     <ClCompile Include="physics\particle_geo_gravity.cpp" />
+    <ClCompile Include="engine\geo_physics_movement_controller.cpp" />
     <ClCompile Include="tools\geometry_generator.cpp" />
     <ClCompile Include="physics\aero_control.cpp" />
     <ClCompile Include="physics\aero.cpp" />
@@ -313,6 +315,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="actors\mesh_render_light_component.h" />
+    <ClInclude Include="actors\orientation_relation_component.h" />
     <ClInclude Include="physics\geo_ground_contacts.h" />
     <ClInclude Include="nodes\d3d_11_light_pipeline.h" />
     <ClInclude Include="events\evt_data_new_smoke_component.h" />
@@ -335,6 +338,7 @@
     <ClInclude Include="events\evt_data_new_particle_force_generator.h" />
     <ClInclude Include="nodes\shadow_manager.h" />
     <ClInclude Include="physics\particle_geo_gravity.h" />
+    <ClInclude Include="engine\geo_physics_movement_controller.h" />
     <ClInclude Include="tools\geometry_generator.h" />
     <ClInclude Include="graphics\mesh_holder.h" />
     <ClInclude Include="physics\particle_sphere_contact.h" />
@@ -631,6 +635,9 @@
     <None Include="data\objects\aletter.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="data\objects\cube.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="data\objects\feisar\feisar.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -644,6 +651,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\objects\nanosuit\nanosuit.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\objects\pointer.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\objects\sphere.mtl">
@@ -886,9 +896,15 @@
     <None Include="data\actors\MeshParticleRenderLightComponent.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="World3.xml" />
+    <None Include="data\objects\cube.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\objects\pointer.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="World3.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

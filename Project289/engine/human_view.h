@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <queue>
+#include <vector>
 
 #include <DirectXMath.h>
 
@@ -38,8 +39,8 @@ protected:
 	std::shared_ptr<CameraNode> m_camera;
 
 	int m_PointerRadius;
-	std::shared_ptr<IPointerHandler> m_pointer_handler;
-	std::shared_ptr<IKeyboardHandler> m_keyboard_handler;
+	std::vector<std::shared_ptr<IPointerHandler>> m_pointer_handlers;
+	std::vector<std::shared_ptr<IKeyboardHandler>> m_keyboard_handlers;
 
 	virtual void VRenderText();
 

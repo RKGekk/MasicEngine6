@@ -2,20 +2,12 @@
 #include "scene.h"
 #include "../engine/engine.h"
 
-CameraNode::CameraNode(const DirectX::XMFLOAT4X4& t, const Frustum& frustum) :
-	SceneNode(WeakBaseRenderComponentPtr(), RenderPass::RenderPass_0, &t),
-	m_Frustum(frustum),
-	m_bActive(true),
-	m_DebugCamera(false),
-	m_pTarget(std::shared_ptr<SceneNode>()),
-	m_CamOffsetVector(0.0f, 1.0f, -10.0f, 0.0f)
-{
+CameraNode::CameraNode(const DirectX::XMFLOAT4X4& t, const Frustum& frustum) : SceneNode(WeakBaseRenderComponentPtr(), RenderPass::RenderPass_0, &t), m_Frustum(frustum), m_bActive(true), m_DebugCamera(false), m_pTarget(std::shared_ptr<SceneNode>()), m_CamOffsetVector(0.0f, 1.0f, -10.0f, 0.0f) {
 	DirectX::XMStoreFloat4x4(&m_Projection, DirectX::XMMatrixIdentity());
 	DirectX::XMStoreFloat4x4(&m_View, DirectX::XMMatrixIdentity());
 }
 
-CameraNode::CameraNode(DirectX::FXMMATRIX t, const Frustum& frustum) :
-	SceneNode(WeakBaseRenderComponentPtr(), RenderPass::RenderPass_0, t, DirectX::XMMatrixIdentity(), true),
+CameraNode::CameraNode(DirectX::FXMMATRIX t, const Frustum& frustum) : SceneNode(WeakBaseRenderComponentPtr(), RenderPass::RenderPass_0, t, DirectX::XMMatrixIdentity(), true),
 	m_Frustum(frustum),
 	m_bActive(true),
 	m_DebugCamera(false),

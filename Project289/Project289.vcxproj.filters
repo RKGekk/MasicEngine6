@@ -585,6 +585,12 @@
     <ClCompile Include="physics\geo_ground_contacts.cpp">
       <Filter>Source Files\physics</Filter>
     </ClCompile>
+    <ClCompile Include="engine\geo_physics_movement_controller.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\orientation_relation_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard\keyboard_event.h">
@@ -1199,6 +1205,12 @@
     <ClInclude Include="physics\geo_ground_contacts.h">
       <Filter>Header Files\physics</Filter>
     </ClInclude>
+    <ClInclude Include="engine\geo_physics_movement_controller.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\orientation_relation_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shaders\pixel_shader.hlsl">
@@ -1506,10 +1518,20 @@
     <None Include="data\actors\MeshParticleRenderLightComponent.xml">
       <Filter>Resource Files\actors</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="World3.xml">
+    <None Include="data\objects\pointer.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\cube.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\cube.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\pointer.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="World3.xml">
       <Filter>Resource Files</Filter>
-    </Xml>
+    </None>
   </ItemGroup>
 </Project>

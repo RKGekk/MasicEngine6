@@ -2,6 +2,7 @@
 #include "../events/evt_data_update_tick.h"
 #include "../engine/engine.h"
 #include "../actors/mesh_render_component.h"
+#include "../actors/mesh_render_light_component.h"
 
 const std::string XHumanView::g_Name = "Level"s;
 
@@ -13,7 +14,6 @@ XHumanView::XHumanView(IRenderer* renderer) : HumanView(renderer) {
 		VPushElement(m_ActorMenuUI);
 	}
 	RegisterAllDelegates();
-
 }
 
 XHumanView::~XHumanView() {
@@ -35,6 +35,9 @@ void XHumanView::VOnUpdate(float deltaSeconds) {
 	if (m_pFreeCameraController) {
 		m_pFreeCameraController->OnUpdate(deltaSeconds);
 	}
+	if (m_pGeoPhysicsMovementController) {
+		m_pGeoPhysicsMovementController->OnUpdate(deltaSeconds);
+	}
 
 	std::shared_ptr<EvtData_Update_Tick> pTickEvent(new EvtData_Update_Tick(deltaSeconds, g_pApp->GetTimer().TotalTime()));
 	IEventManager::Get()->VTriggerEvent(pTickEvent);
@@ -47,21 +50,38 @@ void XHumanView::VOnAttach(EngineViewId vid, ActorId aid) {
 void XHumanView::VSetControlledActor(ActorId actorId) {
 	m_pTeapot = std::static_pointer_cast<SceneNode>(m_scene->FindActor(actorId, MeshRenderComponent::GetIdFromName(MeshRenderComponent::g_Name)));
 	if (!m_pTeapot) {
+		m_pTeapot = std::static_pointer_cast<SceneNode>(m_scene->FindActor(actorId, MeshRenderLightComponent::GetIdFromName(MeshRenderLightComponent::g_Name)));
+	}
+	if (!m_pTeapot) {
+		m_keyboard_handlers.clear();
+		m_pointer_handlers.clear();
+		m_pFreeCameraController.reset(new MovementController(m_camera, 0, 0, true));
+		m_keyboard_handlers.push_back(m_pFreeCameraController);
+		m_pointer_handlers.push_back(m_pFreeCameraController);
 		return;
+	}
+	else {
+		m_keyboard_handlers.clear();
+		m_pointer_handlers.clear();
+		m_pGeoPhysicsMovementController.reset(new GeoPhysicsMovementController(m_pTeapot));
+		m_keyboard_handlers.push_back(m_pGeoPhysicsMovementController);
+		m_pointer_handlers.push_back(m_pGeoPhysicsMovementController);
 	}
 
 	HumanView::VSetControlledActor(actorId);
 
-	m_camera->SetTarget(m_pTeapot);
-	m_pTeapot->SetAlpha(0.8f);
+	//m_camera->SetTarget(m_pTeapot);
+	//m_pTeapot->SetAlpha(0.8f);
 }
 
 bool XHumanView::VLoadGameDelegate(TiXmlElement* pLevelData) {
 	if (!HumanView::VLoadGameDelegate(pLevelData)) { return false; }
 
+	m_keyboard_handlers.clear();
+	m_pointer_handlers.clear();
 	m_pFreeCameraController.reset(new MovementController(m_camera, 0, 0, true));
-	m_keyboard_handler = m_pFreeCameraController;
-	m_pointer_handler = m_pFreeCameraController;
+	m_keyboard_handlers.push_back(m_pFreeCameraController);
+	m_pointer_handlers.push_back(m_pFreeCameraController);
 
 	m_scene->VOnRestore();
 	return true;

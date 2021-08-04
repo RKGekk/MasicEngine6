@@ -10,7 +10,7 @@
 #include "particle_force_generator_component.h"
 #include "smoke_component.h"
 #include "mesh_render_light_component.h"
-
+#include "orientation_relation_component.h"
 
 unsigned int ActorFactory::GetNextActorId() {
     return ++m_lastActorId;
@@ -29,6 +29,7 @@ ActorFactory::ActorFactory() {
     m_componentFactory.Register<ParticleForceGeneratorComponent>(ActorComponent::GetIdFromName(ParticleForceGeneratorComponent::g_Name), ParticleForceGeneratorComponent::g_Name);
     m_componentFactory.Register<SmokeComponent>(ActorComponent::GetIdFromName(SmokeComponent::g_Name), SmokeComponent::g_Name);
     m_componentFactory.Register<MeshRenderLightComponent>(ActorComponent::GetIdFromName(MeshRenderLightComponent::g_Name), MeshRenderLightComponent::g_Name);
+    m_componentFactory.Register<OrientationRelationComponent>(ActorComponent::GetIdFromName(OrientationRelationComponent::g_Name), OrientationRelationComponent::g_Name);
 }
 
 std::shared_ptr<Actor> ActorFactory::CreateActor(const char* actorResource, TiXmlElement* overrides, const DirectX::XMFLOAT4X4* pinitialTransform, const ActorId serversActorId) {

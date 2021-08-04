@@ -4,6 +4,7 @@
 
 #include "human_view.h"
 #include "movement_controller.h"
+#include "geo_physics_movement_controller.h"
 #include "actor_menu_ui.h"
 
 class XHumanView : public HumanView {
@@ -17,6 +18,7 @@ protected:
 	std::shared_ptr<ActorMenuUI> m_ActorMenuUI;
 
 	std::shared_ptr<MovementController> m_pFreeCameraController;
+	std::shared_ptr<GeoPhysicsMovementController> m_pGeoPhysicsMovementController;
 	std::shared_ptr<SceneNode> m_pTeapot;
 
 public:

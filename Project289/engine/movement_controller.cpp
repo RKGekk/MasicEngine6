@@ -1,4 +1,7 @@
 #include "movement_controller.h"
+#include "engine.h"
+#include "../actors/transform_component.h"
+#include "human_view.h"
 
 MovementController::MovementController(std::shared_ptr<SceneNode> object, float initialYaw, float initialPitch, bool rotateWhenLButtonDown) : m_object(object) {
 	m_matToWorld = m_object->VGet().ToWorld4x4();
@@ -33,6 +36,15 @@ void MovementController::SetObject(std::shared_ptr<SceneNode> newObject) {
 
 void MovementController::OnUpdate(float elapsed_seconds) {
 	using namespace DirectX;
+
+	if (!m_object) { return; }
+	ActorId act_id = m_object->VFindMyActor();
+	std::shared_ptr<Actor> act = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(act_id));
+	unsigned int componentId = ActorComponent::GetIdFromName("TransformComponent");
+	std::shared_ptr<TransformComponent> tc;
+	if (act) {
+		tc = MakeStrongPtr(act->GetComponent<TransformComponent>(componentId));
+	}
 
 	bool bTranslating = false;
 	DirectX::XMFLOAT4 atWorld(0.0f, 0.0f, 0.0f, 0.0f);
@@ -84,7 +96,12 @@ void MovementController::OnUpdate(float elapsed_seconds) {
 		matRot.r[3] = DirectX::XMVectorSet(m_matPosition._41, m_matPosition._42, m_matPosition._43, m_matPosition._44);
 		DirectX::XMStoreFloat4x4(&m_matToWorld, matRot);
 		DirectX::XMStoreFloat4x4(&m_matFromWorld, DirectX::XMMatrixInverse(nullptr, matRot));
-		m_object->VSetTransform4x4(&m_matToWorld, &m_matFromWorld);
+		if (tc) {
+			tc->SetTransform(m_matToWorld);
+		}
+		else {
+			m_object->VSetTransform4x4(&m_matToWorld, &m_matFromWorld);
+		}
 	}
 
 	if (bTranslating) {
@@ -108,7 +125,12 @@ void MovementController::OnUpdate(float elapsed_seconds) {
 		m_matToWorld._43 = DirectX::XMVectorGetZ(pos);
 
 		DirectX::XMStoreFloat4x4(&m_matFromWorld, DirectX::XMMatrixInverse(nullptr, DirectX::XMLoadFloat4x4(&m_matToWorld)));
-		m_object->VSetTransform4x4(&m_matToWorld, &m_matFromWorld);
+		if (tc) {
+			tc->SetTransform(m_matToWorld);
+		}
+		else {
+			m_object->VSetTransform4x4(&m_matToWorld, &m_matFromWorld);
+		}
 	}
 	else {
 		m_currentSpeed = 0.0f;
