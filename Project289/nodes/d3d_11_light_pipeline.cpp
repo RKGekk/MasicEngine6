@@ -4,6 +4,7 @@
 
 #include "../actors/mesh_render_component.h"
 #include "../actors/mesh_render_light_component.h"
+#include "../actors/pers_texture_anim_state_component.h"
 #include "../engine/engine.h"
 #include "../engine/d3d_renderer11.h"
 #include "../nodes/light_manager.h"
@@ -203,6 +204,7 @@ D3D11LightPipeline::D3D11LightPipeline(int mesh_id, MeshRenderLightComponent& da
 	DirectX::XMStoreFloat4x4(&mt.lwvpMatrix, DirectX::XMMatrixIdentity());
 	DirectX::XMStoreFloat4x4(&mt.invWorldMatrix, DirectX::XMMatrixIdentity());
 	DirectX::XMStoreFloat4x4(&mt.worldMatrix, DirectX::XMMatrixIdentity());
+	DirectX::XMStoreFloat4x4(&mt.gTexTransform, DirectX::XMMatrixIdentity());
 
 	m_vs_cb_slot0 = 0;
 	m_ps_cb_slot0 = 0;
@@ -300,8 +302,10 @@ HRESULT D3D11LightPipeline::VPreRender(Scene* pScene) {
 	const std::shared_ptr<CameraNode> camera = pScene->GetCamera();
 	std::shared_ptr<MeshRenderLightComponent> pMeshComponent = MakeStrongPtr(pActor->GetComponent<MeshRenderLightComponent>(MeshRenderLightComponent::g_Name));
 	MeshHolder& mesh = pMeshComponent->GetMesh(m_mesh_id);
-	ShadowManager* shadowManager = pScene->GetShadowManager();
 
+	std::shared_ptr<PersTextureAnimStateComponent> pPersTextureAnimStateComponent = MakeStrongPtr(pActor->GetComponent<PersTextureAnimStateComponent>(PersTextureAnimStateComponent::g_Name));
+
+	ShadowManager* shadowManager = pScene->GetShadowManager();
 	m_shadow_srv2 = shadowManager->ShadowDepthMapSRV();
 
 	CB_VS_VertexShader mt;
@@ -313,6 +317,12 @@ HRESULT D3D11LightPipeline::VPreRender(Scene* pScene) {
 	mt.material.Ambient.w = pMeshComponent->GetColor().w;
 	mt.material.Diffuse = mesh.material.Diffuse;
 	mt.material.Specular = mesh.material.Specular;
+	if (pPersTextureAnimStateComponent) {
+		mt.gTexTransform = pPersTextureAnimStateComponent->GetTexTransform();
+	}
+	else {
+		DirectX::XMStoreFloat4x4(&mt.gTexTransform, DirectX::XMMatrixIdentity());
+	}
 
 	D3D11_MAPPED_SUBRESOURCE vsmsr;
 	HRESULT hr = deviceContext->Map(m_pVSConstantBuffer0.Get(), 0u, D3D11_MAP_WRITE_DISCARD, 0u, &vsmsr);

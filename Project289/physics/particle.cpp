@@ -16,6 +16,9 @@ void Particle::integrate(float duration) {
     if (XMVector3NearEqual(vel, XMVectorReplicate(0.0f), XMVectorReplicate(EPSILON * 100000.9f))) {
         vel = XMVectorReplicate(0.0f);
     }
+    /*if (XMVector3NearEqual(vel, XMVectorReplicate(0.0f), XMVectorReplicate(EPSILON * 1000000.0f))) {
+        vel = XMVectorReplicate(0.0f);
+    }*/
     DirectX::XMStoreFloat3(&m_position, pos + vel * duration);
 
     DirectX::XMVECTOR resultingAcc = DirectX::XMLoadFloat3(&m_acceleration);

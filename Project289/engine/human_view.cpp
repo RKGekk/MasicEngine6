@@ -195,7 +195,8 @@ HumanView::HumanView(IRenderer* renderer) {
 		m_scene.reset(new ScreenElementScene(renderer));
 
 		Frustum frustum;
-		frustum.Init(DirectX::XM_PI / 4.0f, 1.0f, 1.0f, 100.0f);
+		//frustum.Init(DirectX::XM_PI / 4.0f, 1.0f, 1.0f, 100.0f);
+		frustum.Init(DirectX::XM_PI / 4.0f, 1.0f, 0.1f, 100.0f);
 		m_camera.reset(new CameraNode(DirectX::XMMatrixIdentity(), frustum));
 
 		m_scene->VAddChild(INVALID_ACTOR_ID, INVALID_COMPONENT_ID, m_camera);

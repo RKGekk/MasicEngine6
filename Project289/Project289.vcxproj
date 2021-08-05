@@ -158,6 +158,7 @@
     <ClCompile Include="actors\particle_component.cpp" />
     <ClCompile Include="actors\mesh_render_light_component.cpp" />
     <ClCompile Include="actors\orientation_relation_component.cpp" />
+    <ClCompile Include="actors\pers_texture_anim_state_component.cpp" />
     <ClCompile Include="physics\geo_ground_contacts.cpp" />
     <ClCompile Include="nodes\d3d_11_light_pipeline.cpp" />
     <ClCompile Include="events\evt_data_new_smoke_component.cpp" />
@@ -316,6 +317,7 @@
   <ItemGroup>
     <ClInclude Include="actors\mesh_render_light_component.h" />
     <ClInclude Include="actors\orientation_relation_component.h" />
+    <ClInclude Include="actors\pers_texture_anim_state_component.h" />
     <ClInclude Include="physics\geo_ground_contacts.h" />
     <ClInclude Include="nodes\d3d_11_light_pipeline.h" />
     <ClInclude Include="events\evt_data_new_smoke_component.h" />
@@ -624,6 +626,13 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
+    <FxCompile Include="data\shaders\pixel_shader_basic_light_alpha.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="data\fonts\comic_sans_ms_16.sprite">
@@ -651,6 +660,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\objects\nanosuit\nanosuit.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\objects\plane.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\objects\pointer.mtl">
@@ -903,6 +915,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="World3.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\textures\tiffany_benson_robot_main1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\objects\plane.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

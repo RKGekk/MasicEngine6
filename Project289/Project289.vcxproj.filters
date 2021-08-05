@@ -591,6 +591,9 @@
     <ClCompile Include="actors\orientation_relation_component.cpp">
       <Filter>Source Files\actors</Filter>
     </ClCompile>
+    <ClCompile Include="actors\pers_texture_anim_state_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard\keyboard_event.h">
@@ -1211,6 +1214,9 @@
     <ClInclude Include="actors\orientation_relation_component.h">
       <Filter>Header Files\actors</Filter>
     </ClInclude>
+    <ClInclude Include="actors\pers_texture_anim_state_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shaders\pixel_shader.hlsl">
@@ -1250,6 +1256,9 @@
       <Filter>Resource Files\shaders</Filter>
     </FxCompile>
     <FxCompile Include="data\shaders\pixel_shader_light_inv_ny.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\pixel_shader_basic_light_alpha.hlsl">
       <Filter>Resource Files\shaders</Filter>
     </FxCompile>
   </ItemGroup>
@@ -1532,6 +1541,15 @@
     </None>
     <None Include="World3.xml">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\objects\plane.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\plane.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\textures\tiffany_benson_robot_main1.png">
+      <Filter>Resource Files\textures</Filter>
     </None>
   </ItemGroup>
 </Project>

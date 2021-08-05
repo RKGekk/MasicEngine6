@@ -69,6 +69,7 @@ public:
 
 	DirectX::XMFLOAT3 GetDirection() const;
 
+	float GetRadius();
 	void SetRadius(const float radius);
 	void SetMaterial(const Material& mat);
 

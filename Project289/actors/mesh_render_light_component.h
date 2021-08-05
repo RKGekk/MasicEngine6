@@ -41,6 +41,7 @@ class MeshRenderLightComponent : public BaseRenderComponent {
     float m_fog_start;
     float m_fog_range;
     DirectX::XMFLOAT4 m_fog_color;
+    float m_scale;
 
 public:
     static const std::string g_Name;

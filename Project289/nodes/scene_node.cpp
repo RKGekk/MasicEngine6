@@ -323,6 +323,10 @@ DirectX::XMFLOAT3 SceneNode::GetDirection() const {
 	return result;
 }
 
+float SceneNode::GetRadius() {
+	return m_Props.m_Radius;
+}
+
 void SceneNode::SetRadius(const float radius) {
 	m_Props.m_Radius = radius;
 }

@@ -121,7 +121,7 @@ void XLogic::EnvironmentLoadedDelegate(IEventDataPtr pEventData) {
 
 		g_pApp->GetGameLogic()->VRemoveView(menuView);
 
-		StrongActorPtr pActorTeapot = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName("pers_sphere"));
+		StrongActorPtr pActorTeapot = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName("pers"));
 		levelView->VSetControlledActor(pActorTeapot->GetId());
 
 		return true;

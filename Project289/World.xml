@@ -2,7 +2,7 @@
 <World>
   <Actors>
     
-    <Actor name="pers_sphere" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+    <!--<Actor name="pers_sphere" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
         <Position x="0.000000" y="0.000000" z="0.000000" />
         <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
@@ -40,6 +40,52 @@
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
       </OrientationRelationComponent>
+    </Actor>-->
+
+    <Actor name="pers" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="0.000000" z="0.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="0.125000" y="0.125000" z="0.125000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_basic_light_alpha.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <FogStart>10.0</FogStart>
+        <FogRange>100.0</FogRange>
+        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\plane.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="1.000000" y="0.000000" z="1.000000" />
+        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
+        <Mass>100.0</Mass>
+        <Damping>0.4</Damping>
+        <Radius>0.125</Radius>
+      </ParticleComponent>
+      <OrientationRelationComponent>
+        <RelateTo>ground</RelateTo>
+      </OrientationRelationComponent>
+      <PersTextureAnimStateComponent>
+        <AtlasWidth>7</AtlasWidth>
+        <AtlasHeight>4</AtlasHeight>
+        <WalkLeft From="0" To="3" />
+        <WalkRight From="7" To="10" />
+        <WalkToward From="14" To="17" />
+        <WalkOutward From="21" To="24" />
+        <JumpLeft From="4" To="5" />
+        <JumpRight From="11" To="12" />
+        <JumpToward From="18" To="19" />
+        <JumpOutward From="25" To="26" />
+        <IdleLeft From="6" To="6" />
+        <IdleRight From="13" To="13" />
+        <IdleToward From="20" To="20" />
+        <IdleOutward From="27" To="27" />
+      </PersTextureAnimStateComponent>
     </Actor>
 
     <!--<Actor name="test1" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">

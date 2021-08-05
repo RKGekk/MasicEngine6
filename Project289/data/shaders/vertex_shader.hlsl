@@ -11,6 +11,7 @@ cbuffer perObjectBuffer : register(b0) {
 	float4x4 worldMatrix;
 	float4x4 shadowTransform;
 	Material gMaterial;
+	float4x4 gTexTransform;
 };
 
 struct VS_INPUT {

@@ -13,6 +13,7 @@ struct CB_VS_VertexShader {
 	DirectX::XMFLOAT4X4 worldMatrix;
 	DirectX::XMFLOAT4X4 shadowTransform;
 	MaterialShader material;
+	DirectX::XMFLOAT4X4 gTexTransform;
 };
 
 struct CB_PS_PixelShader_Light {

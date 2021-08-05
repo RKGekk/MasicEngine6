@@ -17,7 +17,7 @@ const std::string& MeshRenderLightComponent::VGetName() const {
 	return g_Name;
 }
 
-MeshRenderLightComponent::MeshRenderLightComponent() : m_auto_radius(false), m_radius(0.0f), m_alpha_blend(false) {}
+MeshRenderLightComponent::MeshRenderLightComponent() : m_auto_radius(false), m_radius(0.0f), m_alpha_blend(false), m_scale(1.0f) {}
 
 const std::string& MeshRenderLightComponent::GetPixelShaderResource() {
 	return m_pixelShaderResource;
@@ -126,6 +126,12 @@ std::shared_ptr<SceneNode> MeshRenderLightComponent::VCreateSceneNode() {
 
 	m_resource_directory = pMeshComponent->GetResourceDirecory();
 
+	DirectX::XMFLOAT3 xm_scale = pTransformComponent->GetScale3f();
+	float scale = xm_scale.x;
+	scale = scale > xm_scale.y ? scale : xm_scale.y;
+	scale = scale > xm_scale.z ? scale : xm_scale.z;
+	m_scale = scale;
+
 	std::shared_ptr<SceneNode> root_node(new SceneNode(this, RenderPass::RenderPass_Actor, &pTransformComponent->GetTransform4x4f()));
 	const aiScene* pScene = pMeshComponent->GetScene();
 	ProcessNode(pScene->mRootNode, pScene, root_node);
@@ -141,7 +147,8 @@ std::shared_ptr<SceneNode> MeshRenderLightComponent::VCreateSceneNode() {
 void MeshRenderLightComponent::VCreateInheritedXmlElements(TiXmlElement* pBaseElement) {}
 
 void MeshRenderLightComponent::ProcessNode(aiNode* node, const aiScene* scene, std::shared_ptr<SceneNode> parent) {
-	DirectX::XMMATRIX node_transform_matrix = DirectX::XMMatrixTranspose(DirectX::XMMATRIX(&node->mTransformation.a1));
+	using namespace DirectX;
+	XMMATRIX node_transform_matrix = XMMatrixTranspose(XMMATRIX(&node->mTransformation.a1));
 
 	for (UINT i = 0; i < node->mNumMeshes; ++i) {
 		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
@@ -150,6 +157,11 @@ void MeshRenderLightComponent::ProcessNode(aiNode* node, const aiScene* scene, s
 	for (UINT i = 0; i < node->mNumChildren; ++i) {
 		ActorId owner = this->m_pOwner->GetId();
 		std::shared_ptr<SceneNode> n = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, node_transform_matrix, DirectX::XMMatrixIdentity(), true);
+
+		/*XMVECTOR pos = XMVectorSetW(node_transform_matrix.r[3], 0.0f) * m_scale;
+		float radius = XMVectorGetX(XMVector3Length(pos));
+		n->SetRadius(radius);*/
+
 		parent->VAddChild(n);
 		ProcessNode(node->mChildren[i], scene, n);
 	}
@@ -231,7 +243,7 @@ std::shared_ptr<SceneNode> MeshRenderLightComponent::ProcessMesh(aiMesh* mesh, c
 		float y = std::fabsf(max_y) > std::fabsf(min_y) ? std::fabsf(max_y) : std::fabsf(min_y);
 		float z = std::fabsf(max_z) > std::fabsf(min_z) ? std::fabsf(max_z) : std::fabsf(min_z);
 		float radius = DirectX::XMVectorGetX(DirectX::XMVector3Length(DirectX::XMVectorSet(x, y, z, 0.0f)));
-		result->SetRadius(radius);
+		result->SetRadius(radius * m_scale);
 	}
 	return result;
 }
