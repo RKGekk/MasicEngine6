@@ -9,6 +9,7 @@
 #include "i_keyboard_handler.h"
 #include "../actors/actor.h"
 #include "../nodes/scene_node.h"
+#include "../actors/pers_current_state_enum.h"
 
 class GeoPhysicsMovementController : public IPointerHandler, public IKeyboardHandler {
 protected:
@@ -28,6 +29,7 @@ protected:
 public:
 	GeoPhysicsMovementController(std::shared_ptr<SceneNode> object);
 	void SetObject(std::shared_ptr<SceneNode> newObject);
+	void SetState(PersCurrentStateEnum state);
 
 	void OnUpdate(float elapsed_seconds);
 

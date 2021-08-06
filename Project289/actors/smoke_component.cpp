@@ -54,6 +54,8 @@ void SmokeComponent::VPostInit() {
         //float ttl = 1.0f + rnd.Random() * 2.0f;
         float ttl = rnd.Random();
         particle->setTTL(ttl);
+        particle->setAwake(false);
+        particle->setCanSleep(false);
 
         m_particles.push_back(particle);
         m_particle_world.getParticles().push_back(particle.get());

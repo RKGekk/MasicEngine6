@@ -2,6 +2,8 @@
 #include "particle_component.h"
 #include "../tools/memory_utility.h"
 
+#include <cmath>
+
 const std::string PersTextureAnimStateComponent::g_Name = "PersTextureAnimStateComponent"s;
 
 const std::string& PersTextureAnimStateComponent::VGetName() const {
@@ -11,7 +13,7 @@ const std::string& PersTextureAnimStateComponent::VGetName() const {
 
 PersTextureAnimStateComponent::PersTextureAnimStateComponent() {
 	DirectX::XMStoreFloat4x4(&m_text_transform, DirectX::XMMatrixIdentity());
-
+	m_anim_time = 0.0f;
 	m_current_state = PersCurrentStateEnum::IdleToward;
 
 	m_atlas_width = 1;
@@ -21,30 +23,42 @@ PersTextureAnimStateComponent::PersTextureAnimStateComponent() {
 
 	m_walk_left_from = 1;
 	m_walk_left_to = 1;
+	m_walk_left_frame_time = 0.016f;
 	m_walk_right_from = 1;
 	m_walk_right_to = 1;
+	m_walk_right_frame_time = 0.016f;
 	m_walk_toward_from = 1;
 	m_walk_toward_to = 1;
+	m_walk_toward_frame_time = 0.016f;
 	m_walk_outward_from = 1;
 	m_walk_outward_to = 1;
+	m_walk_outward_frame_time = 0.016f;
 
 	m_jump_left_from = 1;
 	m_jump_left_to = 1;
+	m_jump_left_frame_time = 0.016f;
 	m_jump_right_from = 1;
 	m_jump_right_to = 1;
+	m_jump_right_frame_time = 0.016f;
 	m_jump_toward_from = 1;
 	m_jump_toward_to = 1;
+	m_jump_toward_frame_time = 0.016f;
 	m_jump_outward_from = 1;
 	m_jump_outward_to = 1;
+	m_jump_outward_frame_time = 0.016f;
 
 	m_idle_left_from = 1;
 	m_idle_left_to = 1;
+	m_idle_left_frame_time = 0.016f;
 	m_idle_right_from = 1;
 	m_idle_right_to = 1;
+	m_idle_right_frame_time = 0.016f;
 	m_idle_toward_from = 1;
 	m_idle_toward_to = 1;
+	m_idle_toward_frame_time = 0.016f;
 	m_idle_outward_from = 1;
 	m_idle_outward_to = 1;
+	m_idle_outward_frame_time = 0.016f;
 }
 
 PersTextureAnimStateComponent::~PersTextureAnimStateComponent() {}
@@ -75,6 +89,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		if (!sTo.empty()) {
 			m_walk_left_to = std::stoi(sTo);
 		}
+		const char* cFrameTime = pWalkLeft->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_walk_left_frame_time = std::stof(sFrameTime);
+		}
 	}
 
 	TiXmlElement* pWalkRight = pData->FirstChildElement("WalkRight");
@@ -88,6 +107,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		std::string sTo(cTo == nullptr ? "" : cTo);
 		if (!sTo.empty()) {
 			m_walk_right_to = std::stoi(sTo);
+		}
+		const char* cFrameTime = pWalkRight->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_walk_right_frame_time = std::stof(sFrameTime);
 		}
 	}
 
@@ -103,6 +127,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		if (!sTo.empty()) {
 			m_walk_toward_to = std::stoi(sTo);
 		}
+		const char* cFrameTime = pWalkToward->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_walk_toward_frame_time = std::stof(sFrameTime);
+		}
 	}
 
 	TiXmlElement* pWalkOutward = pData->FirstChildElement("WalkOutward");
@@ -116,6 +145,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		std::string sTo(cTo == nullptr ? "" : cTo);
 		if (!sTo.empty()) {
 			m_walk_outward_to = std::stoi(sTo);
+		}
+		const char* cFrameTime = pWalkOutward->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_walk_outward_frame_time = std::stof(sFrameTime);
 		}
 	}
 
@@ -131,6 +165,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		if (!sTo.empty()) {
 			m_jump_left_to = std::stoi(sTo);
 		}
+		const char* cFrameTime = pJumpLeft->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_jump_left_frame_time = std::stof(sFrameTime);
+		}
 	}
 
 	TiXmlElement* pJumpRight = pData->FirstChildElement("JumpRight");
@@ -144,6 +183,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		std::string sTo(cTo == nullptr ? "" : cTo);
 		if (!sTo.empty()) {
 			m_jump_right_to = std::stoi(sTo);
+		}
+		const char* cFrameTime = pJumpRight->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_jump_right_frame_time = std::stof(sFrameTime);
 		}
 	}
 
@@ -159,6 +203,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		if (!sTo.empty()) {
 			m_jump_toward_to = std::stoi(sTo);
 		}
+		const char* cFrameTime = pJumpToward->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_jump_toward_frame_time = std::stof(sFrameTime);
+		}
 	}
 
 	TiXmlElement* pJumpOutward = pData->FirstChildElement("JumpOutward");
@@ -172,6 +221,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		std::string sTo(cTo == nullptr ? "" : cTo);
 		if (!sTo.empty()) {
 			m_jump_outward_to = std::stoi(sTo);
+		}
+		const char* cFrameTime = pJumpOutward->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_jump_outward_frame_time = std::stof(sFrameTime);
 		}
 	}
 
@@ -187,6 +241,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		if (!sTo.empty()) {
 			m_idle_left_to = std::stoi(sTo);
 		}
+		const char* cFrameTime = pIdleLeft->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_idle_left_frame_time = std::stof(sFrameTime);
+		}
 	}
 
 	TiXmlElement* pIdleRight = pData->FirstChildElement("IdleRight");
@@ -200,6 +259,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		std::string sTo(cTo == nullptr ? "" : cTo);
 		if (!sTo.empty()) {
 			m_idle_right_to = std::stoi(sTo);
+		}
+		const char* cFrameTime = pIdleRight->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_idle_right_frame_time = std::stof(sFrameTime);
 		}
 	}
 
@@ -215,6 +279,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		if (!sTo.empty()) {
 			m_idle_toward_to = std::stoi(sTo);
 		}
+		const char* cFrameTime = pIdleToward->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_idle_toward_frame_time = std::stof(sFrameTime);
+		}
 	}
 
 	TiXmlElement* pIdleOutward = pData->FirstChildElement("IdleOutward");
@@ -229,6 +298,11 @@ bool PersTextureAnimStateComponent::VInit(TiXmlElement* pData) {
 		if (!sTo.empty()) {
 			m_idle_outward_to = std::stoi(sTo);
 		}
+		const char* cFrameTime = pIdleOutward->Attribute("FrameTime");
+		std::string sFrameTime(cFrameTime == nullptr ? "" : cFrameTime);
+		if (!sFrameTime.empty()) {
+			m_idle_outward_frame_time = std::stof(sFrameTime);
+		}
 	}
 
 	return true;
@@ -240,23 +314,109 @@ void PersTextureAnimStateComponent::VUpdate(float deltaMs) {
 	using namespace DirectX;
 	std::shared_ptr<ParticleComponent> pParticleComponent = MakeStrongPtr(GetOwner()->GetComponent<ParticleComponent>(ParticleComponent::g_Name));
 
-	//PersCurrentStateEnum state = m_current_state;
-	PersCurrentStateEnum state = PersCurrentStateEnum::WalkOutward;
+	PersCurrentStateEnum state = m_current_state;
+	int start_frame_num = 0;
+	int total_frames_num = 0;
+	int frames_per_row = m_atlas_width;
+	float frame_time = 0.5f;
+	switch (state) 	{
+	case PersCurrentStateEnum::WalkLeft:
+		start_frame_num = m_walk_left_from;
+		total_frames_num = m_walk_left_to - m_walk_left_from + 1;
+		frame_time = m_walk_left_frame_time;
+		break;
+	case PersCurrentStateEnum::WalkRight:
+		start_frame_num = m_walk_right_from;
+		total_frames_num = m_walk_right_to - m_walk_right_from + 1;
+		frame_time = m_walk_right_frame_time;
+		break;
+	case PersCurrentStateEnum::WalkToward:
+		start_frame_num = m_walk_toward_from;
+		total_frames_num = m_walk_toward_to - m_walk_toward_from + 1;
+		frame_time = m_walk_toward_frame_time;
+		break;
+	case PersCurrentStateEnum::WalkOutward:
+		start_frame_num = m_walk_outward_from;
+		total_frames_num = m_walk_outward_to - m_walk_outward_from + 1;
+		frame_time = m_walk_outward_frame_time;
+		break;
+	case PersCurrentStateEnum::JumpLeft:
+		start_frame_num = m_jump_left_from;
+		total_frames_num = m_jump_left_to - m_jump_left_from + 1;
+		frame_time = m_jump_left_frame_time;
+		break;
+	case PersCurrentStateEnum::JumpRight:
+		start_frame_num = m_jump_right_from;
+		total_frames_num = m_jump_right_to - m_jump_right_from + 1;
+		frame_time = m_jump_right_frame_time;
+		break;
+	case PersCurrentStateEnum::JumpToward:
+		start_frame_num = m_jump_toward_from;
+		total_frames_num = m_jump_toward_to - m_jump_toward_from + 1;
+		frame_time = m_jump_toward_frame_time;
+		break;
+	case PersCurrentStateEnum::JumpOutward:
+		start_frame_num = m_jump_outward_from;
+		total_frames_num = m_jump_outward_to - m_jump_outward_from + 1;
+		frame_time = m_jump_outward_frame_time;
+		break;
+	case PersCurrentStateEnum::IdleLeft:
+		start_frame_num = m_idle_left_from;
+		total_frames_num = m_idle_left_to - m_idle_left_from + 1;
+		frame_time = m_idle_left_frame_time;
+		break;
+	case PersCurrentStateEnum::IdleRight:
+		start_frame_num = m_idle_right_from;
+		total_frames_num = m_idle_right_to - m_idle_right_from + 1;
+		frame_time = m_idle_right_frame_time;
+		break;
+	case PersCurrentStateEnum::IdleToward:
+		start_frame_num = m_idle_toward_from;
+		total_frames_num = m_idle_toward_to - m_idle_toward_from + 1;
+		frame_time = m_idle_toward_frame_time;
+		break;
+	case PersCurrentStateEnum::IdleOutward:
+		start_frame_num = m_idle_outward_from;
+		total_frames_num = m_idle_outward_to - m_idle_outward_from + 1;
+		frame_time = m_idle_outward_frame_time;
+		break;
+	default:
+		break;
+	}
+	float total_anim_time = frame_time * ((float)total_frames_num);
+	if (m_anim_time > total_anim_time && state != PersCurrentStateEnum::IdleToward) {
+		std::string fsddf = "";
+	}
+	float loop_time = std::fmodf(m_anim_time, total_anim_time);
+	int current_frame = (int)(loop_time / frame_time) % total_frames_num;
+	float frame_shift = start_frame_num % frames_per_row;
+	float row_shift = start_frame_num / frames_per_row;
 
 
 	float frame_u = 1.0f / ((float)m_atlas_width);
 	float frame_v = 1.0f / ((float)m_atlas_height);
 
 	XMMATRIX scale_to_one_frame = XMMatrixScaling(frame_u, frame_v, 1.0f);
-	XMMATRIX translation = XMMatrixTranslation(frame_u * 0.0f, frame_v * 2.0f, 0.0f);
+	//XMMATRIX translation = XMMatrixTranslation(frame_u * 0.0f, frame_v * 2.0f, 0.0f);
+	XMMATRIX translation = XMMatrixTranslation(frame_u * (frame_shift + current_frame), frame_v * row_shift, 0.0f);
 	//XMMATRIX translation = XMMatrixTranslation(0.0f, 0.0f, 0.0f);
 
 	XMMATRIX transform = XMMatrixMultiply(scale_to_one_frame, translation);
 	XMStoreFloat4x4(&m_text_transform, transform);
+	m_anim_time += deltaMs;
 }
 
 DirectX::XMFLOAT4X4 PersTextureAnimStateComponent::GetTexTransform() {
 	return m_text_transform;
+}
+
+PersCurrentStateEnum PersTextureAnimStateComponent::GetState() {
+	return m_current_state;
+}
+
+void PersTextureAnimStateComponent::SetState(PersCurrentStateEnum state) {
+	m_current_state = state;
+	//m_anim_time = 0.0f;
 }
 
 TiXmlElement* PersTextureAnimStateComponent::VGenerateXml() {

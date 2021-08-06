@@ -16,11 +16,21 @@ protected:
     DirectX::XMFLOAT3 m_force_accum;
     DirectX::XMFLOAT3 m_acceleration;
 
+    bool m_is_awake;
+    bool m_can_sleep;
+    const float m_sleep_epsilon = 0.2f;
+    float m_motion;
+
 public:
     void integrate(float duration);
 
     void setMass(float mass);
     float getMass() const;
+
+    bool getCanSleep() const;
+    void setCanSleep(bool canSleep = true);
+    void setAwake(bool awake = true);
+    bool getAwake() const;
 
     void setRadius(float radius);
     float getRadius() const;

@@ -1217,6 +1217,9 @@
     <ClInclude Include="actors\pers_texture_anim_state_component.h">
       <Filter>Header Files\actors</Filter>
     </ClInclude>
+    <ClInclude Include="actors\pers_current_state_enum.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shaders\pixel_shader.hlsl">

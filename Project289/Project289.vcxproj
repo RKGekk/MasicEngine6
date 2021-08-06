@@ -318,6 +318,7 @@
     <ClInclude Include="actors\mesh_render_light_component.h" />
     <ClInclude Include="actors\orientation_relation_component.h" />
     <ClInclude Include="actors\pers_texture_anim_state_component.h" />
+    <ClInclude Include="actors\pers_current_state_enum.h" />
     <ClInclude Include="physics\geo_ground_contacts.h" />
     <ClInclude Include="nodes\d3d_11_light_pipeline.h" />
     <ClInclude Include="events\evt_data_new_smoke_component.h" />

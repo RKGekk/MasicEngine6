@@ -74,6 +74,9 @@ bool ParticleComponent::VInit(TiXmlElement* pData) {
         m_particle.setRadius(radius);
     }
 
+    m_particle.setAwake(true);
+    m_particle.setCanSleep(true);
+
     return true;
 }
 

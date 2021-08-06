@@ -15,6 +15,7 @@ void ParticleContactResolver::resolveContacts(ParticleContact* contactArray, uns
         float max = std::numeric_limits<float>::max();
         unsigned maxIndex = numContacts;
         for (i = 0; i < numContacts; i++) {
+            contactArray[i].matchAwakeState();
             float sepVel = contactArray[i].calculateSeparatingVelocity();
             if (sepVel < max && (sepVel < 0 || contactArray[i].penetration > 0)) {
                 max = sepVel;

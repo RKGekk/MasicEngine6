@@ -8,7 +8,7 @@ bool RigidBody::getAwake() const {
 }
 
 void RigidBody::setAwake(bool awake) {
-    if (awake) { 
+    if (awake) {
         m_is_awake = true;
         m_motion = m_sleep_epsilon * 2.0f;
     }

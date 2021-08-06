@@ -24,4 +24,5 @@ protected:
 private:
     void resolveVelocity(float duration);
     void resolveInterpenetration(float duration);
+    void matchAwakeState();
 };

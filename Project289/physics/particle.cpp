@@ -13,9 +13,9 @@ void Particle::integrate(float duration) {
 
     DirectX::XMVECTOR pos = DirectX::XMLoadFloat3(&m_position);
     DirectX::XMVECTOR vel = DirectX::XMLoadFloat3(&m_velocity);
-    if (XMVector3NearEqual(vel, XMVectorReplicate(0.0f), XMVectorReplicate(EPSILON * 100000.9f))) {
+    /*if (XMVector3NearEqual(vel, XMVectorReplicate(0.0f), XMVectorReplicate(EPSILON * 100000.9f))) {
         vel = XMVectorReplicate(0.0f);
-    }
+    }*/
     /*if (XMVector3NearEqual(vel, XMVectorReplicate(0.0f), XMVectorReplicate(EPSILON * 1000000.0f))) {
         vel = XMVectorReplicate(0.0f);
     }*/
@@ -31,6 +31,20 @@ void Particle::integrate(float duration) {
     DirectX::XMStoreFloat3(&m_velocity, vel);
 
     clearAccumulator();
+
+    if (m_can_sleep) {
+        float currentMotion = XMVectorGetX(XMVector3Dot(vel, vel));
+
+        float bias = std::powf(0.5f, duration);
+        m_motion = bias * m_motion + (1.0f - bias) * currentMotion;
+
+        if (m_motion < m_sleep_epsilon) {
+            setAwake(false);
+        }
+        else if (m_motion > 10.0f * m_sleep_epsilon) {
+            m_motion = 10.0f * m_sleep_epsilon;
+        }
+    }
 }
 
 void Particle::setMass(float mass) {
@@ -44,6 +58,32 @@ float Particle::getMass() const {
     else {
         return 1.0f / m_inverse_mass;
     }
+}
+
+bool Particle::getCanSleep() const {
+    return m_can_sleep;
+}
+
+void Particle::setCanSleep(const bool canSleep) {
+    m_can_sleep = canSleep;
+    if (!canSleep && !m_is_awake) {
+        setAwake();
+    }
+}
+
+void Particle::setAwake(bool awake) {
+    if (awake) {
+        m_is_awake = true;
+        m_motion = m_sleep_epsilon * 2.0f;
+    }
+    else {
+        m_is_awake = false;
+        m_velocity.x = 0.0f; m_velocity.y = 0.0f; m_velocity.z = 0.0f;
+    }
+}
+
+bool Particle::getAwake() const {
+    return m_is_awake;
 }
 
 void Particle::setRadius(float radius) {

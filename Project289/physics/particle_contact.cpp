@@ -86,3 +86,19 @@ void ParticleContact::resolveInterpenetration(float duration) {
     }
 }
 
+void ParticleContact::matchAwakeState() {
+    if (!particle[1]) { return; }
+
+    bool body0awake = particle[0]->getAwake();
+    bool body1awake = particle[1]->getAwake();
+
+    if (body0awake ^ body1awake) {
+        if (body0awake) {
+            particle[1]->setAwake();
+        }
+        else {
+            particle[0]->setAwake();
+        }
+    }
+}
+

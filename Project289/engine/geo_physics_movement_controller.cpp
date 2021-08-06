@@ -4,6 +4,7 @@
 #include "../actors/transform_component.h"
 #include "../actors/orientation_relation_component.h"
 #include "../actors/particle_component.h"
+#include "../actors/pers_texture_anim_state_component.h"
 #include "../tools/mt_random.h"
 #include "../tools/memory_utility.h"
 
@@ -12,7 +13,7 @@ GeoPhysicsMovementController::GeoPhysicsMovementController(std::shared_ptr<Scene
 
 	m_maxSpeed = 30.0f;
 	m_currentSpeed = 0.0f;
-	m_force = 500.0f;
+	m_force = 100.0f;
 	m_jump_force = 2000.0f;
 
 	m_matToWorld = m_object->VGet().ToWorld4x4();
@@ -29,6 +30,17 @@ GeoPhysicsMovementController::GeoPhysicsMovementController(std::shared_ptr<Scene
 
 void GeoPhysicsMovementController::SetObject(std::shared_ptr<SceneNode> newObject) {
 	m_object = newObject;
+}
+
+void GeoPhysicsMovementController::SetState(PersCurrentStateEnum state) {
+	if (!m_object) { return; }
+	ActorId act_id = m_object->VFindMyActor();
+	std::shared_ptr<Actor> act = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(act_id));
+	std::shared_ptr<PersTextureAnimStateComponent> tasc;
+	if (act) {
+		tasc = MakeStrongPtr(act->GetComponent<PersTextureAnimStateComponent>(ActorComponent::GetIdFromName("PersTextureAnimStateComponent")));
+		tasc->SetState(state);
+	}
 }
 
 void GeoPhysicsMovementController::OnUpdate(float elapsed_seconds) {
@@ -109,6 +121,7 @@ void GeoPhysicsMovementController::OnUpdate(float elapsed_seconds) {
 			XMVECTOR direction = XMLoadFloat4(&atWorld) * m_force + XMLoadFloat4(&rightWorld) * m_force + XMLoadFloat4(&upWorld) * m_jump_force;
 
 			Particle& particle = pc->VGetParticle();
+			particle.setAwake();
 			particle.addForce(direction);
 			particle.integrate(elapsed_seconds);
 		}
@@ -149,12 +162,47 @@ bool GeoPhysicsMovementController::VOnPointerButtonUp(int x, int y, const int ra
 }
 
 bool GeoPhysicsMovementController::VOnKeyDown(const BYTE c) {
+	if (c == 'W') {
+		SetState(PersCurrentStateEnum::WalkOutward);
+	}
+	if (c == 'S') {
+		SetState(PersCurrentStateEnum::WalkToward);
+	}
+	if (c == 'A') {
+		SetState(PersCurrentStateEnum::WalkLeft);
+	}
+	if (c == 'D') {
+		SetState(PersCurrentStateEnum::WalkRight);
+	}
+
+	if (c == ' ') {
+		if (m_bKey['W']) {
+			SetState(PersCurrentStateEnum::JumpOutward);
+		}
+		else if (m_bKey['S']) {
+			SetState(PersCurrentStateEnum::JumpToward);
+		}
+		else if (m_bKey['A']) {
+			SetState(PersCurrentStateEnum::JumpLeft);
+		}
+		else if (m_bKey['D']) {
+			SetState(PersCurrentStateEnum::JumpRight);
+		}
+		else {
+			SetState(PersCurrentStateEnum::IdleToward);
+		}
+	}
+
 	m_bKey[c] = true;
 	return true;
 }
 
 bool GeoPhysicsMovementController::VOnKeyUp(const BYTE c) {
-	if (m_bKey['I']) {
+	if (c == 'W' || c == 'S' || c == 'A' || c == 'D' || c == ' ') {
+		SetState(PersCurrentStateEnum::IdleToward);
+	}
+
+	if (c == 'I') {
 		g_pApp->GetHumanView()->VSetControlledActor(INVALID_ACTOR_ID);
 	}
 	m_bKey[c] = false;
