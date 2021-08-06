@@ -131,6 +131,7 @@ std::shared_ptr<SceneNode> MeshRenderLightComponent::VCreateSceneNode() {
 	scale = scale > xm_scale.y ? scale : xm_scale.y;
 	scale = scale > xm_scale.z ? scale : xm_scale.z;
 	m_scale = scale;
+	m_scale3f = xm_scale;
 
 	std::shared_ptr<SceneNode> root_node(new SceneNode(this, RenderPass::RenderPass_Actor, &pTransformComponent->GetTransform4x4f()));
 	const aiScene* pScene = pMeshComponent->GetScene();
@@ -244,6 +245,7 @@ std::shared_ptr<SceneNode> MeshRenderLightComponent::ProcessMesh(aiMesh* mesh, c
 		float z = std::fabsf(max_z) > std::fabsf(min_z) ? std::fabsf(max_z) : std::fabsf(min_z);
 		float radius = DirectX::XMVectorGetX(DirectX::XMVector3Length(DirectX::XMVectorSet(x, y, z, 0.0f)));
 		result->SetRadius(radius * m_scale);
+		result->SetScale(m_scale3f);
 	}
 	return result;
 }

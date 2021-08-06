@@ -18,6 +18,7 @@ protected:
 	std::string m_Name;
 	DirectX::XMFLOAT4X4 m_ToWorld;
 	DirectX::XMFLOAT4X4 m_FromWorld;
+	DirectX::XMFLOAT3 m_scale;
 	float m_Radius;
 	
 	RenderPass m_RenderPass;
@@ -38,6 +39,9 @@ public:
 	DirectX::XMFLOAT4 Position4() const;
 	DirectX::XMFLOAT3 Position3() const;
 	DirectX::XMVECTOR Position() const;
+
+	const DirectX::XMFLOAT3& Scale3() const;
+	DirectX::XMVECTOR Scale() const;
 
 	const DirectX::XMFLOAT4X4& FromWorld4x4() const;
 	DirectX::XMMATRIX FromWorld() const;

@@ -20,6 +20,7 @@ SceneNodeProperties::SceneNodeProperties() {
 	m_AlphaType = AlphaType::AlphaOpaque;
 	DirectX::XMStoreFloat4x4(&m_ToWorld, DirectX::XMMatrixIdentity());
 	DirectX::XMStoreFloat4x4(&m_FromWorld, DirectX::XMMatrixIdentity());
+	m_scale = { 1.0f, 1.0f, 1.0f };
 }
 
 const ActorId SceneNodeProperties::ActorId() const {
@@ -48,6 +49,14 @@ DirectX::XMFLOAT3 SceneNodeProperties::Position3() const {
 
 DirectX::XMVECTOR SceneNodeProperties::Position() const {
 	return DirectX::XMVectorSet(m_ToWorld.m[3][0], m_ToWorld.m[3][1], m_ToWorld.m[3][2], 1.0f);
+}
+
+const DirectX::XMFLOAT3& SceneNodeProperties::Scale3() const {
+	return m_scale;
+}
+
+DirectX::XMVECTOR SceneNodeProperties::Scale() const {
+	return DirectX::XMLoadFloat3(&m_scale);
 }
 
 const DirectX::XMFLOAT4X4& SceneNodeProperties::FromWorld4x4() const {

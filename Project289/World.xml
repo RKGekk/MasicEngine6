@@ -71,20 +71,20 @@
         <RelateTo>ground</RelateTo>
       </OrientationRelationComponent>
       <PersTextureAnimStateComponent>
-        <AtlasWidth>7</AtlasWidth>
-        <AtlasHeight>4</AtlasHeight>
-        <WalkLeft From="0" To="3" FrameTime="0.1" />
-        <WalkRight From="7" To="10" FrameTime="0.1" />
-        <WalkToward From="14" To="17" FrameTime="0.1" />
-        <WalkOutward From="21" To="24" FrameTime="0.1" />
-        <JumpLeft From="4" To="5" FrameTime="0.1" />
-        <JumpRight From="11" To="12" FrameTime="0.1" />
-        <JumpToward From="18" To="19" FrameTime="0.1" />
-        <JumpOutward From="25" To="26" FrameTime="0.1" />
-        <IdleLeft From="6" To="6" FrameTime="0.1" />
-        <IdleRight From="13" To="13" FrameTime="0.1" />
-        <IdleToward From="20" To="20" FrameTime="0.1" />
-        <IdleOutward From="27" To="27" FrameTime="0.1" />
+        <AtlasWidth>10</AtlasWidth>
+        <AtlasHeight>5</AtlasHeight>
+        <WalkLeft From="10" To="19" FrameTime="0.1" />
+        <WalkRight From="0" To="9" FrameTime="0.1" />
+        <WalkToward From="30" To="37" FrameTime="0.1" />
+        <WalkOutward From="40" To="47" FrameTime="0.1" />
+        <JumpLeft From="20" To="20" FrameTime="0.1" />
+        <JumpRight From="20" To="20" FrameTime="0.1" />
+        <JumpToward From="20" To="20" FrameTime="0.1" />
+        <JumpOutward From="20" To="20" FrameTime="0.1" />
+        <IdleLeft From="20" To="26" FrameTime="0.1" />
+        <IdleRight From="20" To="26" FrameTime="0.1" />
+        <IdleToward From="20" To="26" FrameTime="0.1" />
+        <IdleOutward From="20" To="26" FrameTime="0.1" />
       </PersTextureAnimStateComponent>
     </Actor>
 

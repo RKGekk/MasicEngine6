@@ -103,6 +103,7 @@ bool SceneNode::VIsVisible(Scene* pScene) const {
 
 	DirectX::XMVECTOR pos = DirectX::XMVectorSetW(GetWorldPosition(), 1.0f);
 	DirectX::XMVECTOR fromWorldPos = DirectX::XMVector4Transform(pos, fromWorld);
+	//DirectX::XMVECTOR fromWorldPos = DirectX::XMVector4Transform(pos, fromWorld);
 
 	Frustum const& frustum = pScene->GetCamera()->GetFrustum();
 
@@ -274,14 +275,17 @@ const std::string& SceneNode::GetName() const {
 
 DirectX::XMVECTOR SceneNode::GetPosition() const {
 	return DirectX::XMVectorSet(m_Props.m_ToWorld.m[3][0], m_Props.m_ToWorld.m[3][1], m_Props.m_ToWorld.m[3][2], 1.0f);
+	//return DirectX::XMVectorSet(m_Props.m_ToWorld.m[3][0] * m_Props.m_scale.x, m_Props.m_ToWorld.m[3][1] * m_Props.m_scale.y, m_Props.m_ToWorld.m[3][2] * m_Props.m_scale.z, 1.0f);
 }
 
 DirectX::XMFLOAT3 SceneNode::GetPosition3() const {
 	return DirectX::XMFLOAT3(m_Props.m_ToWorld.m[3][0], m_Props.m_ToWorld.m[3][1], m_Props.m_ToWorld.m[3][2]);
+	//return DirectX::XMFLOAT3(m_Props.m_ToWorld.m[3][0] * m_Props.m_scale.x, m_Props.m_ToWorld.m[3][1] * m_Props.m_scale.y, m_Props.m_ToWorld.m[3][2] * m_Props.m_scale.z);
 }
 
 DirectX::XMFLOAT4 SceneNode::GetPosition4() const {
 	return DirectX::XMFLOAT4(m_Props.m_ToWorld.m[3][0], m_Props.m_ToWorld.m[3][1], m_Props.m_ToWorld.m[3][2], 1.0f);
+	//return DirectX::XMFLOAT4(m_Props.m_ToWorld.m[3][0] * m_Props.m_scale.x, m_Props.m_ToWorld.m[3][1] * m_Props.m_scale.y, m_Props.m_ToWorld.m[3][2] * m_Props.m_scale.z, 1.0f);
 }
 
 void SceneNode::SetPosition3(const DirectX::XMFLOAT3& pos) {
@@ -323,12 +327,28 @@ DirectX::XMFLOAT3 SceneNode::GetDirection() const {
 	return result;
 }
 
-float SceneNode::GetRadius() {
+float SceneNode::GetRadius() const {
 	return m_Props.m_Radius;
 }
 
 void SceneNode::SetRadius(const float radius) {
 	m_Props.m_Radius = radius;
+}
+
+const DirectX::XMFLOAT3& SceneNode::GetScale3f() const {
+	return m_Props.m_scale;
+}
+
+DirectX::XMVECTOR SceneNode::GetScale() const {
+	return DirectX::XMLoadFloat3(&m_Props.m_scale);
+}
+
+void SceneNode::SetScale(const DirectX::XMFLOAT3& scale) {
+	m_Props.m_scale = scale;
+}
+
+void SceneNode::SetScale(DirectX::XMVECTOR scale) {
+	DirectX::XMStoreFloat3(&m_Props.m_scale, scale);
 }
 
 void SceneNode::SetMaterial(const Material& mat) {

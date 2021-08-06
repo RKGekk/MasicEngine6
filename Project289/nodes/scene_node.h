@@ -69,8 +69,12 @@ public:
 
 	DirectX::XMFLOAT3 GetDirection() const;
 
-	float GetRadius();
+	float GetRadius() const;
 	void SetRadius(const float radius);
+	const DirectX::XMFLOAT3& GetScale3f() const;
+	DirectX::XMVECTOR GetScale() const;
+	void SetScale(const DirectX::XMFLOAT3& scale);
+	void SetScale(DirectX::XMVECTOR scale);
 	void SetMaterial(const Material& mat);
 
 	virtual ActorId VFindMyActor();

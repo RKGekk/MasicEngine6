@@ -161,3 +161,21 @@ DirectX::XMVECTOR OrientationRelationComponent::VGetUp() {
 DirectX::XMVECTOR OrientationRelationComponent::VGetRight() {
 	return DirectX::XMLoadFloat4(&m_right);
 }
+
+DirectX::XMMATRIX OrientationRelationComponent::VGetOrient() {
+	return DirectX::XMMATRIX {
+			m_right.x, m_right.y, m_right.z, 0.0f,
+			m_up.x,    m_up.y,    m_up.z,    0.0f,
+			m_at.x,    m_at.y,    m_at.z,    0.0f,
+			0.0f,      0.0f,      0.0f,      1.0f
+	};
+}
+
+DirectX::XMFLOAT4X4 OrientationRelationComponent::VGetOrient4x4f() {
+	return DirectX::XMFLOAT4X4 {
+			m_right.x, m_right.y, m_right.z, 0.0f,
+			m_up.x,    m_up.y,    m_up.z,    0.0f,
+			m_at.x,    m_at.y,    m_at.z,    0.0f,
+			0.0f,      0.0f,      0.0f,      1.0f
+	};
+}

@@ -1,19 +1,18 @@
 #include "camera_node.h"
 #include "scene.h"
 #include "../engine/engine.h"
+#include "../actors/orientation_relation_component.h"
+#include "../actors/transform_component.h"
+#include "../tools/memory_utility.h"
 
-CameraNode::CameraNode(const DirectX::XMFLOAT4X4& t, const Frustum& frustum) : SceneNode(WeakBaseRenderComponentPtr(), RenderPass::RenderPass_0, &t), m_Frustum(frustum), m_bActive(true), m_DebugCamera(false), m_pTarget(std::shared_ptr<SceneNode>()), m_CamOffsetVector(0.0f, 1.0f, -10.0f, 0.0f) {
+CameraNode::CameraNode(const DirectX::XMFLOAT4X4& t, const Frustum& frustum) : SceneNode(WeakBaseRenderComponentPtr(), RenderPass::RenderPass_0, &t), m_Frustum(frustum), m_bActive(true), m_DebugCamera(false), m_pTarget(std::shared_ptr<SceneNode>()) {
+	m_CamOffsetVector = { 0.0f, 0.0f, -50.0f, 0.0f };
 	DirectX::XMStoreFloat4x4(&m_Projection, DirectX::XMMatrixIdentity());
 	DirectX::XMStoreFloat4x4(&m_View, DirectX::XMMatrixIdentity());
 }
 
-CameraNode::CameraNode(DirectX::FXMMATRIX t, const Frustum& frustum) : SceneNode(WeakBaseRenderComponentPtr(), RenderPass::RenderPass_0, t, DirectX::XMMatrixIdentity(), true),
-	m_Frustum(frustum),
-	m_bActive(true),
-	m_DebugCamera(false),
-	m_pTarget(std::shared_ptr<SceneNode>()),
-	m_CamOffsetVector(0.0f, 1.0f, -10.0f, 0.0f)
-{
+CameraNode::CameraNode(DirectX::FXMMATRIX t, const Frustum& frustum) : SceneNode(WeakBaseRenderComponentPtr(), RenderPass::RenderPass_0, t, DirectX::XMMatrixIdentity(), true), m_Frustum(frustum), m_bActive(true), m_DebugCamera(false), m_pTarget(std::shared_ptr<SceneNode>()) {
+	m_CamOffsetVector = { 0.0f, 0.0f, -50.0f, 0.0f };
 	DirectX::XMStoreFloat4x4(&m_Projection, DirectX::XMMatrixIdentity());
 	DirectX::XMStoreFloat4x4(&m_View, DirectX::XMMatrixIdentity());
 }
@@ -94,11 +93,66 @@ DirectX::XMFLOAT4X4 CameraNode::GetViewProjection4x4T() {
 HRESULT CameraNode::SetViewTransform(Scene* pScene) {
 	using namespace DirectX;
 	if (m_pTarget) {
-		DirectX::XMMATRIX mat = m_pTarget->VGet().ToWorld();
-		DirectX::XMVECTOR at = DirectX::XMLoadFloat4(&m_CamOffsetVector);
-		DirectX::XMVECTOR atWorld = DirectX::XMVector4Transform(at, mat);
-		mat.r[3] += atWorld;
-		VSetTransform(mat, DirectX::XMMatrixIdentity(), true);
+		//DirectX::XMMATRIX mat = m_pTarget->VGet().ToWorld();
+		//DirectX::XMVECTOR at;
+		//at = DirectX::XMLoadFloat4(&m_CamOffsetVector);
+		ActorId act_id = m_pTarget->VFindMyActor();
+		std::shared_ptr<Actor> act = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(act_id));
+		std::shared_ptr<OrientationRelationComponent> oc;
+		std::shared_ptr<TransformComponent> tc;
+		if (act) {
+			oc = MakeStrongPtr(act->GetComponent<OrientationRelationComponent>(ActorComponent::GetIdFromName("OrientationRelationComponent")));
+			tc = MakeStrongPtr(act->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
+		}
+		if (oc) {
+			XMFLOAT3 p = tc->GetPosition3f();
+			//XMVECTOR at_xm = XMVector4Transform(oc->VGetAt() * -3.0f, XMMatrixRotationAxis(oc->VGetRight(), -XM_PI / 4.0f)) + oc->VGetUp() * 2.0f;
+			//float dt = g_pApp->GetTimer().DeltaTime();
+			float tt = g_pApp->GetTimer().TotalTime();
+			//XMVECTOR at_xm = XMVector4Transform(oc->VGetAt(), XMMatrixRotationAxis(oc->VGetRight(), tt / 32.0f)) * -3.0f + oc->VGetUp() * 2.0f;
+			XMVECTOR at_xm = oc->VGetAt() * -2.0f + oc->VGetUp() * 1.0f;
+			//XMVECTOR at_xm = oc->VGetAt() * -3.0f;// +oc->VGetUp() * 3.0f;
+			XMFLOAT3 at;
+			XMStoreFloat3(&at, at_xm);
+			p.x += at.x;
+			p.y += at.y;
+			p.z += at.z;
+			//XMMATRIX orient = oc->VGetOrient();
+			XMMATRIX orient = XMMatrixMultiply(oc->VGetOrient(), XMMatrixRotationAxis(oc->VGetRight(), XM_PI / 8.0f));
+			XMMATRIX translation = XMMatrixTranslation(p.x, p.y, p.z);
+			XMMATRIX transform = XMMatrixMultiply(
+				orient,
+				translation
+			);
+			VSetTransform(transform, DirectX::XMMatrixIdentity(), true);
+		}
+		else {
+			DirectX::XMMATRIX mat = m_pTarget->VGet().ToWorld();
+			DirectX::XMVECTOR at = DirectX::XMLoadFloat4(&m_CamOffsetVector);
+			DirectX::XMVECTOR atWorld = DirectX::XMVector4Transform(at, mat);
+			VSetTransform(mat, DirectX::XMMatrixIdentity(), true);
+		}
+		//else {
+		//	at = DirectX::XMLoadFloat4(&m_CamOffsetVector);
+		//}
+		//DirectX::XMVECTOR atWorld = DirectX::XMVector4Transform(at, mat);
+		//DirectX::XMVECTOR atWorld = DirectX::XMVector4Transform(at, mat);
+		//mat.r[3] += atWorld;
+		//DirectX::XMVectorSetW(mat.r[3], 1.0f);
+		//mat.r[3] += XMVectorSet(0.0f, 0.0f, -1.0f, 0.0f);
+		//mat = XMMatrixMultiply(mat, XMMatrixTranslation(m_CamOffsetVector.x, m_CamOffsetVector.y, m_CamOffsetVector.z));
+		//mat = XMMatrixMultiply(XMMatrixTranslation(m_CamOffsetVector.x, m_CamOffsetVector.y, m_CamOffsetVector.z), mat);
+		//XMMATRIX lookAt = XMMatrixLookAtLH(
+		//	XMVectorSet(m_CamOffsetVector.x, m_CamOffsetVector.y, m_CamOffsetVector.z, 0.0f),
+		//	//XMVectorSet(0.0f, 0.0f, -1.0f, 0.0f),
+		//	XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f),
+		//	XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f)
+		//);
+		//lookAt = XMMatrixMultiply(lookAt, XMMatrixTranslation(m_CamOffsetVector.x, m_CamOffsetVector.y, m_CamOffsetVector.z));
+		//mat = XMMatrixMultiply(lookAt, mat);
+		//mat = XMMatrixMultiply(mat, lookAt);
+		//mat = XMMatrixMultiply(mat, XMMatrixRotationX(XM_PIDIV4));
+		//VSetTransform(mat, DirectX::XMMatrixIdentity(), true);
 	}
 
 	DirectX::XMStoreFloat4x4(&m_View, VGet().FromWorld());

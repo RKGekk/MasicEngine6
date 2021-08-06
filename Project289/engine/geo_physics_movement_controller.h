@@ -25,9 +25,10 @@ protected:
 	bool m_bKey[256];
 
 	std::shared_ptr<SceneNode> m_object;
+	std::shared_ptr<SceneNode> m_camera;
 
 public:
-	GeoPhysicsMovementController(std::shared_ptr<SceneNode> object);
+	GeoPhysicsMovementController(std::shared_ptr<SceneNode> object, std::shared_ptr<SceneNode> camera);
 	void SetObject(std::shared_ptr<SceneNode> newObject);
 	void SetState(PersCurrentStateEnum state);
 

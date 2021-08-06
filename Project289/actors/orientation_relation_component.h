@@ -33,6 +33,9 @@ public:
     virtual DirectX::XMVECTOR VGetUp();
     virtual DirectX::XMVECTOR VGetRight();
 
+    virtual DirectX::XMMATRIX VGetOrient();
+    virtual DirectX::XMFLOAT4X4 VGetOrient4x4f();
+
 protected:
     std::string m_relate_to;
     DirectX::XMFLOAT4 m_at;

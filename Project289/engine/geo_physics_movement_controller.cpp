@@ -8,7 +8,7 @@
 #include "../tools/mt_random.h"
 #include "../tools/memory_utility.h"
 
-GeoPhysicsMovementController::GeoPhysicsMovementController(std::shared_ptr<SceneNode> object) : m_object(object) {
+GeoPhysicsMovementController::GeoPhysicsMovementController(std::shared_ptr<SceneNode> object, std::shared_ptr<SceneNode> camera) : m_object(object), m_camera(camera) {
 	using namespace DirectX;
 
 	m_maxSpeed = 30.0f;
@@ -51,9 +51,11 @@ void GeoPhysicsMovementController::OnUpdate(float elapsed_seconds) {
 	std::shared_ptr<Actor> act = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(act_id));
 	std::shared_ptr<ParticleComponent> pc;
 	std::shared_ptr<OrientationRelationComponent> oc;
+	std::shared_ptr<TransformComponent> tc;
 	if (act) {
 		pc = MakeStrongPtr(act->GetComponent<ParticleComponent>(ActorComponent::GetIdFromName("ParticleComponent")));
 		oc = MakeStrongPtr(act->GetComponent<OrientationRelationComponent>(ActorComponent::GetIdFromName("OrientationRelationComponent")));
+		tc = MakeStrongPtr(act->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
 	}
 	bool is_pcoc = pc && oc;
 
@@ -124,6 +126,25 @@ void GeoPhysicsMovementController::OnUpdate(float elapsed_seconds) {
 			particle.setAwake();
 			particle.addForce(direction);
 			particle.integrate(elapsed_seconds);
+
+			if (!m_camera) { return; }
+
+			//XMMATRIX mat = tc->GetTransform();
+			//XMVECTOR at = oc->VGetAt() * -5.0f;
+			//XMVECTOR atWorld = DirectX::XMVector4Transform(at, mat);
+			//mat.r[3] += atWorld;
+			//m_camera->VSetTransform(mat, XMMatrixIdentity(), true);
+
+
+			//DirectX::XMMATRIX matRot = DirectX::XMMatrixRotationRollPitchYaw(DirectX::XMConvertToRadians(0.0f), DirectX::XMConvertToRadians(0.0f), 0.0f);
+			//DirectX::XMMATRIX matRot = tc->GetTransform();
+			//matRot.r[3] = DirectX::XMVectorSet(m_matPosition._41, m_matPosition._42, m_matPosition._43, m_matPosition._44);
+			//matRot.r[0] = tc->GetPosition() + oc->VGetAt() * -5.0f;
+			//matRot.r[1] = tc->GetPosition() + oc->VGetAt() * -5.0f;
+			//matRot.r[2] = tc->GetPosition() + oc->VGetAt() * -5.0f;
+			//matRot.r[3] = tc->GetPosition() + oc->VGetAt() * -5.0f + oc->VGetUp() * -1.0f;
+			
+			//m_camera->VSetTransform(matRot, XMMatrixIdentity(), true);
 		}
 		else {
 			XMVECTOR direction = XMLoadFloat4(&atWorld) + XMLoadFloat4(&rightWorld) + XMLoadFloat4(&upWorld);
