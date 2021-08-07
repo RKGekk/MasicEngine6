@@ -105,12 +105,16 @@ HRESULT CameraNode::SetViewTransform(Scene* pScene) {
 			tc = MakeStrongPtr(act->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
 		}
 		if (oc) {
+			const EngineOptions& options = g_pApp->GetConfig();
+
 			XMFLOAT3 p = tc->GetPosition3f();
 			//XMVECTOR at_xm = XMVector4Transform(oc->VGetAt() * -3.0f, XMMatrixRotationAxis(oc->VGetRight(), -XM_PI / 4.0f)) + oc->VGetUp() * 2.0f;
 			//float dt = g_pApp->GetTimer().DeltaTime();
 			float tt = g_pApp->GetTimer().TotalTime();
 			//XMVECTOR at_xm = XMVector4Transform(oc->VGetAt(), XMMatrixRotationAxis(oc->VGetRight(), tt / 32.0f)) * -3.0f + oc->VGetUp() * 2.0f;
-			XMVECTOR at_xm = oc->VGetAt() * -2.0f + oc->VGetUp() * 1.0f;
+			//XMVECTOR at_xm = oc->VGetAt() * -2.0f + oc->VGetUp() * 1.0f;
+			XMVECTOR at_xm = oc->VGetAt() * options.m_game_cam_offset_z + oc->VGetUp() * options.m_game_cam_offset_y + oc->VGetRight() * options.m_game_cam_offset_x;
+			//XMVECTOR at_xm = oc->VGetAt() * -0.5f + oc->VGetUp() * 0.5f;
 			//XMVECTOR at_xm = oc->VGetAt() * -3.0f;// +oc->VGetUp() * 3.0f;
 			XMFLOAT3 at;
 			XMStoreFloat3(&at, at_xm);
@@ -118,7 +122,9 @@ HRESULT CameraNode::SetViewTransform(Scene* pScene) {
 			p.y += at.y;
 			p.z += at.z;
 			//XMMATRIX orient = oc->VGetOrient();
-			XMMATRIX orient = XMMatrixMultiply(oc->VGetOrient(), XMMatrixRotationAxis(oc->VGetRight(), XM_PI / 8.0f));
+			//XMMATRIX orient = XMMatrixMultiply(oc->VGetOrient(), XMMatrixRotationAxis(oc->VGetRight(), XM_PI / 8.0f));
+			XMMATRIX orient = XMMatrixMultiply(oc->VGetOrient(), XMMatrixRotationAxis(oc->VGetRight(), XMConvertToRadians(options.m_game_cam_rotate_x)));
+			//XMMATRIX orient = XMMatrixMultiply(oc->VGetOrient(), XMMatrixRotationAxis(oc->VGetRight(), XM_PI / 6.0f));
 			XMMATRIX translation = XMMatrixTranslation(p.x, p.y, p.z);
 			XMMATRIX transform = XMMatrixMultiply(
 				orient,

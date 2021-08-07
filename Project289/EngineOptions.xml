@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlayerOptions>
-  <Graphics renderer="Direct3D 11" width="1280" height="720" runfullspeed="no" fullscreen="no" screenFar="1000" screenNear="0.1" />
+  <Graphics renderer="Direct3D 11"
+            width="1280"
+            height="720"
+            runfullspeed="no"
+            fullscreen="no"
+            screenFar="100"
+            screenNear="0.1"
+            fov="45.0"
+            gamecamoffsetx ="0.0"
+            gamecamoffsety ="1.0"
+            gamecamoffsetz ="-2.0"
+            gamecamrotatex ="22.5"
+  />
   <Sound sfxVolume="50" musicVolume="25"/>
 </PlayerOptions>

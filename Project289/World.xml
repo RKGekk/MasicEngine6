@@ -77,10 +77,10 @@
         <WalkRight From="0" To="9" FrameTime="0.1" />
         <WalkToward From="30" To="37" FrameTime="0.1" />
         <WalkOutward From="40" To="47" FrameTime="0.1" />
-        <JumpLeft From="20" To="20" FrameTime="0.1" />
-        <JumpRight From="20" To="20" FrameTime="0.1" />
-        <JumpToward From="20" To="20" FrameTime="0.1" />
-        <JumpOutward From="20" To="20" FrameTime="0.1" />
+        <JumpLeft From="39" To="39" FrameTime="0.1" />
+        <JumpRight From="29" To="29" FrameTime="0.1" />
+        <JumpToward From="27" To="27" FrameTime="0.1" />
+        <JumpOutward From="28" To="28" FrameTime="0.1" />
         <IdleLeft From="20" To="26" FrameTime="0.1" />
         <IdleRight From="20" To="26" FrameTime="0.1" />
         <IdleToward From="20" To="26" FrameTime="0.1" />

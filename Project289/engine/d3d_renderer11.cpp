@@ -174,6 +174,8 @@ bool D3DRenderer11::Initialize(const RenderWindow& rw) {
 	ImGui_ImplWin32_Init(rw.GetHWND());
 	ImGui_ImplDX11_Init(m_device.Get(), m_device_context.Get());
 	ImGui::StyleColorsDark();
+	io.WantCaptureMouse = true;
+	io.WantCaptureKeyboard = true;
 
 	m_sprite_batch = std::make_unique<DirectX::SpriteBatch>(m_device_context.Get());
 	m_sprite_font = std::make_unique<DirectX::SpriteFont>(m_device.Get(), L"data/fonts/comic_sans_ms_16.sprite");

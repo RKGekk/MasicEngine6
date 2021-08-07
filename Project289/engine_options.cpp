@@ -14,8 +14,12 @@ EngineOptions::EngineOptions() {
 	m_musicVolume = 1.0f;
 	m_screenNear = 0.1f;
 	m_screenFar = 1000.0f;
-	m_fov = DirectX::XM_PIDIV2;
+	m_fov = DirectX::XMConvertToDegrees(DirectX::XM_PIDIV2);
 	m_aspectRatio = 1.0f;
+	m_game_cam_offset_x = 0.0f;
+	m_game_cam_offset_y = 1.0f;
+	m_game_cam_offset_z = -2.0f;
+	m_game_cam_rotate_x = DirectX::XMConvertToDegrees(DirectX::XM_PIDIV4);
 }
 
 EngineOptions::EngineOptions(const std::string& xmlFilePath) : EngineOptions() {
@@ -71,6 +75,26 @@ void EngineOptions::Init(const std::string& xmlFileName) {
 
 			if (pNode->Attribute("screenNear")) {
 				m_screenNear = atof(pNode->Attribute("screenNear"));
+			}
+
+			if (pNode->Attribute("fov")) {
+				m_fov = atof(pNode->Attribute("fov"));
+			}
+
+			if (pNode->Attribute("gamecamoffsetx")) {
+				m_game_cam_offset_x = atof(pNode->Attribute("gamecamoffsetx"));
+			}
+
+			if (pNode->Attribute("gamecamoffsety")) {
+				m_game_cam_offset_y = atof(pNode->Attribute("gamecamoffsety"));
+			}
+
+			if (pNode->Attribute("gamecamoffsetz")) {
+				m_game_cam_offset_z = atof(pNode->Attribute("gamecamoffsetz"));
+			}
+
+			if (pNode->Attribute("gamecamrotatex")) {
+				m_game_cam_rotate_x = atof(pNode->Attribute("gamecamrotatex"));
 			}
 		}
 
