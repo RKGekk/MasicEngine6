@@ -35,10 +35,6 @@ void XLogic::VMoveActor(const ActorId id, DirectX::FXMMATRIX mat) {
     StrongActorPtr pActor = MakeStrongPtr(VGetActor(id));
     if (pActor) {
         std::shared_ptr<TransformComponent> pTransformComponent = MakeStrongPtr(pActor->GetComponent<TransformComponent>(TransformComponent::g_Name));
-        /*if (pTransformComponent && pTransformComponent->GetPosition3f().y < -25.0f) {
-            std::shared_ptr<EvtData_Destroy_Actor> pDestroyActorEvent(new EvtData_Destroy_Actor(id));
-            IEventManager::Get()->VQueueEvent(pDestroyActorEvent);
-        }*/
     }
 }
 

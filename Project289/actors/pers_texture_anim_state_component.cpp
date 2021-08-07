@@ -10,7 +10,6 @@ const std::string& PersTextureAnimStateComponent::VGetName() const {
 	return PersTextureAnimStateComponent::g_Name;
 }
 
-
 PersTextureAnimStateComponent::PersTextureAnimStateComponent() {
 	DirectX::XMStoreFloat4x4(&m_text_transform, DirectX::XMMatrixIdentity());
 	m_anim_time = 0.0f;
@@ -412,6 +411,98 @@ DirectX::XMFLOAT4X4 PersTextureAnimStateComponent::GetTexTransform() {
 
 PersCurrentStateEnum PersTextureAnimStateComponent::GetState() {
 	return m_current_state;
+}
+
+PersCurrentStateClassEnum PersTextureAnimStateComponent::GetStateClass() {
+	PersCurrentStateClassEnum res = PersCurrentStateClassEnum::Idle;
+	switch (m_current_state) 	{
+	case PersCurrentStateEnum::WalkLeft:
+		res = PersCurrentStateClassEnum::Walk;
+		break;
+	case PersCurrentStateEnum::WalkRight:
+		res = PersCurrentStateClassEnum::Walk;
+		break;
+	case PersCurrentStateEnum::WalkToward:
+		res = PersCurrentStateClassEnum::Walk;
+		break;
+	case PersCurrentStateEnum::WalkOutward:
+		res = PersCurrentStateClassEnum::Walk;
+		break;
+	case PersCurrentStateEnum::JumpLeft:
+		res = PersCurrentStateClassEnum::Jump;
+		break;
+	case PersCurrentStateEnum::JumpRight:
+		res = PersCurrentStateClassEnum::Jump;
+		break;
+	case PersCurrentStateEnum::JumpToward:
+		res = PersCurrentStateClassEnum::Jump;
+		break;
+	case PersCurrentStateEnum::JumpOutward:
+		res = PersCurrentStateClassEnum::Jump;
+		break;
+	case PersCurrentStateEnum::IdleLeft:
+		res = PersCurrentStateClassEnum::Idle;
+		break;
+	case PersCurrentStateEnum::IdleRight:
+		res = PersCurrentStateClassEnum::Idle;
+		break;
+	case PersCurrentStateEnum::IdleToward:
+		res = PersCurrentStateClassEnum::Idle;
+		break;
+	case PersCurrentStateEnum::IdleOutward:
+		res = PersCurrentStateClassEnum::Idle;
+		break;
+	default:
+		break;
+	}
+
+	return res;
+}
+
+PersCurrentOrientClassEnum PersTextureAnimStateComponent::GetOrientClass() {
+	PersCurrentOrientClassEnum res = PersCurrentOrientClassEnum::Toward;
+	switch (m_current_state) {
+	case PersCurrentStateEnum::WalkLeft:
+		res = PersCurrentOrientClassEnum::Left;
+		break;
+	case PersCurrentStateEnum::WalkRight:
+		res = PersCurrentOrientClassEnum::Right;
+		break;
+	case PersCurrentStateEnum::WalkToward:
+		res = PersCurrentOrientClassEnum::Toward;
+		break;
+	case PersCurrentStateEnum::WalkOutward:
+		res = PersCurrentOrientClassEnum::Outward;
+		break;
+	case PersCurrentStateEnum::JumpLeft:
+		res = PersCurrentOrientClassEnum::Left;
+		break;
+	case PersCurrentStateEnum::JumpRight:
+		res = PersCurrentOrientClassEnum::Right;
+		break;
+	case PersCurrentStateEnum::JumpToward:
+		res = PersCurrentOrientClassEnum::Toward;
+		break;
+	case PersCurrentStateEnum::JumpOutward:
+		res = PersCurrentOrientClassEnum::Outward;
+		break;
+	case PersCurrentStateEnum::IdleLeft:
+		res = PersCurrentOrientClassEnum::Left;
+		break;
+	case PersCurrentStateEnum::IdleRight:
+		res = PersCurrentOrientClassEnum::Right;
+		break;
+	case PersCurrentStateEnum::IdleToward:
+		res = PersCurrentOrientClassEnum::Toward;
+		break;
+	case PersCurrentStateEnum::IdleOutward:
+		res = PersCurrentOrientClassEnum::Outward;
+		break;
+	default:
+		break;
+	}
+
+	return res;
 }
 
 void PersTextureAnimStateComponent::SetState(PersCurrentStateEnum state) {

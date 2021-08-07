@@ -8,7 +8,7 @@
 #include "../tools/mt_random.h"
 #include "../tools/memory_utility.h"
 
-GeoPhysicsMovementController::GeoPhysicsMovementController(std::shared_ptr<SceneNode> object, std::shared_ptr<SceneNode> camera) : m_object(object), m_camera(camera) {
+GeoPhysicsMovementController::GeoPhysicsMovementController(std::shared_ptr<SceneNode> object) : m_object(object) {
 	using namespace DirectX;
 
 	m_maxSpeed = 30.0f;
@@ -25,6 +25,14 @@ GeoPhysicsMovementController::GeoPhysicsMovementController(std::shared_ptr<Scene
 	m_matPosition._43 = m_matToWorld._43;
 	m_matPosition._44 = m_matToWorld._44;
 
+	POINT ptCursor;
+	GetCursorPos(&ptCursor);
+	m_lastMousePos_x = ptCursor.x;
+	m_lastMousePos_y = ptCursor.y;
+	//ShowCursor(false);
+	//SetCapture(hwnd);
+	//ReleaseCapture();
+
 	memset(m_bKey, 0x00, sizeof(m_bKey));
 }
 
@@ -40,6 +48,219 @@ void GeoPhysicsMovementController::SetState(PersCurrentStateEnum state) {
 	if (act) {
 		tasc = MakeStrongPtr(act->GetComponent<PersTextureAnimStateComponent>(ActorComponent::GetIdFromName("PersTextureAnimStateComponent")));
 		tasc->SetState(state);
+	}
+}
+
+PersCurrentStateEnum GeoPhysicsMovementController::GetState() {
+	if (!m_object) { return PersCurrentStateEnum::IdleToward; }
+	ActorId act_id = m_object->VFindMyActor();
+	std::shared_ptr<Actor> act = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(act_id));
+	std::shared_ptr<PersTextureAnimStateComponent> tasc;
+	if (act) {
+		tasc = MakeStrongPtr(act->GetComponent<PersTextureAnimStateComponent>(ActorComponent::GetIdFromName("PersTextureAnimStateComponent")));
+	}
+	if (tasc) {
+		return tasc->GetState();
+	}
+	else {
+		return PersCurrentStateEnum::IdleToward;
+	}
+}
+
+std::shared_ptr<PersTextureAnimStateComponent> GeoPhysicsMovementController::GetStateComponent() {
+	if (!m_object) { return std::shared_ptr<PersTextureAnimStateComponent>(); }
+	ActorId act_id = m_object->VFindMyActor();
+	std::shared_ptr<Actor> act = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(act_id));
+	if (act) {
+		return MakeStrongPtr(act->GetComponent<PersTextureAnimStateComponent>(ActorComponent::GetIdFromName("PersTextureAnimStateComponent")));
+	}
+	else {
+		return std::shared_ptr<PersTextureAnimStateComponent>();
+	}
+}
+
+void GeoPhysicsMovementController::DefineStateKeyDown(const BYTE c) {
+	if (!(c == 'W' || c == 'S' || c == 'A' || c == 'D' || c == ' ')) { return; }
+	
+	std::shared_ptr<PersTextureAnimStateComponent> anim_state = GetStateComponent();
+	if (!anim_state) { return; }
+
+	PersCurrentStateEnum current_state = anim_state->GetState();
+	PersCurrentStateClassEnum current_state_class = anim_state->GetStateClass();
+	PersCurrentOrientClassEnum current_orient_class = anim_state->GetOrientClass();
+
+	if (c == 'W') {
+		if (current_state_class == PersCurrentStateClassEnum::Walk) {
+			anim_state->SetState(PersCurrentStateEnum::WalkOutward);
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Jump) {
+			anim_state->SetState(PersCurrentStateEnum::JumpOutward);
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Idle) {
+			anim_state->SetState(PersCurrentStateEnum::WalkOutward);
+		}
+	}
+	if (c == 'S') {
+		if (current_state_class == PersCurrentStateClassEnum::Walk) {
+			anim_state->SetState(PersCurrentStateEnum::WalkToward);
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Jump) {
+			anim_state->SetState(PersCurrentStateEnum::JumpToward);
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Idle) {
+			anim_state->SetState(PersCurrentStateEnum::WalkToward);
+		}
+	}
+	if (c == 'A') {
+		if (current_state_class == PersCurrentStateClassEnum::Walk) {
+			anim_state->SetState(PersCurrentStateEnum::WalkLeft);
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Jump) {
+			anim_state->SetState(PersCurrentStateEnum::JumpLeft);
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Idle) {
+			anim_state->SetState(PersCurrentStateEnum::WalkLeft);
+		}
+	}
+	if (c == 'D') {
+		if (current_state_class == PersCurrentStateClassEnum::Walk) {
+			anim_state->SetState(PersCurrentStateEnum::WalkRight);
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Jump) {
+			anim_state->SetState(PersCurrentStateEnum::JumpRight);
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Idle) {
+			anim_state->SetState(PersCurrentStateEnum::WalkRight);
+		}
+	}
+
+	if (c == ' ') {
+		if (current_orient_class == PersCurrentOrientClassEnum::Left) {
+			anim_state->SetState(PersCurrentStateEnum::JumpLeft);
+		}
+		if (current_orient_class == PersCurrentOrientClassEnum::Right) {
+			anim_state->SetState(PersCurrentStateEnum::JumpRight);
+		}
+		if (current_orient_class == PersCurrentOrientClassEnum::Outward) {
+			anim_state->SetState(PersCurrentStateEnum::JumpOutward);
+		}
+		if (current_orient_class == PersCurrentOrientClassEnum::Toward) {
+			anim_state->SetState(PersCurrentStateEnum::JumpToward);
+		}
+	}
+}
+
+void GeoPhysicsMovementController::DefineStateKeyUp(const BYTE c) {
+	if (!(c == 'W' || c == 'S' || c == 'A' || c == 'D' || c == ' ')) { return; }
+
+	std::shared_ptr<PersTextureAnimStateComponent> anim_state = GetStateComponent();
+	if (!anim_state) { return; }
+
+	PersCurrentStateEnum current_state = anim_state->GetState();
+	PersCurrentStateClassEnum current_state_class = anim_state->GetStateClass();
+	PersCurrentOrientClassEnum current_orient_class = anim_state->GetOrientClass();
+
+	if (c == 'W') {
+		if (current_state_class == PersCurrentStateClassEnum::Walk) {
+			if (m_bKey['A']) {
+				anim_state->SetState(PersCurrentStateEnum::WalkLeft);
+			}
+			else if (m_bKey['D']) {
+				anim_state->SetState(PersCurrentStateEnum::WalkRight);
+			}
+			else {
+				anim_state->SetState(PersCurrentStateEnum::IdleOutward);
+			}
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Jump) {
+			if (m_bKey['A']) {
+				anim_state->SetState(PersCurrentStateEnum::JumpLeft);
+			}
+			else if (m_bKey['D']) {
+				anim_state->SetState(PersCurrentStateEnum::JumpRight);
+			}
+		}
+	}
+	if (c == 'S') {
+		if (current_state_class == PersCurrentStateClassEnum::Walk) {
+			if (m_bKey['A']) {
+				anim_state->SetState(PersCurrentStateEnum::WalkLeft);
+			}
+			else if (m_bKey['D']) {
+				anim_state->SetState(PersCurrentStateEnum::WalkRight);
+			}
+			else {
+				anim_state->SetState(PersCurrentStateEnum::IdleToward);
+			}
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Jump) {
+			if (m_bKey['A']) {
+				anim_state->SetState(PersCurrentStateEnum::JumpLeft);
+			}
+			else if (m_bKey['D']) {
+				anim_state->SetState(PersCurrentStateEnum::JumpRight);
+			}
+		}
+	}
+	if (c == 'A') {
+		if (current_state_class == PersCurrentStateClassEnum::Walk) {
+			if (m_bKey['W']) {
+				anim_state->SetState(PersCurrentStateEnum::WalkOutward);
+			}
+			else if (m_bKey['S']) {
+				anim_state->SetState(PersCurrentStateEnum::WalkToward);
+			}
+			else {
+				anim_state->SetState(PersCurrentStateEnum::IdleLeft);
+			}
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Jump) {
+			if (m_bKey['W']) {
+				anim_state->SetState(PersCurrentStateEnum::JumpOutward);
+			}
+			else if (m_bKey['S']) {
+				anim_state->SetState(PersCurrentStateEnum::JumpToward);
+			}
+		}
+	}
+	if (c == 'D') {
+		if (current_state_class == PersCurrentStateClassEnum::Walk) {
+			if (m_bKey['W']) {
+				anim_state->SetState(PersCurrentStateEnum::WalkOutward);
+			}
+			else if (m_bKey['S']) {
+				anim_state->SetState(PersCurrentStateEnum::WalkToward);
+			}
+			else {
+				anim_state->SetState(PersCurrentStateEnum::IdleRight);
+			}
+		}
+		if (current_state_class == PersCurrentStateClassEnum::Jump) {
+			if (m_bKey['W']) {
+				anim_state->SetState(PersCurrentStateEnum::JumpOutward);
+			}
+			else if (m_bKey['S']) {
+				anim_state->SetState(PersCurrentStateEnum::JumpToward);
+			}
+		}
+	}
+
+	if (c == ' ') {
+		if (m_bKey['W']) {
+			anim_state->SetState(PersCurrentStateEnum::WalkOutward);
+		}
+		else if (m_bKey['S']) {
+			anim_state->SetState(PersCurrentStateEnum::WalkToward);
+		}
+		if (m_bKey['A']) {
+			anim_state->SetState(PersCurrentStateEnum::WalkLeft);
+		}
+		else if (m_bKey['D']) {
+			anim_state->SetState(PersCurrentStateEnum::WalkRight);
+		}
+		else {
+			anim_state->SetState(PersCurrentStateEnum::IdleLeft);
+		}
 	}
 }
 
@@ -118,33 +339,12 @@ void GeoPhysicsMovementController::OnUpdate(float elapsed_seconds) {
 	if (bTranslating) {
 
 		if (pc) {
-			/*XMVECTOR direction = XMLoadFloat4(&atWorld) + XMLoadFloat4(&rightWorld) + XMLoadFloat4(&upWorld);
-			direction = XMVector3Normalize(direction);*/
 			XMVECTOR direction = XMLoadFloat4(&atWorld) * m_force + XMLoadFloat4(&rightWorld) * m_force + XMLoadFloat4(&upWorld) * m_jump_force;
 
 			Particle& particle = pc->VGetParticle();
 			particle.setAwake();
 			particle.addForce(direction);
 			particle.integrate(elapsed_seconds);
-
-			if (!m_camera) { return; }
-
-			//XMMATRIX mat = tc->GetTransform();
-			//XMVECTOR at = oc->VGetAt() * -5.0f;
-			//XMVECTOR atWorld = DirectX::XMVector4Transform(at, mat);
-			//mat.r[3] += atWorld;
-			//m_camera->VSetTransform(mat, XMMatrixIdentity(), true);
-
-
-			//DirectX::XMMATRIX matRot = DirectX::XMMatrixRotationRollPitchYaw(DirectX::XMConvertToRadians(0.0f), DirectX::XMConvertToRadians(0.0f), 0.0f);
-			//DirectX::XMMATRIX matRot = tc->GetTransform();
-			//matRot.r[3] = DirectX::XMVectorSet(m_matPosition._41, m_matPosition._42, m_matPosition._43, m_matPosition._44);
-			//matRot.r[0] = tc->GetPosition() + oc->VGetAt() * -5.0f;
-			//matRot.r[1] = tc->GetPosition() + oc->VGetAt() * -5.0f;
-			//matRot.r[2] = tc->GetPosition() + oc->VGetAt() * -5.0f;
-			//matRot.r[3] = tc->GetPosition() + oc->VGetAt() * -5.0f + oc->VGetUp() * -1.0f;
-			
-			//m_camera->VSetTransform(matRot, XMMatrixIdentity(), true);
 		}
 		else {
 			XMVECTOR direction = XMLoadFloat4(&atWorld) + XMLoadFloat4(&rightWorld) + XMLoadFloat4(&upWorld);
@@ -171,6 +371,35 @@ void GeoPhysicsMovementController::OnUpdate(float elapsed_seconds) {
 }
 
 bool GeoPhysicsMovementController::VOnPointerMove(int x, int y, const int radius) {
+	using namespace DirectX;
+
+	if (m_lastMousePos_x != x || m_lastMousePos_y != y) {
+		int dx = m_lastMousePos_x - x;
+		//int dy = y - m_lastMousePos_y;
+		int dy = m_lastMousePos_y - y;
+
+		m_lastMousePos_x = x;
+		m_lastMousePos_y = y;
+
+		if (!m_object) { return true; }
+
+		ActorId act_id = m_object->VFindMyActor();
+		std::shared_ptr<Actor> act = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(act_id));
+		std::shared_ptr<OrientationRelationComponent> oc;
+		std::shared_ptr<TransformComponent> tc;
+		if (act) {
+			oc = MakeStrongPtr(act->GetComponent<OrientationRelationComponent>(ActorComponent::GetIdFromName("OrientationRelationComponent")));
+			tc = MakeStrongPtr(act->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
+		}
+		bool is_octc = oc && tc;
+
+		if (is_octc) {
+			//XMMATRIX new_transform = XMMatrixMultiply(tc->GetTransform(), XMMatrixRotationAxis(oc->VGetUp(), XMConvertToRadians(((float)dy) * 0.1f)));
+			//tc->SetTransform(new_transform);
+			oc->VRotateUp(((float)dx) * 0.5f);
+		}
+	}
+
 	return true;
 }
 
@@ -183,45 +412,14 @@ bool GeoPhysicsMovementController::VOnPointerButtonUp(int x, int y, const int ra
 }
 
 bool GeoPhysicsMovementController::VOnKeyDown(const BYTE c) {
-	if (c == 'W') {
-		SetState(PersCurrentStateEnum::WalkOutward);
-	}
-	if (c == 'S') {
-		SetState(PersCurrentStateEnum::WalkToward);
-	}
-	if (c == 'A') {
-		SetState(PersCurrentStateEnum::WalkLeft);
-	}
-	if (c == 'D') {
-		SetState(PersCurrentStateEnum::WalkRight);
-	}
-
-	if (c == ' ') {
-		if (m_bKey['W']) {
-			SetState(PersCurrentStateEnum::JumpOutward);
-		}
-		else if (m_bKey['S']) {
-			SetState(PersCurrentStateEnum::JumpToward);
-		}
-		else if (m_bKey['A']) {
-			SetState(PersCurrentStateEnum::JumpLeft);
-		}
-		else if (m_bKey['D']) {
-			SetState(PersCurrentStateEnum::JumpRight);
-		}
-		else {
-			SetState(PersCurrentStateEnum::IdleToward);
-		}
-	}
+	DefineStateKeyDown(c);
 
 	m_bKey[c] = true;
 	return true;
 }
 
 bool GeoPhysicsMovementController::VOnKeyUp(const BYTE c) {
-	if (c == 'W' || c == 'S' || c == 'A' || c == 'D' || c == ' ') {
-		SetState(PersCurrentStateEnum::IdleToward);
-	}
+	DefineStateKeyUp(c);
 
 	if (c == 'I') {
 		g_pApp->GetHumanView()->VSetControlledActor(INVALID_ACTOR_ID);

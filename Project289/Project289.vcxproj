@@ -177,6 +177,8 @@
     <ClCompile Include="nodes\shadow_manager.cpp" />
     <ClCompile Include="physics\particle_geo_gravity.cpp" />
     <ClCompile Include="engine\geo_physics_movement_controller.cpp" />
+    <ClCompile Include="actors\spawn_relation_component.cpp" />
+    <ClCompile Include="actors\spawn_component.cpp" />
     <ClCompile Include="tools\geometry_generator.cpp" />
     <ClCompile Include="physics\aero_control.cpp" />
     <ClCompile Include="physics\aero.cpp" />
@@ -342,6 +344,8 @@
     <ClInclude Include="nodes\shadow_manager.h" />
     <ClInclude Include="physics\particle_geo_gravity.h" />
     <ClInclude Include="engine\geo_physics_movement_controller.h" />
+    <ClInclude Include="actors\spawn_relation_component.h" />
+    <ClInclude Include="actors\spawn_component.h" />
     <ClInclude Include="tools\geometry_generator.h" />
     <ClInclude Include="graphics\mesh_holder.h" />
     <ClInclude Include="physics\particle_sphere_contact.h" />
@@ -922,6 +926,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\objects\plane.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\actors\BasicTransformComponent.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="World4.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

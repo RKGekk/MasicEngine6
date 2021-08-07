@@ -65,18 +65,14 @@ void XHumanView::VSetControlledActor(ActorId actorId) {
 	else {
 		m_keyboard_handlers.clear();
 		m_pointer_handlers.clear();
-		m_pGeoPhysicsMovementController.reset(new GeoPhysicsMovementController(m_pTeapot, m_camera));
+		m_pGeoPhysicsMovementController.reset(new GeoPhysicsMovementController(m_pTeapot));
 		m_keyboard_handlers.push_back(m_pGeoPhysicsMovementController);
 		m_pointer_handlers.push_back(m_pGeoPhysicsMovementController);
 
 		m_camera->SetTarget(m_pTeapot);
-		//m_camera->SetTarget(nullptr);
 	}
 
 	HumanView::VSetControlledActor(actorId);
-
-	//m_camera->SetTarget(m_pTeapot);
-	//m_pTeapot->SetAlpha(0.8f);
 }
 
 bool XHumanView::VLoadGameDelegate(TiXmlElement* pLevelData) {

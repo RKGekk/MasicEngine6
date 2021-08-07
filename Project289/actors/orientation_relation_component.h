@@ -36,6 +36,8 @@ public:
     virtual DirectX::XMMATRIX VGetOrient();
     virtual DirectX::XMFLOAT4X4 VGetOrient4x4f();
 
+    virtual void VRotateUp(float angle_deg);
+
 protected:
     std::string m_relate_to;
     DirectX::XMFLOAT4 m_at;

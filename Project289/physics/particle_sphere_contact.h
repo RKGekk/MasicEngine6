@@ -6,7 +6,7 @@
 #include "particle_contact_generator.h"
 #include "particle_world.h"
 
-class ParticleSphereContact : ParticleContactGenerator {
+class ParticleSphereContact : public ParticleContactGenerator {
 	ParticleWorld::Particles* m_particles;
 
 public:

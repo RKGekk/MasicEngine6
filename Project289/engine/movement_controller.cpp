@@ -23,6 +23,7 @@ MovementController::MovementController(std::shared_ptr<SceneNode> object, float 
 	GetCursorPos(&ptCursor);
 	m_lastMousePos_x = ptCursor.x;
 	m_lastMousePos_y = ptCursor.y;
+	//ShowCursor(true);
 
 	memset(m_bKey, 0x00, sizeof(m_bKey));
 

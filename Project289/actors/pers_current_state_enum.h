@@ -14,3 +14,16 @@ enum class PersCurrentStateEnum {
 	IdleToward,
 	IdleOutward
 };
+
+enum class PersCurrentStateClassEnum {
+	Walk,
+	Jump,
+	Idle
+};
+
+enum class PersCurrentOrientClassEnum {
+	Left,
+	Right,
+	Toward,
+	Outward
+};

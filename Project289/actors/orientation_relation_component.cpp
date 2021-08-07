@@ -179,3 +179,10 @@ DirectX::XMFLOAT4X4 OrientationRelationComponent::VGetOrient4x4f() {
 			0.0f,      0.0f,      0.0f,      1.0f
 	};
 }
+
+void OrientationRelationComponent::VRotateUp(float angle_deg) {
+	using namespace DirectX;
+
+	XMStoreFloat4(&m_right, XMVector3Transform(VGetRight(), XMMatrixRotationAxis(VGetUp(), XMConvertToRadians(angle_deg))));
+	XMStoreFloat4(&m_at, XMVector3Transform(VGetAt(), XMMatrixRotationAxis(VGetUp(), XMConvertToRadians(angle_deg))));
+}

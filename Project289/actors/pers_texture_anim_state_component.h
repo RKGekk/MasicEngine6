@@ -24,6 +24,8 @@ public:
 
 	virtual DirectX::XMFLOAT4X4 GetTexTransform();
 	virtual PersCurrentStateEnum GetState();
+	virtual PersCurrentStateClassEnum GetStateClass();
+	virtual PersCurrentOrientClassEnum GetOrientClass();
 	virtual void SetState(PersCurrentStateEnum state);
 
 	virtual TiXmlElement* VGenerateXml() override;

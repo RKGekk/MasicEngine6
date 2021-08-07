@@ -2,30 +2,46 @@
 <World>
   <Actors>
 
-    <Actor name="pers_spawn" type="BasicTransformComponent" resource="data\actors\BasicTransformComponent.xml">
+    <!--<Actor name="pers_sphere" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
-        <Position x="0.0" y="0.0" z="0.0" />
-        <YawPitchRoll x="0.0" y="0.0" z="0.0" />
-        <Scale x="0.0" y="0.0" z="0.0" />
+        <Position x="0.000000" y="0.000000" z="0.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="0.125000" y="0.125000" z="0.125000" />
       </TransformComponent>
-      <SpacwnComponent>
-        <SpawnType>Sphere</SpawnType>
-        <SpawnRadius>1.0</SpawnRadius>
-      </SpacwnComponent>
-    </Actor>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <FogStart>10.0</FogStart>
+        <FogRange>100.0</FogRange>
+        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\pointer.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="1.000000" y="0.000000" z="1.000000" />
+        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
+        <Mass>100.0f</Mass>
+        <Damping>0.4f</Damping>
+        <Radius>0.125f</Radius>
+      </ParticleComponent>
+      <SmokeComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="0.500000" />
+        <AtlasName>data\textures\fireatlas.jpg</AtlasName>
+        <AtlasWidth>4</AtlasWidth>
+        <AtlasHeight>4</AtlasHeight>
+        <Radius>0.5f</Radius>
+        <PixelShader>pixel_shader_smoke.cso</PixelShader>
+        <VertexShader>vertex_shader_smoke.cso</VertexShader>
+        <GeometryShader>geometry_shader_smoke.cso</GeometryShader>
+      </SmokeComponent>
+      <OrientationRelationComponent>
+        <RelateTo>ground</RelateTo>
+      </OrientationRelationComponent>
+    </Actor>-->
 
-    <Actor name="enemy_spawn" type="BasicTransformComponent" resource="data\actors\BasicTransformComponent.xml">
-      <TransformComponent>
-        <Position x="0.0" y="1.0" z="20.0" />
-        <YawPitchRoll x="0.0" y="0.0" z="0.0" />
-        <Scale x="0.0" y="0.0" z="0.0" />
-      </TransformComponent>
-      <SpacwnComponent>
-        <SpawnType>Sphere</SpawnType>
-        <SpawnRadius>1.0</SpawnRadius>
-      </SpacwnComponent>
-    </Actor>
-    
     <Actor name="pers" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
         <Position x="0.000000" y="0.000000" z="0.000000" />
@@ -70,20 +86,17 @@
         <IdleToward From="20" To="26" FrameTime="0.1" />
         <IdleOutward From="20" To="26" FrameTime="0.1" />
       </PersTextureAnimStateComponent>
-      <SpawnRelation>
-        <RelateTo>pers_spawn</RelateTo>
-      </SpawnRelation>
     </Actor>
 
-    <Actor name="emenmy1" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+    <!--<Actor name="test1" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
       <TransformComponent>
-        <Position x="3.000000" y="0.000000" z="0.000000" />
+        <Position x="0.000000" y="0.000000" z="3.000000" />
         <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
-        <Scale x="0.125000" y="0.125000" z="0.125000" />
+        <Scale x="0.125" y="0.125" z="0.125" />
       </TransformComponent>
       <MeshRenderLightComponent>
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
-        <PixelShader>pixel_shader_light_inv_ny.cso</PixelShader>
+        <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
         <FogStart>10.0</FogStart>
         <FogRange>100.0</FogRange>
@@ -91,22 +104,9 @@
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
-        <Obj>data\objects\cube.obj</Obj>
+        <Obj>data\objects\pointer.obj</Obj>
       </MeshComponent>
-      <ParticleComponent>
-        <Velocity x="1.000000" y="0.000000" z="1.000000" />
-        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
-        <Mass>100.0</Mass>
-        <Damping>0.4</Damping>
-        <Radius>0.125</Radius>
-      </ParticleComponent>
-      <OrientationRelationComponent>
-        <RelateTo>ground</RelateTo>
-      </OrientationRelationComponent>
-      <SpawnRelation>
-        <RelateTo>enemy_spawn</RelateTo>
-      </SpawnRelation>
-    </Actor>
+    </Actor>-->
 
     <Actor name="ground" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
       <TransformComponent>
@@ -116,7 +116,7 @@
       </TransformComponent>
       <MeshRenderLightComponent>
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
-        <PixelShader>pixel_shader_light_inv_ny.cso</PixelShader>
+        <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
         <FogStart>10.0</FogStart>
         <FogRange>100.0</FogRange>
@@ -131,10 +131,6 @@
         <GroundLevel>3.0</GroundLevel>
         <Restitution>0.2</Restitution>
       </ParticleContactGeneratorComponent>
-      <ParticleForceGeneratorComponent>
-        <ForceGeneratorTypeName>GeoGravity</ForceGeneratorTypeName>
-        <Gravity>9.8</Gravity>
-      </ParticleForceGeneratorComponent>
     </Actor>
 
     <Actor name="directLight1" type="LightRenderComponent" resource="data\actors\LightRenderComponent.xml">
@@ -155,15 +151,29 @@
       </LightRenderComponent>
     </Actor>
 
-    <Actor name="particleContact" type="ContactGeneratorComponent" resource="data\actors\ContactGeneratorComponent.xml">
+    <!--<Actor name="groundContact" type="ContactGeneratorComponent" resource="data\actors\ContactGeneratorComponent.xml">
       <TransformComponent>
         <Position x="0.000000" y="0.000000" z="10.000000" />
         <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
         <Scale x="1.0" y="1.0" z="1.0" />
       </TransformComponent>
       <ParticleContactGeneratorComponent>
-        <ContactGeneratorTypeName>ParticleSphereContact</ContactGeneratorTypeName>
+        <ContactGeneratorTypeName>GeoGroundContact</ContactGeneratorTypeName>
+        <GroundLevel>3.0</GroundLevel>
+        <Restitution>0.2</Restitution>
       </ParticleContactGeneratorComponent>
+    </Actor>-->
+
+    <Actor name="GeoGroundGravity" type="ForceGeneratorComponent" resource="data\actors\ForceGeneratorComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="0.000000" z="10.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="1.000000" y="1.000000" z="1.000000" />
+      </TransformComponent>
+      <ParticleForceGeneratorComponent>
+        <ForceGeneratorTypeName>GeoGravity</ForceGeneratorTypeName>
+        <Gravity>9.8</Gravity>
+      </ParticleForceGeneratorComponent>
     </Actor>
 
   </Actors>

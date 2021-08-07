@@ -11,6 +11,8 @@
 #include "../nodes/scene_node.h"
 #include "../actors/pers_current_state_enum.h"
 
+class PersTextureAnimStateComponent;
+
 class GeoPhysicsMovementController : public IPointerHandler, public IKeyboardHandler {
 protected:
 	DirectX::XMFLOAT4X4 m_matFromWorld;
@@ -22,15 +24,23 @@ protected:
 	float m_force;
 	float m_jump_force;
 
+	int m_lastMousePos_x;
+	int m_lastMousePos_y;
 	bool m_bKey[256];
 
 	std::shared_ptr<SceneNode> m_object;
-	std::shared_ptr<SceneNode> m_camera;
+
+private:
+	void SetState(PersCurrentStateEnum state);
+	PersCurrentStateEnum GetState();
+	std::shared_ptr<PersTextureAnimStateComponent> GetStateComponent();
+	void DefineStateKeyDown(const BYTE c);
+	void DefineStateKeyUp(const BYTE c);
 
 public:
-	GeoPhysicsMovementController(std::shared_ptr<SceneNode> object, std::shared_ptr<SceneNode> camera);
+	GeoPhysicsMovementController(std::shared_ptr<SceneNode> object);
 	void SetObject(std::shared_ptr<SceneNode> newObject);
-	void SetState(PersCurrentStateEnum state);
+	
 
 	void OnUpdate(float elapsed_seconds);
 
