@@ -600,6 +600,12 @@
     <ClCompile Include="actors\spawn_component.cpp">
       <Filter>Source Files\actors</Filter>
     </ClCompile>
+    <ClCompile Include="events\evt_data_sphere_particle_contact.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\particle_sphere_contact_evet_gen.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard\keyboard_event.h">
@@ -1231,6 +1237,12 @@
     </ClInclude>
     <ClInclude Include="actors\spawn_component.h">
       <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="events\evt_data_sphere_particle_contact.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\particle_sphere_contact_evet_gen.h">
+      <Filter>Header Files\physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

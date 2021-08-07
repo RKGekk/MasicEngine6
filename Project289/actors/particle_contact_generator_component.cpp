@@ -6,6 +6,7 @@
 #include "../physics/particle_link.h"
 #include "../physics/particle_rod.h"
 #include "../physics/particle_sphere_contact.h"
+#include "../physics/particle_sphere_contact_evet_gen.h"
 #include "../physics/geo_ground_contacts.h"
 #include "transform_component.h"
 #include "../tools/memory_utility.h"
@@ -66,6 +67,12 @@ void ParticleContactGeneratorComponent::VPostInit() {
     if (m_contact_generator_type_name == "ParticleSphereContact") {
         ParticleWorld::Particles* particles = &g_pApp->GetGameLogic()->VGetGamePhysics()->VGetParticles();
         std::shared_ptr<ParticleSphereContact> cg = std::make_shared<ParticleSphereContact>();
+        cg->init(particles);
+        m_contact_generator = cg;
+    }
+    if (m_contact_generator_type_name == "ParticleSphereContactEventGen") {
+        ParticleWorld::Particles* particles = &g_pApp->GetGameLogic()->VGetGamePhysics()->VGetParticles();
+        std::shared_ptr<ParticleSphereContactEventGen> cg = std::make_shared<ParticleSphereContactEventGen>();
         cg->init(particles);
         m_contact_generator = cg;
     }

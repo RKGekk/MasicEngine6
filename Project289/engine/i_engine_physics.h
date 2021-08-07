@@ -20,6 +20,7 @@ public:
 	virtual std::vector<Particle*>& VGetParticles() = 0;
 	virtual void VRemoveActorParticle(ActorId id) = 0;
 	virtual void VRemoveParticle(Particle* p) = 0;
+	virtual ActorId VGetParticleActor(Particle* p) = 0;
 
 	virtual void VAddContactGenerator(ActorId id) = 0;
 	virtual void VRemoveContactGenerator(ActorId id) = 0;

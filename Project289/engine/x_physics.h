@@ -25,6 +25,7 @@
 class XPhysics : public IEnginePhysics {
 	ParticleWorld m_particle_world;
 	std::unordered_map<ActorId, Particle*> m_particle_array;
+	std::unordered_map<Particle*, ActorId> m_particle_array_map;
 	std::unordered_map<ActorId, std::shared_ptr<ParticleContactGenerator>> m_contact_generators;
 	std::unordered_map<ActorId, std::shared_ptr<ParticleForceGenerator>> m_force_generators;
 
@@ -40,6 +41,7 @@ public:
 	virtual std::vector<Particle*>& VGetParticles() override;
 	virtual void VRemoveParticle(Particle* p) override;
 	virtual void VRemoveActorParticle(ActorId id) override;
+	virtual ActorId VGetParticleActor(Particle* p) override;
 
 	virtual void VAddContactGenerator(ActorId id) override;
 	virtual void VRemoveContactGenerator(ActorId id) override;

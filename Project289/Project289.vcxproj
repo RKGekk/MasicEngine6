@@ -159,6 +159,8 @@
     <ClCompile Include="actors\mesh_render_light_component.cpp" />
     <ClCompile Include="actors\orientation_relation_component.cpp" />
     <ClCompile Include="actors\pers_texture_anim_state_component.cpp" />
+    <ClCompile Include="events\evt_data_sphere_particle_contact.cpp" />
+    <ClCompile Include="physics\particle_sphere_contact_evet_gen.cpp" />
     <ClCompile Include="physics\geo_ground_contacts.cpp" />
     <ClCompile Include="nodes\d3d_11_light_pipeline.cpp" />
     <ClCompile Include="events\evt_data_new_smoke_component.cpp" />
@@ -321,6 +323,8 @@
     <ClInclude Include="actors\orientation_relation_component.h" />
     <ClInclude Include="actors\pers_texture_anim_state_component.h" />
     <ClInclude Include="actors\pers_current_state_enum.h" />
+    <ClInclude Include="events\evt_data_sphere_particle_contact.h" />
+    <ClInclude Include="physics\particle_sphere_contact_evet_gen.h" />
     <ClInclude Include="physics\geo_ground_contacts.h" />
     <ClInclude Include="nodes\d3d_11_light_pipeline.h" />
     <ClInclude Include="events\evt_data_new_smoke_component.h" />

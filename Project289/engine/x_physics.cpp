@@ -19,6 +19,7 @@
 
 XPhysics::XPhysics() : m_particle_world(1024, 16) {
 	m_particle_array.reserve(128);
+	m_particle_array_map.reserve(128);
 	m_contact_generators.reserve(16);
 
 	IEventManager* pEventMgr = IEventManager::Get();
@@ -76,6 +77,7 @@ void XPhysics::VAddParticleActor(const ActorId actorId) {
 	Particle* pParticle = pParticleComponent->VGetParticlePtr();
 	m_particle_world.getParticles().push_back(pParticle);
 	m_particle_array.emplace(std::make_pair(actorId, pParticle));
+	m_particle_array_map.emplace(std::make_pair(pParticle, actorId));
 }
 
 std::vector<Particle*>& XPhysics::VGetParticles() {
@@ -86,6 +88,7 @@ void XPhysics::VRemoveParticle(Particle* p) {
 	auto it = std::find_if(m_particle_array.begin(), m_particle_array.end(), [p](const std::pair<ActorId, Particle*>& t) -> bool { return t.second == p; });
 	ActorId act = (*it).first;
 	m_particle_array.erase(act);
+	m_particle_array_map.erase(p);
 	ParticleWorld::Particles& particles = m_particle_world.getParticles();
 	particles.erase(std::find(particles.begin(), particles.end(), p));
 }
@@ -96,6 +99,11 @@ void XPhysics::VRemoveActorParticle(ActorId id) {
 	particles.erase(std::find(particles.begin(), particles.end(), pParticle));
 
 	m_particle_array.erase(id);
+	m_particle_array_map.erase(pParticle);
+}
+
+ActorId XPhysics::VGetParticleActor(Particle* p) {
+	return ActorId();
 }
 
 void XPhysics::VAddContactGenerator(ActorId id) {
@@ -141,6 +149,7 @@ void XPhysics::NewParticleComponentDelegate(IEventDataPtr pEventData) {
 	ActorId act = pCastEventData->GetActorId();
 	m_particle_world.getParticles().push_back(pParticle);
 	m_particle_array.emplace(std::make_pair(act, pParticle));
+	m_particle_array_map.emplace(std::make_pair(pParticle, act));
 }
 
 void XPhysics::DestroyActorDelegate(IEventDataPtr pEventData) {
