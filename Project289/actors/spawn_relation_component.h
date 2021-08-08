@@ -21,6 +21,8 @@ public:
 	virtual void VPostInit() override;
 	virtual void VUpdate(float deltaMs) override;
 
+	const std::string& GetRelatedName();
+
 	virtual TiXmlElement* VGenerateXml() override;
 
 protected:

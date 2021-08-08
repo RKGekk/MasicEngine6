@@ -23,6 +23,10 @@ public:
 	virtual void VPostInit() override;
 	virtual void VUpdate(float deltaMs) override;
 
+	DirectX::XMVECTOR GetSpawnPosition();
+	DirectX::XMFLOAT4 GetSpawnPosition4f();
+	DirectX::XMFLOAT3 GetSpawnPosition3f();
+
 	virtual TiXmlElement* VGenerateXml() override;
 
 protected:

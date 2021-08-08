@@ -103,7 +103,7 @@ void XPhysics::VRemoveActorParticle(ActorId id) {
 }
 
 ActorId XPhysics::VGetParticleActor(Particle* p) {
-	return ActorId();
+	return m_particle_array_map.at(p);
 }
 
 void XPhysics::VAddContactGenerator(ActorId id) {

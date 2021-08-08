@@ -1,4 +1,10 @@
 #include "spawn_relation_component.h"
+#include "spawn_component.h"
+#include "transform_component.h"
+#include "particle_component.h"
+#include "../tools/memory_utility.h"
+#include "../processes/exec_process.h"
+#include "../engine/engine.h"
 
 const std::string SpawnRelationComponent::g_Name = "SpawnRelationComponent"s;
 
@@ -22,9 +28,33 @@ bool SpawnRelationComponent::VInit(TiXmlElement* pData) {
 	return true;
 }
 
-void SpawnRelationComponent::VPostInit() {}
+void SpawnRelationComponent::VPostInit() {
+	std::shared_ptr<ExecProcess> execOne = std::make_shared<ExecProcess>([this]() {
+		std::shared_ptr<Actor> act = GetOwner();
+		std::shared_ptr<TransformComponent> tc = MakeStrongPtr(act->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
+		std::shared_ptr<ParticleComponent> pc = MakeStrongPtr(act->GetComponent<ParticleComponent>(ActorComponent::GetIdFromName("ParticleComponent")));
+		StrongActorPtr pRelationActor = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName(m_relate_to_name));
+		std::shared_ptr<SpawnComponent> related_sc = MakeStrongPtr(pRelationActor->GetComponent<SpawnComponent>(ActorComponent::GetIdFromName("SpawnComponent")));
+		if (pc) {
+			pc->VGetParticle().setPosition3f(related_sc->GetSpawnPosition3f());
+		}
+		else {
+			tc->SetPosition3f(related_sc->GetSpawnPosition3f());
+		}
+
+		/*StrongActorPtr pActorLoading = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName("loading"));
+		std::shared_ptr<MeshRenderComponent> pMeshComponentLoading = MakeStrongPtr(pActorLoading->GetComponent<MeshRenderComponent>(MeshRenderComponent::g_Name));
+		pMeshComponentLoading->SetColorA(0.0f);*/
+		return true;
+	});
+	g_pApp->GetGameLogic()->AttachProcess(execOne);
+}
 
 void SpawnRelationComponent::VUpdate(float deltaMs) {}
+
+const std::string& SpawnRelationComponent::GetRelatedName() {
+	return m_relate_to_name;
+}
 
 TiXmlElement* SpawnRelationComponent::VGenerateXml() {
 	return nullptr;

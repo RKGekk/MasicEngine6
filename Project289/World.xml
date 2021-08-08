@@ -8,10 +8,10 @@
         <YawPitchRoll x="0.0" y="0.0" z="0.0" />
         <Scale x="0.0" y="0.0" z="0.0" />
       </TransformComponent>
-      <SpacwnComponent>
+      <SpawnComponent>
         <SpawnType>Sphere</SpawnType>
         <SpawnRadius>1.0</SpawnRadius>
-      </SpacwnComponent>
+      </SpawnComponent>
     </Actor>
 
     <Actor name="enemy_spawn" type="BasicTransformComponent" resource="data\actors\BasicTransformComponent.xml">
@@ -20,10 +20,10 @@
         <YawPitchRoll x="0.0" y="0.0" z="0.0" />
         <Scale x="0.0" y="0.0" z="0.0" />
       </TransformComponent>
-      <SpacwnComponent>
+      <SpawnComponent>
         <SpawnType>Sphere</SpawnType>
-        <SpawnRadius>1.0</SpawnRadius>
-      </SpacwnComponent>
+        <SpawnRadius>5.0</SpawnRadius>
+      </SpawnComponent>
     </Actor>
     
     <Actor name="pers" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
@@ -70,9 +70,9 @@
         <IdleToward From="20" To="26" FrameTime="0.1" />
         <IdleOutward From="20" To="26" FrameTime="0.1" />
       </PersTextureAnimStateComponent>
-      <SpawnRelation>
+      <SpawnRelationComponent>
         <RelateTo>pers_spawn</RelateTo>
-      </SpawnRelation>
+      </SpawnRelationComponent>
     </Actor>
 
     <Actor name="emenmy1" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
@@ -103,9 +103,9 @@
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
       </OrientationRelationComponent>
-      <SpawnRelation>
+      <SpawnRelationComponent>
         <RelateTo>enemy_spawn</RelateTo>
-      </SpawnRelation>
+      </SpawnRelationComponent>
     </Actor>
 
     <Actor name="ground" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
@@ -157,7 +157,7 @@
 
     <Actor name="particleContact" type="ContactGeneratorComponent" resource="data\actors\ContactGeneratorComponent.xml">
       <TransformComponent>
-        <Position x="0.000000" y="0.000000" z="10.000000" />
+        <Position x="0.000000" y="0.000000" z="0.000000" />
         <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
         <Scale x="1.0" y="1.0" z="1.0" />
       </TransformComponent>

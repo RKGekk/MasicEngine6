@@ -31,7 +31,7 @@ public:
     DirectX::XMMATRIX GetTransform() const;
 
     void SetTransform(const DirectX::XMFLOAT4X4& newTransform);
-    void SetTransform(const DirectX::FXMMATRIX& newTransform);
+    void SetTransform(DirectX::FXMMATRIX newTransform);
 
     DirectX::XMFLOAT3 GetPosition3f() const;
     DirectX::XMFLOAT4 GetPosition4f() const;
@@ -43,12 +43,12 @@ public:
     void SetPosition3f(const DirectX::XMFLOAT3& pos);
     void SetPosition4f(const DirectX::XMFLOAT4& pos);
     void SetPosition4x4f(const DirectX::XMFLOAT4X4& pos);
-    void SetPosition3(const DirectX::FXMVECTOR& pos);
-    void SetPosition4(const DirectX::FXMVECTOR& pos);
+    void SetPosition3(DirectX::FXMVECTOR pos);
+    void SetPosition4(DirectX::FXMVECTOR pos);
 
     void SetScale3f(const DirectX::XMFLOAT3& sclae);
     void SetScale4f(const DirectX::XMFLOAT4& sclae);
-    void SetScale(const DirectX::FXMVECTOR& scale);
+    void SetScale(DirectX::FXMVECTOR scale);
 
     DirectX::XMFLOAT3 GetLookAt3f() const;
     DirectX::XMVECTOR GetLookAt() const;

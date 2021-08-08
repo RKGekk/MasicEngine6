@@ -27,6 +27,7 @@ public:
     void EndThrustDelegate(IEventDataPtr pEventData);
     void StartSteerDelegate(IEventDataPtr pEventData);
     void EndSteerDelegate(IEventDataPtr pEventData);
+    void SphereParticleContactDelegate(IEventDataPtr pEventData);
 
 protected:
     virtual bool VLoadGameDelegate(TiXmlElement* pLevelData);

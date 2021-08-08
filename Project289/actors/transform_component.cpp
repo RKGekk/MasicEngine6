@@ -59,7 +59,7 @@ void TransformComponent::SetTransform(const DirectX::XMFLOAT4X4& newTransform) {
     m_transform = newTransform;
 }
 
-void TransformComponent::SetTransform(const DirectX::FXMMATRIX& newTransform) {
+void TransformComponent::SetTransform(DirectX::FXMMATRIX newTransform) {
     DirectX::XMStoreFloat4x4(&m_transform, newTransform);
 }
 
@@ -104,7 +104,7 @@ void TransformComponent::SetPosition4x4f(const DirectX::XMFLOAT4X4& pos) {
     m_transform._44 = pos._44;
 }
 
-void TransformComponent::SetPosition3(const DirectX::FXMVECTOR& pos) {
+void TransformComponent::SetPosition3(DirectX::FXMVECTOR pos) {
     DirectX::XMFLOAT3 temp;
     DirectX::XMStoreFloat3(&temp, pos);
     m_transform._41 = temp.x;
@@ -113,7 +113,7 @@ void TransformComponent::SetPosition3(const DirectX::FXMVECTOR& pos) {
     m_transform._44 = 1.0f;
 }
 
-void TransformComponent::SetPosition4(const DirectX::FXMVECTOR& pos) {
+void TransformComponent::SetPosition4(DirectX::FXMVECTOR pos) {
     DirectX::XMFLOAT4 temp;
     DirectX::XMStoreFloat4(&temp, pos);
     m_transform._41 = temp.x;
@@ -133,7 +133,7 @@ void TransformComponent::SetScale4f(const DirectX::XMFLOAT4& sclae) {
     m_scale = sclae;
 }
 
-void TransformComponent::SetScale(const DirectX::FXMVECTOR& scale) {
+void TransformComponent::SetScale(DirectX::FXMVECTOR scale) {
     DirectX::XMFLOAT3 temp;
     DirectX::XMStoreFloat3(&temp, scale);
     m_scale.x = temp.x;

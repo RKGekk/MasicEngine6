@@ -4,6 +4,9 @@
 #include "../tools/memory_utility.h"
 #include "../actors/transform_component.h"
 #include "../actors/physics_component.h"
+#include "../actors/particle_component.h"
+#include "../actors/spawn_relation_component.h"
+#include "../actors/spawn_component.h"
 #include "../events/evt_data_destroy_actor.h"
 #include "../events/evt_data_new_actor.h"
 #include "../events/evt_data_start_thrust.h"
@@ -11,6 +14,7 @@
 #include "../events/evt_data_move_actor.h"
 #include "../events/evt_data_request_start_game.h"
 #include "../events/evt_data_environment_loaded.h"
+#include "../events/evt_data_sphere_particle_contact.h"
 #include "../events/i_event_manager.h"
 #include "../engine/engine.h"
 #include "../processes/exec_process.h"
@@ -175,6 +179,41 @@ void XLogic::EndSteerDelegate(IEventDataPtr pEventData) {
 	}
 }
 
+void XLogic::SphereParticleContactDelegate(IEventDataPtr pEventData) {
+	std::shared_ptr<EvtData_Sphere_Particle_Contact> pCastEventData = std::static_pointer_cast<EvtData_Sphere_Particle_Contact>(pEventData);
+	StrongActorPtr pActor1 = MakeStrongPtr(VGetActor(pCastEventData->GetActorId1()));
+	StrongActorPtr pActor2 = MakeStrongPtr(VGetActor(pCastEventData->GetActorId2()));
+
+	if (pActor1->GetName() == "emenmy1") {
+		std::shared_ptr<TransformComponent> tc = MakeStrongPtr(pActor1->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
+		std::shared_ptr<ParticleComponent> pc = MakeStrongPtr(pActor1->GetComponent<ParticleComponent>(ActorComponent::GetIdFromName("ParticleComponent")));
+		std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor1->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
+		StrongActorPtr pRelationActor = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName(rc->GetRelatedName()));
+		std::shared_ptr<SpawnComponent> related_sc = MakeStrongPtr(pRelationActor->GetComponent<SpawnComponent>(ActorComponent::GetIdFromName("SpawnComponent")));
+		if (pc) {
+			pc->VGetParticle().setAwake(true);
+			pc->VGetParticle().setPosition3f(related_sc->GetSpawnPosition3f());
+		}
+		else {
+			tc->SetPosition3f(related_sc->GetSpawnPosition3f());
+		}
+	}
+	else {
+		std::shared_ptr<TransformComponent> tc = MakeStrongPtr(pActor2->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
+		std::shared_ptr<ParticleComponent> pc = MakeStrongPtr(pActor2->GetComponent<ParticleComponent>(ActorComponent::GetIdFromName("ParticleComponent")));
+		std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor2->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
+		StrongActorPtr pRelationActor = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName(rc->GetRelatedName()));
+		std::shared_ptr<SpawnComponent> related_sc = MakeStrongPtr(pRelationActor->GetComponent<SpawnComponent>(ActorComponent::GetIdFromName("SpawnComponent")));
+		if (pc) {
+			pc->VGetParticle().setAwake(true);
+			pc->VGetParticle().setPosition3f(related_sc->GetSpawnPosition3f());
+		}
+		else {
+			tc->SetPosition3f(related_sc->GetSpawnPosition3f());
+		}
+	}
+}
+
 bool XLogic::VLoadGameDelegate(TiXmlElement* pLevelData) {
 	return true;
 }
@@ -186,6 +225,7 @@ void XLogic::RegisterAllDelegates() {
 	pGlobalEventManager->VAddListener({ connect_arg<&XLogic::EnvironmentLoadedDelegate>, this }, EvtData_Environment_Loaded::sk_EventType);
 	pGlobalEventManager->VAddListener({ connect_arg<&XLogic::StartThrustDelegate>, this }, EvtData_StartThrust::sk_EventType);
 	pGlobalEventManager->VAddListener({ connect_arg<&XLogic::EndThrustDelegate>, this }, EvtData_EndThrust::sk_EventType);
+	pGlobalEventManager->VAddListener({ connect_arg<&XLogic::SphereParticleContactDelegate>, this }, EvtData_Sphere_Particle_Contact::sk_EventType);
 }
 
 void XLogic::RemoveAllDelegates() {
@@ -196,4 +236,5 @@ void XLogic::RemoveAllDelegates() {
 	pGlobalEventManager->VRemoveListener({ connect_arg<&XLogic::EnvironmentLoadedDelegate>, this }, EvtData_Environment_Loaded::sk_EventType);
 	pGlobalEventManager->VRemoveListener({ connect_arg<&XLogic::StartThrustDelegate>, this }, EvtData_StartThrust::sk_EventType);
 	pGlobalEventManager->VRemoveListener({ connect_arg<&XLogic::EndThrustDelegate>, this }, EvtData_EndThrust::sk_EventType);
+	pGlobalEventManager->VRemoveListener({ connect_arg<&XLogic::SphereParticleContactDelegate>, this }, EvtData_Sphere_Particle_Contact::sk_EventType);
 }
