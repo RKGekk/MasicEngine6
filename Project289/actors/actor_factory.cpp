@@ -14,6 +14,7 @@
 #include "pers_texture_anim_state_component.h"
 #include "spawn_component.h"
 #include "spawn_relation_component.h"
+#include "enemy_component.h"
 
 unsigned int ActorFactory::GetNextActorId() {
     return ++m_lastActorId;
@@ -36,6 +37,7 @@ ActorFactory::ActorFactory() {
     m_componentFactory.Register<PersTextureAnimStateComponent>(ActorComponent::GetIdFromName(PersTextureAnimStateComponent::g_Name), PersTextureAnimStateComponent::g_Name);
     m_componentFactory.Register<SpawnComponent>(ActorComponent::GetIdFromName(SpawnComponent::g_Name), SpawnComponent::g_Name);
     m_componentFactory.Register<SpawnRelationComponent>(ActorComponent::GetIdFromName(SpawnRelationComponent::g_Name), SpawnRelationComponent::g_Name);
+    m_componentFactory.Register<EnemyComponent>(ActorComponent::GetIdFromName(EnemyComponent::g_Name), EnemyComponent::g_Name);
 }
 
 std::shared_ptr<Actor> ActorFactory::CreateActor(const char* actorResource, TiXmlElement* overrides, const DirectX::XMFLOAT4X4* pinitialTransform, const ActorId serversActorId) {

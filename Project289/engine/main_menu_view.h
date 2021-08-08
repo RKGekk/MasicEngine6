@@ -19,6 +19,7 @@ public:
 	virtual LRESULT CALLBACK VOnMsgProc(HWND m_hWnd, UINT m_uMsg, WPARAM m_wParam, LPARAM m_lParam) override;
 	virtual void VRenderText();
 	virtual void VOnUpdate(float deltaMs) override;
+	virtual void VOnRender(double fTime, float fElapsedTime) override;
 	virtual const std::string& VGetName() override;
 
 protected:

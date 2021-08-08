@@ -20,6 +20,7 @@
 #include "../processes/exec_process.h"
 #include "../processes/delay_process.h"
 #include "../events/evt_data_request_destroy_actor.h"
+#include "../actors/enemy_component.h"
 
 XLogic::XLogic() {
 	
@@ -183,35 +184,32 @@ void XLogic::SphereParticleContactDelegate(IEventDataPtr pEventData) {
 	std::shared_ptr<EvtData_Sphere_Particle_Contact> pCastEventData = std::static_pointer_cast<EvtData_Sphere_Particle_Contact>(pEventData);
 	StrongActorPtr pActor1 = MakeStrongPtr(VGetActor(pCastEventData->GetActorId1()));
 	StrongActorPtr pActor2 = MakeStrongPtr(VGetActor(pCastEventData->GetActorId2()));
+	std::shared_ptr<EnemyComponent> ec1 = MakeStrongPtr(pActor1->GetComponent<EnemyComponent>(ActorComponent::GetIdFromName("EnemyComponent")));
+	std::shared_ptr<EnemyComponent> ec2 = MakeStrongPtr(pActor2->GetComponent<EnemyComponent>(ActorComponent::GetIdFromName("EnemyComponent")));
 
+	if (ec1 && !ec2) {
+		if (pActor2->GetName() == "pers") {
+			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor1->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
+			rc->Respawn();
+		}
+	}
+
+	if (ec2 && !ec1) {
+		if (pActor1->GetName() == "pers") {
+			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor2->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
+			rc->Respawn();
+		}
+	}
+
+	/*
 	if (pActor1->GetName() == "emenmy1") {
-		std::shared_ptr<TransformComponent> tc = MakeStrongPtr(pActor1->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
-		std::shared_ptr<ParticleComponent> pc = MakeStrongPtr(pActor1->GetComponent<ParticleComponent>(ActorComponent::GetIdFromName("ParticleComponent")));
 		std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor1->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
-		StrongActorPtr pRelationActor = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName(rc->GetRelatedName()));
-		std::shared_ptr<SpawnComponent> related_sc = MakeStrongPtr(pRelationActor->GetComponent<SpawnComponent>(ActorComponent::GetIdFromName("SpawnComponent")));
-		if (pc) {
-			pc->VGetParticle().setAwake(true);
-			pc->VGetParticle().setPosition3f(related_sc->GetSpawnPosition3f());
-		}
-		else {
-			tc->SetPosition3f(related_sc->GetSpawnPosition3f());
-		}
+		rc->Respawn();
 	}
 	else {
-		std::shared_ptr<TransformComponent> tc = MakeStrongPtr(pActor2->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
-		std::shared_ptr<ParticleComponent> pc = MakeStrongPtr(pActor2->GetComponent<ParticleComponent>(ActorComponent::GetIdFromName("ParticleComponent")));
 		std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor2->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
-		StrongActorPtr pRelationActor = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName(rc->GetRelatedName()));
-		std::shared_ptr<SpawnComponent> related_sc = MakeStrongPtr(pRelationActor->GetComponent<SpawnComponent>(ActorComponent::GetIdFromName("SpawnComponent")));
-		if (pc) {
-			pc->VGetParticle().setAwake(true);
-			pc->VGetParticle().setPosition3f(related_sc->GetSpawnPosition3f());
-		}
-		else {
-			tc->SetPosition3f(related_sc->GetSpawnPosition3f());
-		}
-	}
+		rc->Respawn();
+	}*/
 }
 
 bool XLogic::VLoadGameDelegate(TiXmlElement* pLevelData) {

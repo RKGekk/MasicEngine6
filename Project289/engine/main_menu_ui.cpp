@@ -17,7 +17,7 @@ void MainMenuUI::Set(ProcessManager* pm) {
 	});
 	pm->AttachProcess(execOne);
 
-	std::shared_ptr<DelayProcess> delay = std::make_shared<DelayProcess>(1.0f, [](float dt, float tt, float n) {
+	std::shared_ptr<DelayProcess> delay = std::make_shared<DelayProcess>(1.5f, [](float dt, float tt, float n) {
 		StrongActorPtr pActor = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName("logo"));
 		if (pActor) {
 			std::shared_ptr<TransformComponent> pTransformComponent = MakeStrongPtr(pActor->GetComponent<TransformComponent>(TransformComponent::g_Name));
@@ -25,12 +25,13 @@ void MainMenuUI::Set(ProcessManager* pm) {
 			static bool first = true;
 			static float start = 0.0f;
 			if (first) { start = mx._43; first = false; };
-			float end = 3.0f;
+			float end = 2.0f;
 			mx._43 = start + (end - start) * n;
 			pTransformComponent->SetTransform(mx);
 
 			std::shared_ptr<MeshRenderComponent> pMeshComponent = MakeStrongPtr(pActor->GetComponent<MeshRenderComponent>(MeshRenderComponent::g_Name));
 			pMeshComponent->SetColorA(n);
+			g_pApp->GetRenderer()->VSetBackgroundColor4f(n, n, n, 1.0f);
 
 			std::shared_ptr<EvtData_Move_Actor> pEvent(new EvtData_Move_Actor(pActor->GetId(), mx));
 			IEventManager::Get()->VTriggerEvent(pEvent);
@@ -46,7 +47,8 @@ void MainMenuUI::Set(ProcessManager* pm) {
 }
 
 MainMenuUI::MainMenuUI(ProcessManager* pm) : m_pm(pm) {
-	g_pApp->GetRenderer()->VSetBackgroundColor4f(0.0f, 0.0f, 0.0f, 1.0f);
+	//g_pApp->GetRenderer()->VSetBackgroundColor4f(0.0f, 0.0f, 0.0f, 1.0f);
+	//g_pApp->GetRenderer()->VSetBackgroundColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 	Set(pm);
 }
 

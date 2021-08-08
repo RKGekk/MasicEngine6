@@ -209,7 +209,7 @@ float4 main(PS_INPUT input) : SV_TARGET {
 			//ComputeDirectionalLight(gMaterial, gDirLights[i], input.normal, toEye, A, D, S);
 			//ambient += A; diffuse += D; spec += S;
 			
-			ambient += A; diffuse += shadow * D; spec += shadow * S;
+			ambient += A; diffuse += (shadow + A) * D; spec += (shadow + A) * S;
 		}
 
 		litColor += texColor * (ambient + diffuse) + spec;

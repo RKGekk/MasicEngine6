@@ -56,6 +56,26 @@ const std::string& SpawnRelationComponent::GetRelatedName() {
 	return m_relate_to_name;
 }
 
+void SpawnRelationComponent::Respawn() {
+	std::shared_ptr<Actor> act = GetOwner();
+	std::shared_ptr<TransformComponent> tc = MakeStrongPtr(act->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
+	std::shared_ptr<ParticleComponent> pc = MakeStrongPtr(act->GetComponent<ParticleComponent>(ActorComponent::GetIdFromName("ParticleComponent")));
+	StrongActorPtr pRelationActor = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName(m_relate_to_name));
+	std::shared_ptr<SpawnComponent> related_sc;
+	if (pRelationActor) {
+		related_sc = MakeStrongPtr(pRelationActor->GetComponent<SpawnComponent>(ActorComponent::GetIdFromName("SpawnComponent")));
+	}
+	else { return; }
+	if (pc) {
+		Particle& particle = pc->VGetParticle();
+		particle.setAwake(true);
+		particle.setPosition3f(related_sc->GetSpawnPosition3f());
+	}
+	else {
+		tc->SetPosition3f(related_sc->GetSpawnPosition3f());
+	}
+}
+
 TiXmlElement* SpawnRelationComponent::VGenerateXml() {
 	return nullptr;
 }

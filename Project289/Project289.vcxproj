@@ -159,6 +159,7 @@
     <ClCompile Include="actors\mesh_render_light_component.cpp" />
     <ClCompile Include="actors\orientation_relation_component.cpp" />
     <ClCompile Include="actors\pers_texture_anim_state_component.cpp" />
+    <ClCompile Include="actors\enemy_component.cpp" />
     <ClCompile Include="events\evt_data_sphere_particle_contact.cpp" />
     <ClCompile Include="physics\particle_sphere_contact_evet_gen.cpp" />
     <ClCompile Include="physics\geo_ground_contacts.cpp" />
@@ -323,6 +324,7 @@
     <ClInclude Include="actors\orientation_relation_component.h" />
     <ClInclude Include="actors\pers_texture_anim_state_component.h" />
     <ClInclude Include="actors\pers_current_state_enum.h" />
+    <ClInclude Include="actors\enemy_component.h" />
     <ClInclude Include="events\evt_data_sphere_particle_contact.h" />
     <ClInclude Include="physics\particle_sphere_contact_evet_gen.h" />
     <ClInclude Include="physics\geo_ground_contacts.h" />
@@ -674,6 +676,9 @@
     <None Include="data\objects\plane.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="data\objects\planet1.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="data\objects\pointer.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -936,6 +941,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="World4.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\objects\planet1.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\textures\planet1_None_BaseColor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\textures\planet1_None_Normal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\textures\planet1_None_OcclusionRoughnessMetallic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\textures\logo3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\textures\logo4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

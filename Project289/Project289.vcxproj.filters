@@ -606,6 +606,9 @@
     <ClCompile Include="physics\particle_sphere_contact_evet_gen.cpp">
       <Filter>Source Files\physics</Filter>
     </ClCompile>
+    <ClCompile Include="actors\enemy_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard\keyboard_event.h">
@@ -1244,6 +1247,9 @@
     <ClInclude Include="physics\particle_sphere_contact_evet_gen.h">
       <Filter>Header Files\physics</Filter>
     </ClInclude>
+    <ClInclude Include="actors\enemy_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shaders\pixel_shader.hlsl">
@@ -1583,6 +1589,27 @@
     </None>
     <None Include="World4.xml">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\textures\planet1_None_BaseColor.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\planet1_None_Normal.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\planet1_None_OcclusionRoughnessMetallic.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\planet1.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\planet1.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\textures\logo3.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\logo4.jpg">
+      <Filter>Resource Files\textures</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -28,6 +28,9 @@ public:
 	virtual LRESULT CALLBACK VOnMsgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 	virtual void VRenderText() override;
 	virtual void VOnUpdate(float deltaSeconds) override;
+	virtual void VOnRender(double fTime, float fElapsedTime) override;
+
+
 	virtual void VOnAttach(EngineViewId vid, ActorId aid) override;
 
 	virtual void VSetControlledActor(ActorId actorId) override;

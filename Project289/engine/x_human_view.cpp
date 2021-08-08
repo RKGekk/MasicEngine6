@@ -43,6 +43,13 @@ void XHumanView::VOnUpdate(float deltaSeconds) {
 	IEventManager::Get()->VTriggerEvent(pTickEvent);
 }
 
+void XHumanView::VOnRender(double fTime, float fElapsedTime) {
+	if (m_can_draw) {
+		g_pApp->GetRenderer()->VSetBackgroundColor4f(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+	HumanView::VOnRender(fTime, fElapsedTime);
+}
+
 void XHumanView::VOnAttach(EngineViewId vid, ActorId aid) {
 	HumanView::VOnAttach(vid, aid);
 }

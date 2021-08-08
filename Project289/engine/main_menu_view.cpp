@@ -1,10 +1,13 @@
 #include "main_menu_view.h"
+#include "engine.h"
 
 const std::string MainMenuView::g_Name = "MainMenu"s;
 
 MainMenuView::MainMenuView(IRenderer* renderer) : HumanView(renderer) {
 	m_MainMenuUI = std::make_shared<MainMenuUI>(m_process_manager.get());
 	VPushElement(m_MainMenuUI);
+
+	//renderer->VSetBackgroundColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 MainMenuView::~MainMenuView() {}
@@ -17,6 +20,13 @@ void MainMenuView::VRenderText() {}
 
 void MainMenuView::VOnUpdate(float deltaMs) {
 	HumanView::VOnUpdate(deltaMs);
+}
+
+void MainMenuView::VOnRender(double fTime, float fElapsedTime) {
+	if (m_can_draw) {
+		//g_pApp->GetRenderer()->VSetBackgroundColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	}
+	HumanView::VOnRender(fTime, fElapsedTime);
 }
 
 const std::string& MainMenuView::VGetName() {

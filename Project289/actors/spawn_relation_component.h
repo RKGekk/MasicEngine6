@@ -22,6 +22,7 @@ public:
 	virtual void VUpdate(float deltaMs) override;
 
 	const std::string& GetRelatedName();
+	void Respawn();
 
 	virtual TiXmlElement* VGenerateXml() override;
 

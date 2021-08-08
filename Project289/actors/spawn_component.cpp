@@ -1,6 +1,5 @@
 #include "spawn_component.h"
 #include "transform_component.h"
-#include "../tools/mt_random.h"
 #include "../tools/memory_utility.h"
 
 const std::string SpawnComponent::g_Name = "SpawnComponent"s;
@@ -31,8 +30,8 @@ void SpawnComponent::VUpdate(float deltaMs) {}
 DirectX::XMVECTOR SpawnComponent::GetSpawnPosition() {
 	std::shared_ptr<Actor> act = GetOwner();
 	std::shared_ptr<TransformComponent> tc = MakeStrongPtr(act->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
-	MTRandom rnd;
-	float x = rnd.Random(); float y = rnd.Random(); float z = rnd.Random();
+	float x = m_rnd.Random(); float y = m_rnd.Random(); float z = m_rnd.Random();
+	x = (x - 0.5f) * 2.0f; y = (y - 0.5f) * 2.0f; z = (z - 0.5f) * 2.0f;
 	DirectX::XMFLOAT3 pos = tc->GetPosition3f();
 	return DirectX::XMVectorSet(x * m_radius + pos.x, y * m_radius + pos.y, z * m_radius + pos.z, 1.0f);
 }

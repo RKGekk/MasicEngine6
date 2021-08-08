@@ -173,7 +173,8 @@ bool D3DRenderer11::Initialize(const RenderWindow& rw) {
 	ImGuiIO& io = ImGui::GetIO();
 	ImGui_ImplWin32_Init(rw.GetHWND());
 	ImGui_ImplDX11_Init(m_device.Get(), m_device_context.Get());
-	ImGui::StyleColorsDark();
+	//ImGui::StyleColorsDark();
+	ImGui::StyleColorsLight();
 	io.WantCaptureMouse = true;
 	io.WantCaptureKeyboard = true;
 

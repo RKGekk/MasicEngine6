@@ -252,14 +252,14 @@ void GeoPhysicsMovementController::DefineStateKeyUp(const BYTE c) {
 		else if (m_bKey['S']) {
 			anim_state->SetState(PersCurrentStateEnum::WalkToward);
 		}
-		if (m_bKey['A']) {
+		else if (m_bKey['A']) {
 			anim_state->SetState(PersCurrentStateEnum::WalkLeft);
 		}
 		else if (m_bKey['D']) {
 			anim_state->SetState(PersCurrentStateEnum::WalkRight);
 		}
 		else {
-			anim_state->SetState(PersCurrentStateEnum::IdleLeft);
+			anim_state->SetState(PersCurrentStateEnum::IdleToward);
 		}
 	}
 }

@@ -106,13 +106,18 @@
       <SpawnRelationComponent>
         <RelateTo>enemy_spawn</RelateTo>
       </SpawnRelationComponent>
+      <EnemyComponent>
+        <EnemyType>Basic</EnemyType>
+        <EnemyTarget>enemy_target</EnemyTarget>
+        <EnemyForce>100.0</EnemyForce>
+      </EnemyComponent>
     </Actor>
 
-    <Actor name="ground" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
+    <Actor name="enemy_target" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
-        <Position x="0.000000" y="0.000000" z="10.000000" />
+        <Position x="0.000000" y="0.000000" z="6.850000" />
         <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
-        <Scale x="3.000000" y="3.000000" z="3.000000" />
+        <Scale x="0.125000" y="0.125000" z="0.125000" />
       </TransformComponent>
       <MeshRenderLightComponent>
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
@@ -125,6 +130,39 @@
       </MeshRenderLightComponent>
       <MeshComponent>
         <Obj>data\objects\sphere.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="1.000000" y="0.000000" z="1.000000" />
+        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
+        <Mass>1000000.0</Mass>
+        <Damping>0.4</Damping>
+        <Radius>0.125</Radius>
+      </ParticleComponent>
+      <OrientationRelationComponent>
+        <RelateTo>ground</RelateTo>
+      </OrientationRelationComponent>
+      <CharacterStats>
+        <Health>3.0</Health>
+      </CharacterStats>
+    </Actor>
+
+    <Actor name="ground" type="MeshRenderLightComponent" resource="data\actors\MeshRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="0.000000" z="10.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="0.900000" y="0.900000" z="0.900000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <FogStart>10.0</FogStart>
+        <FogRange>100.0</FogRange>
+        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\planet1.obj</Obj>
       </MeshComponent>
       <ParticleContactGeneratorComponent>
         <ContactGeneratorTypeName>GeoGroundContact</ContactGeneratorTypeName>
@@ -148,14 +186,32 @@
         <Light type="DirectionalLight" lantern="false">
           <Ambient r="0.3" g="0.3" b="0.3" a="1.0" />
           <Diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
-          <Specular r="0.6" g="0.6" b="0.6" a="1.0" />
+          <Specular r="0.4" g="0.4" b="0.4" a="1.0" />
           <Attenuation const="0.1" linear="0.0" exp="0.0" />
           <Shape range="100.0" spot="24.0"/>
         </Light>
       </LightRenderComponent>
     </Actor>
 
-    <Actor name="particleContact" type="ContactGeneratorComponent" resource="data\actors\ContactGeneratorComponent.xml">
+    <Actor name="directLight2" type="LightRenderComponent" resource="data\actors\LightRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="0.000000" z="0.000000" />
+        <YawPitchRoll x="180.000000" y="0.000000" z="0.000000" />
+        <Scale x="1.000000" y="1.000000" z="1.000000" />
+      </TransformComponent>
+      <LightRenderComponent>
+        <Color r="0.9" g="0.9" b="0.9" a="1.0"/>
+        <Light type="DirectionalLight" lantern="false">
+          <Ambient r="0.15" g="0.15" b="0.15" a="1.0" />
+          <Diffuse r="0.350588" g="0.552941" b="0.522353" a="1.0" />
+          <Specular r="0.087647" g="0.138235" b="0.130588" a="1.0" />
+          <Attenuation const="0.1" linear="0.0" exp="0.0" />
+          <Shape range="100.0" spot="24.0"/>
+        </Light>
+      </LightRenderComponent>
+    </Actor>
+
+    <Actor name="particleContactEventGen" type="ContactGeneratorComponent" resource="data\actors\ContactGeneratorComponent.xml">
       <TransformComponent>
         <Position x="0.000000" y="0.000000" z="0.000000" />
         <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />

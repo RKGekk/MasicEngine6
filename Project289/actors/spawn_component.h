@@ -1,13 +1,12 @@
 #pragma once
 
-#pragma once
-
 #include <filesystem>
 #include <string>
 
 #include <DirectXMath.h>
 
 #include "actor_component.h"
+#include "../tools/mt_random.h"
 
 using namespace std::literals;
 
@@ -31,4 +30,5 @@ public:
 
 protected:
 	float m_radius;
+	MTRandom m_rnd;
 };
