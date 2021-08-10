@@ -32,12 +32,13 @@ void XHumanView::VRenderText() {
 void XHumanView::VOnUpdate(float deltaSeconds) {
 	HumanView::VOnUpdate(deltaSeconds);
 
-	if (m_pFreeCameraController) {
-		m_pFreeCameraController->OnUpdate(deltaSeconds);
-	}
 	if (m_pGeoPhysicsMovementController) {
 		m_pGeoPhysicsMovementController->OnUpdate(deltaSeconds);
 	}
+	if (m_pFreeCameraController) {
+		m_pFreeCameraController->OnUpdate(deltaSeconds);
+	}
+	
 
 	std::shared_ptr<EvtData_Update_Tick> pTickEvent(new EvtData_Update_Tick(deltaSeconds, g_pApp->GetTimer().TotalTime()));
 	IEventManager::Get()->VTriggerEvent(pTickEvent);
@@ -62,6 +63,7 @@ void XHumanView::VSetControlledActor(ActorId actorId) {
 	if (!m_pTeapot) {
 		m_keyboard_handlers.clear();
 		m_pointer_handlers.clear();
+		m_pGeoPhysicsMovementController.reset();
 		m_pFreeCameraController.reset(new MovementController(m_camera, 0, 0, true));
 		m_keyboard_handlers.push_back(m_pFreeCameraController);
 		m_pointer_handlers.push_back(m_pFreeCameraController);
@@ -72,6 +74,7 @@ void XHumanView::VSetControlledActor(ActorId actorId) {
 	else {
 		m_keyboard_handlers.clear();
 		m_pointer_handlers.clear();
+		m_pFreeCameraController.reset();
 		m_pGeoPhysicsMovementController.reset(new GeoPhysicsMovementController(m_pTeapot));
 		m_keyboard_handlers.push_back(m_pGeoPhysicsMovementController);
 		m_pointer_handlers.push_back(m_pGeoPhysicsMovementController);

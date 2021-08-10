@@ -20,6 +20,7 @@ protected:
 	SceneNode* m_pParent;
 	SceneNodeProperties m_Props;
 	WeakBaseRenderComponentPtr m_RenderComponent;
+	bool m_self_transform;
 
 public:
 	SceneNode(WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass, const DirectX::XMFLOAT4X4* to, const DirectX::XMFLOAT4X4* from = nullptr, bool calulate_from = true);
@@ -55,6 +56,8 @@ public:
 
 	void SetAlpha(float alpha);
 	float GetAlpha() const;
+
+	void SetSelfTransform(bool is_set);
 
 	void SetName(std::string name);
 	const std::string& GetName() const;

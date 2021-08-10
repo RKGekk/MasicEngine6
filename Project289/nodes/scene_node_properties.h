@@ -42,6 +42,7 @@ public:
 
 	const DirectX::XMFLOAT3& Scale3() const;
 	DirectX::XMVECTOR Scale() const;
+	float MaxScale() const;
 
 	const DirectX::XMFLOAT4X4& FromWorld4x4() const;
 	DirectX::XMMATRIX FromWorld() const;

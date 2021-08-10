@@ -39,8 +39,10 @@ public:
 	const DirectX::XMFLOAT4X4& GetShadowTransform4x4T();
 
 	DirectX::XMMATRIX GetWorldShadowTransform(Scene* pScene);
+	DirectX::XMMATRIX GetWorldShadowTransform(DirectX::XMMATRIX world);
 	const DirectX::XMFLOAT4X4& GetWorldShadowTransform4x4(Scene* pScene);
 	const DirectX::XMFLOAT4X4& GetWorldShadowTransform4x4T(Scene* pScene);
+	const DirectX::XMFLOAT4X4& GetWorldShadowTransform4x4T(DirectX::XMMATRIX world);
 
 private:
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_render_target_view;

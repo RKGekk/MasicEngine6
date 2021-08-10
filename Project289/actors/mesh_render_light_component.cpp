@@ -245,7 +245,9 @@ std::shared_ptr<SceneNode> MeshRenderLightComponent::ProcessMesh(aiMesh* mesh, c
 		float z = std::fabsf(max_z) > std::fabsf(min_z) ? std::fabsf(max_z) : std::fabsf(min_z);
 		float radius = DirectX::XMVectorGetX(DirectX::XMVector3Length(DirectX::XMVectorSet(x, y, z, 0.0f)));
 		result->SetRadius(radius * m_scale);
-		result->SetScale(m_scale3f);
+		//result->SetScale(m_scale3f);
+		//result->SetRadius(radius);
+		//result->SetScale(m_scale3f);
 	}
 	return result;
 }

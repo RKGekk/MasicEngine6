@@ -23,6 +23,8 @@ SceneNode::SceneNode(WeakBaseRenderComponentPtr renderComponent, RenderPass rend
 	m_Props.m_Name = (renderComponent) ? renderComponent->VGetName() : "SceneNode";
 	m_Props.m_RenderPass = renderPass;
 	m_Props.m_AlphaType = AlphaType::AlphaOpaque;
+
+	m_self_transform = false;
 }
 
 SceneNode::SceneNode(WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass, DirectX::FXMMATRIX to, DirectX::CXMMATRIX from, bool calulate_from) {
@@ -36,6 +38,8 @@ SceneNode::SceneNode(WeakBaseRenderComponentPtr renderComponent, RenderPass rend
 	m_Props.m_Name = (renderComponent) ? renderComponent->VGetName() : "SceneNode";
 	m_Props.m_RenderPass = renderPass;
 	m_Props.m_AlphaType = AlphaType::AlphaOpaque;
+
+	m_self_transform = false;
 }
 
 SceneNode::~SceneNode() {}
@@ -86,7 +90,7 @@ HRESULT SceneNode::VOnUpdate(Scene* pScene, float elapsedSeconds) {
 
 HRESULT SceneNode::VPreRender(Scene* pScene) {
 	StrongActorPtr pActor = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(m_Props.m_ActorId));
-	if (pActor) {
+	if (pActor && !m_self_transform) {
 		std::shared_ptr<TransformComponent> pTc = MakeStrongPtr(pActor->GetComponent<TransformComponent>("TransformComponent"));
 		if (pTc) {
 			m_Props.m_ToWorld = pTc->GetTransform4x4f();
@@ -263,6 +267,10 @@ void SceneNode::SetAlpha(float alpha) {
 
 float SceneNode::GetAlpha() const {
 	return m_Props.Alpha();
+}
+
+void SceneNode::SetSelfTransform(bool is_set) {
+	m_self_transform = is_set;
 }
 
 void SceneNode::SetName(std::string name) {

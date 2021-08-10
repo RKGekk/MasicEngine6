@@ -24,8 +24,10 @@ public:
 	std::shared_ptr<SceneNode> GetTarget();
 
 	DirectX::XMMATRIX GetWorldViewProjection(Scene* pScene);
+	DirectX::XMMATRIX GetWorldViewProjection(DirectX::XMMATRIX world);
 	DirectX::XMFLOAT4X4 GetWorldViewProjection4x4(Scene* pScene);
 	DirectX::XMFLOAT4X4 GetWorldViewProjection4x4T(Scene* pScene);
+	DirectX::XMFLOAT4X4 GetWorldViewProjection4x4T(DirectX::XMMATRIX world);
 	DirectX::XMMATRIX GetViewProjection();
 	DirectX::XMFLOAT4X4 GetViewProjection4x4();
 	DirectX::XMFLOAT4X4 GetViewProjection4x4T();
@@ -37,6 +39,8 @@ public:
 	DirectX::XMMATRIX GetView();
 	const DirectX::XMFLOAT4X4& GetView4x4();
 	DirectX::XMFLOAT4X4 GetView4x4T();
+	DirectX::XMFLOAT3 GetViewPos3();
+	DirectX::XMVECTOR GetViewPos();
 
 	void SetCameraOffset(const DirectX::XMFLOAT4& cameraOffset);
 

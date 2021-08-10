@@ -61,6 +61,12 @@ DirectX::XMMATRIX CameraNode::GetWorldViewProjection(Scene* pScene) {
 	return DirectX::XMMatrixMultiply(worldView, DirectX::XMLoadFloat4x4(&m_Projection));
 }
 
+DirectX::XMMATRIX CameraNode::GetWorldViewProjection(DirectX::XMMATRIX world) {
+	DirectX::XMMATRIX view = VGet().FromWorld();
+	DirectX::XMMATRIX worldView = DirectX::XMMatrixMultiply(world, view);
+	return DirectX::XMMatrixMultiply(worldView, DirectX::XMLoadFloat4x4(&m_Projection));
+}
+
 DirectX::XMFLOAT4X4 CameraNode::GetWorldViewProjection4x4(Scene* pScene) {
 	DirectX::XMFLOAT4X4 res;
 	DirectX::XMStoreFloat4x4(&res, GetWorldViewProjection(pScene));
@@ -70,6 +76,12 @@ DirectX::XMFLOAT4X4 CameraNode::GetWorldViewProjection4x4(Scene* pScene) {
 DirectX::XMFLOAT4X4 CameraNode::GetWorldViewProjection4x4T(Scene* pScene) {
 	DirectX::XMFLOAT4X4 res;
 	DirectX::XMStoreFloat4x4(&res, DirectX::XMMatrixTranspose(GetWorldViewProjection(pScene)));
+	return res;
+}
+
+DirectX::XMFLOAT4X4 CameraNode::GetWorldViewProjection4x4T(DirectX::XMMATRIX world) {
+	DirectX::XMFLOAT4X4 res;
+	DirectX::XMStoreFloat4x4(&res, DirectX::XMMatrixTranspose(world));
 	return res;
 }
 
@@ -196,6 +208,15 @@ DirectX::XMFLOAT4X4 CameraNode::GetView4x4T() {
 	DirectX::XMFLOAT4X4 t4x4;
 	DirectX::XMStoreFloat4x4(&t4x4, t);
 	return t4x4;
+}
+
+DirectX::XMFLOAT3 CameraNode::GetViewPos3() {
+	return DirectX::XMFLOAT3(m_View.m[3][0], m_View.m[3][1], m_View.m[3][2]);
+}
+
+DirectX::XMVECTOR CameraNode::GetViewPos() {
+	DirectX::XMFLOAT3 pos = GetViewPos3();
+	return DirectX::XMLoadFloat3(&pos);
 }
 
 void CameraNode::SetCameraOffset(const DirectX::XMFLOAT4& cameraOffset) {

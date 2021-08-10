@@ -73,6 +73,7 @@ public:
 
 	virtual void VSetCameraOffset(const DirectX::XMFLOAT4& camOffset);
 	virtual void VSetControlledActor(ActorId actorId);
+	virtual std::shared_ptr<CameraNode> VGetCamera();
 
 	void GameStateDelegate(IEventDataPtr pEventData);
 

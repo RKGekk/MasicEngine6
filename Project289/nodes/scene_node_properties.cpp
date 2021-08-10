@@ -59,6 +59,13 @@ DirectX::XMVECTOR SceneNodeProperties::Scale() const {
 	return DirectX::XMLoadFloat3(&m_scale);
 }
 
+float SceneNodeProperties::MaxScale() const {
+	float scale = m_scale.x;
+	scale = scale > m_scale.y ? scale : m_scale.y;
+	scale = scale > m_scale.z ? scale : m_scale.z;
+	return scale;
+}
+
 const DirectX::XMFLOAT4X4& SceneNodeProperties::FromWorld4x4() const {
 	return m_FromWorld;
 }

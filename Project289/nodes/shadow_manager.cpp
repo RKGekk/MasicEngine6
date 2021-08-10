@@ -242,6 +242,10 @@ DirectX::XMMATRIX ShadowManager::GetWorldShadowTransform(Scene* pScene) {
     //return DirectX::XMMatrixMultiply(GetShadowTransform(), world);
 }
 
+DirectX::XMMATRIX ShadowManager::GetWorldShadowTransform(DirectX::XMMATRIX world) {
+    return DirectX::XMMatrixMultiply(world, GetShadowTransform());
+}
+
 const DirectX::XMFLOAT4X4& ShadowManager::GetWorldShadowTransform4x4(Scene* pScene) {
     DirectX::XMFLOAT4X4 res;
     DirectX::XMMATRIX world = pScene->GetTopMatrix();
@@ -253,6 +257,13 @@ const DirectX::XMFLOAT4X4& ShadowManager::GetWorldShadowTransform4x4(Scene* pSce
 const DirectX::XMFLOAT4X4& ShadowManager::GetWorldShadowTransform4x4T(Scene* pScene) {
     DirectX::XMFLOAT4X4 res;
     DirectX::XMMATRIX world = pScene->GetTopMatrix();
+    DirectX::XMStoreFloat4x4(&res, DirectX::XMMatrixTranspose(DirectX::XMMatrixMultiply(world, GetShadowTransform())));
+    //DirectX::XMStoreFloat4x4(&res, DirectX::XMMatrixTranspose(DirectX::XMMatrixMultiply(GetShadowTransform(), world)));
+    return res;
+}
+
+const DirectX::XMFLOAT4X4& ShadowManager::GetWorldShadowTransform4x4T(DirectX::XMMATRIX world) {
+    DirectX::XMFLOAT4X4 res;
     DirectX::XMStoreFloat4x4(&res, DirectX::XMMatrixTranspose(DirectX::XMMatrixMultiply(world, GetShadowTransform())));
     //DirectX::XMStoreFloat4x4(&res, DirectX::XMMatrixTranspose(DirectX::XMMatrixMultiply(GetShadowTransform(), world)));
     return res;

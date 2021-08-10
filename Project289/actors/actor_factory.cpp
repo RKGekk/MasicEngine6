@@ -15,6 +15,8 @@
 #include "spawn_component.h"
 #include "spawn_relation_component.h"
 #include "enemy_component.h"
+#include "character_stats_component.h"
+#include "stats_render_component.h"
 
 unsigned int ActorFactory::GetNextActorId() {
     return ++m_lastActorId;
@@ -38,6 +40,8 @@ ActorFactory::ActorFactory() {
     m_componentFactory.Register<SpawnComponent>(ActorComponent::GetIdFromName(SpawnComponent::g_Name), SpawnComponent::g_Name);
     m_componentFactory.Register<SpawnRelationComponent>(ActorComponent::GetIdFromName(SpawnRelationComponent::g_Name), SpawnRelationComponent::g_Name);
     m_componentFactory.Register<EnemyComponent>(ActorComponent::GetIdFromName(EnemyComponent::g_Name), EnemyComponent::g_Name);
+    m_componentFactory.Register<CharacterStatsComponent>(ActorComponent::GetIdFromName(CharacterStatsComponent::g_Name), CharacterStatsComponent::g_Name);
+    m_componentFactory.Register<StatsRenderComponent>(ActorComponent::GetIdFromName(StatsRenderComponent::g_Name), StatsRenderComponent::g_Name);
 }
 
 std::shared_ptr<Actor> ActorFactory::CreateActor(const char* actorResource, TiXmlElement* overrides, const DirectX::XMFLOAT4X4* pinitialTransform, const ActorId serversActorId) {

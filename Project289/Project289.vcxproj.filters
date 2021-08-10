@@ -109,6 +109,9 @@
     <Filter Include="Source Files\physics">
       <UniqueIdentifier>{88b285ed-0674-41c6-a04e-f2e03ffccd8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\sound">
+      <UniqueIdentifier>{e2853f1c-4053-4a93-92ea-5bd64dc730a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -608,6 +611,15 @@
     </ClCompile>
     <ClCompile Include="actors\enemy_component.cpp">
       <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\character_stats_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="actors\stats_render_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\d3d_11_stat_pipeline.cpp">
+      <Filter>Source Files\nodes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1250,6 +1262,15 @@
     <ClInclude Include="actors\enemy_component.h">
       <Filter>Header Files\actors</Filter>
     </ClInclude>
+    <ClInclude Include="actors\character_stats_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\stats_render_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\d3d_11_stat_pipeline.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shaders\pixel_shader.hlsl">
@@ -1292,6 +1313,9 @@
       <Filter>Resource Files\shaders</Filter>
     </FxCompile>
     <FxCompile Include="data\shaders\pixel_shader_basic_light_alpha.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\pixel_shader_light_basic.hlsl">
       <Filter>Resource Files\shaders</Filter>
     </FxCompile>
   </ItemGroup>
@@ -1609,6 +1633,141 @@
       <Filter>Resource Files\textures</Filter>
     </None>
     <None Include="data\textures\logo4.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\rose.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\rose.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\textures\RoseLPoly_Material.015_BaseColor.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\Character.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\sound\In_the_world_of_your_dreams_2.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\In_the_world_of_your_dreams_1.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\far_far_away_2.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\far_far_away_1_2.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\far_far_away_1.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb11.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb12.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb13.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb21.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb22.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb23.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb31.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb32.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb33.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb41.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb42.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb43.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb51.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb52.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb53.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb61.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\sb62.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\sound\space_ambient122.mp3">
+      <Filter>Resource Files\sound</Filter>
+    </None>
+    <None Include="data\objects\rock2.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\mount.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\mount.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\rock1.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\rock1.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\rock2.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\textures\rock2_None_Normal.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\mount_Material.004_BaseColor.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\mount_Material.004_Normal.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\rock1_None_BaseColor.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\rock1_None_Normal.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\rock2_None_BaseColor.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\empty_heart.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\full_heart.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\empty_heart.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\full_heart.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\textures\full_heart.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\empty_heart.png">
       <Filter>Resource Files\textures</Filter>
     </None>
   </ItemGroup>

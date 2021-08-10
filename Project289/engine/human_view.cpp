@@ -229,6 +229,10 @@ void HumanView::VSetControlledActor(ActorId actorId) {
 	m_actor_id = actorId;
 }
 
+std::shared_ptr<CameraNode> HumanView::VGetCamera() {
+	return m_camera;
+}
+
 void HumanView::GameStateDelegate(IEventDataPtr pEventData) {}
 
 void HumanView::RegisterAllDelegates() {
