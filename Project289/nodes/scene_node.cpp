@@ -102,6 +102,7 @@ HRESULT SceneNode::VPreRender(Scene* pScene) {
 }
 
 bool SceneNode::VIsVisible(Scene* pScene) const {
+	if (!m_Props.m_active) { return false; }
 	DirectX::XMMATRIX toWorld = pScene->GetCamera()->VGet().ToWorld();
 	DirectX::XMMATRIX fromWorld = pScene->GetCamera()->VGet().FromWorld();
 
@@ -267,6 +268,10 @@ void SceneNode::SetAlpha(float alpha) {
 
 float SceneNode::GetAlpha() const {
 	return m_Props.Alpha();
+}
+
+void SceneNode::SetActive(bool active) {
+	m_Props.m_active = active;
 }
 
 void SceneNode::SetSelfTransform(bool is_set) {

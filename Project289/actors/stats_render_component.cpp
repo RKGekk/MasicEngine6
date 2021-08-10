@@ -121,6 +121,7 @@ void StatsRenderComponent::VUpdate(float deltaMs) {
 
 	std::shared_ptr<TransformComponent> pTransformComponent = MakeStrongPtr(m_pOwner->GetComponent<TransformComponent>(TransformComponent::g_Name));
 	std::shared_ptr<OrientationRelationComponent> pOrientationRelationComponent = MakeStrongPtr(m_pOwner->GetComponent<OrientationRelationComponent>(OrientationRelationComponent::g_Name));
+	std::shared_ptr<CharacterStatsComponent> pCharacterStatsComponent = MakeStrongPtr(m_pOwner->GetComponent<CharacterStatsComponent>(CharacterStatsComponent::g_Name));
 
 	std::shared_ptr<CameraNode> camera = g_pApp->GetHumanView()->VGetCamera();
 	XMVECTOR cam_pos_xm = camera->GetPosition();
@@ -168,6 +169,19 @@ void StatsRenderComponent::VUpdate(float deltaMs) {
 	);
 
 	m_root_node->VSetTransform(transform, XMMatrixIdentity(), true);
+
+	int hearts_count = pCharacterStatsComponent->GetTotalHealth();
+	int hearts_current = pCharacterStatsComponent->GetCurrentHealth();
+	for (int i = 0; i < hearts_count; ++i) {
+		if (i < hearts_current) {
+			m_full_heart_nodes[i]->SetActive(true);
+			m_empty_heart_nodes[i]->SetActive(false);
+		}
+		else {
+			m_full_heart_nodes[i]->SetActive(false);
+			m_empty_heart_nodes[i]->SetActive(true);
+		}
+	}
 }
 
 void StatsRenderComponent::UpdateFromScenePrerender(float deltaMs) {
@@ -207,18 +221,28 @@ std::shared_ptr<SceneNode> StatsRenderComponent::VCreateSceneNode() {
 		float i_f = (float)i;
 		float pos = start_pos_x + m_gap * i_f + radius * i_f;
 		std::shared_ptr<SceneNode> n = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixTranslation(pos, 0.0f, 0.0f), XMMatrixIdentity(), true);
-		//std::shared_ptr<SceneNode> n = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixTranslation(0.0f, 10.0f, 0.0f), XMMatrixIdentity(), true);
 		n->SetSelfTransform(true);
+
+		std::shared_ptr<SceneNode> full_heart_node = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixIdentity(), XMMatrixIdentity(), true);
+		ProcessNode(m_pSceneFullHealthScene->mRootNode, m_pSceneFullHealthScene, full_heart_node);
+
+		std::shared_ptr<SceneNode> empty_heart_node = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixIdentity(), XMMatrixIdentity(), true);
+		ProcessNode(m_pSceneEmptyHealthScene->mRootNode, m_pSceneEmptyHealthScene, empty_heart_node);
+
 		if (i < hearts_current) {
-			std::shared_ptr<SceneNode> full_heart_node = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixIdentity(), XMMatrixIdentity(), true);
-			ProcessNode(m_pSceneFullHealthScene->mRootNode, m_pSceneFullHealthScene, full_heart_node);
-			n->VAddChild(full_heart_node);
+			full_heart_node->SetActive(true);
+			empty_heart_node->SetActive(false);
 		}
 		else {
-			std::shared_ptr<SceneNode> empty_heart_node = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixIdentity(), XMMatrixIdentity(), true);
-			ProcessNode(m_pSceneEmptyHealthScene->mRootNode, m_pSceneEmptyHealthScene, empty_heart_node);
-			n->VAddChild(empty_heart_node);
+			full_heart_node->SetActive(false);
+			empty_heart_node->SetActive(true);
 		}
+
+		m_full_heart_nodes.push_back(full_heart_node);
+		m_empty_heart_nodes.push_back(empty_heart_node);
+
+		n->VAddChild(empty_heart_node);
+		n->VAddChild(full_heart_node);
 		m_root_node->VAddChild(n);
 	}
 

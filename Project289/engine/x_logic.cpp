@@ -7,6 +7,7 @@
 #include "../actors/particle_component.h"
 #include "../actors/spawn_relation_component.h"
 #include "../actors/spawn_component.h"
+#include "../actors/character_stats_component.h"
 #include "../events/evt_data_destroy_actor.h"
 #include "../events/evt_data_new_actor.h"
 #include "../events/evt_data_start_thrust.h"
@@ -186,11 +187,21 @@ void XLogic::SphereParticleContactDelegate(IEventDataPtr pEventData) {
 	StrongActorPtr pActor2 = MakeStrongPtr(VGetActor(pCastEventData->GetActorId2()));
 	std::shared_ptr<EnemyComponent> ec1 = MakeStrongPtr(pActor1->GetComponent<EnemyComponent>(ActorComponent::GetIdFromName("EnemyComponent")));
 	std::shared_ptr<EnemyComponent> ec2 = MakeStrongPtr(pActor2->GetComponent<EnemyComponent>(ActorComponent::GetIdFromName("EnemyComponent")));
+	std::shared_ptr<CharacterStatsComponent> pCharacterStatsComponent1 = MakeStrongPtr(pActor1->GetComponent<CharacterStatsComponent>(CharacterStatsComponent::g_Name));
+	std::shared_ptr<CharacterStatsComponent> pCharacterStatsComponent2 = MakeStrongPtr(pActor2->GetComponent<CharacterStatsComponent>(CharacterStatsComponent::g_Name));
 
 	if (ec1 && !ec2) {
 		if (pActor2->GetName() == "pers") {
 			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor1->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
 			rc->Respawn();
+		}
+		if (pActor2->GetName() == ec1->GetTargetName()) {
+			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor1->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
+			rc->Respawn();
+			int current_health = pCharacterStatsComponent2->GetCurrentHealth();
+			if (current_health > 0) {
+				pCharacterStatsComponent2->ApplyHealth(-1);
+			}
 		}
 	}
 
@@ -198,6 +209,14 @@ void XLogic::SphereParticleContactDelegate(IEventDataPtr pEventData) {
 		if (pActor1->GetName() == "pers") {
 			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor2->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
 			rc->Respawn();
+		}
+		if (pActor1->GetName() == ec2->GetTargetName()) {
+			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor2->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
+			rc->Respawn();
+			int current_health = pCharacterStatsComponent1->GetCurrentHealth();
+			if (current_health > 0) {
+				pCharacterStatsComponent1->ApplyHealth(-1);
+			}
 		}
 	}
 

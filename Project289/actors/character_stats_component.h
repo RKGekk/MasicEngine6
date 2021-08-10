@@ -22,11 +22,11 @@ public:
 	virtual void VPostInit() override;
 	virtual void VUpdate(float deltaMs) override;
 
-	float GetCurrentHealth();
-	void ApplyHealth(float health);
+	int GetCurrentHealth();
+	void ApplyHealth(int health);
 
-	float GetTotalHealth();
-	void SetHealth(float health);
+	int GetTotalHealth();
+	void SetHealth(int health);
 
 	virtual TiXmlElement* VGenerateXml() override;
 

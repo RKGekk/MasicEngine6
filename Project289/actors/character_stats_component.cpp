@@ -35,19 +35,19 @@ void CharacterStatsComponent::VPostInit() {
 
 void CharacterStatsComponent::VUpdate(float deltaMs) {}
 
-float CharacterStatsComponent::GetCurrentHealth() {
+int CharacterStatsComponent::GetCurrentHealth() {
 	return m_current_health;
 }
 
-void CharacterStatsComponent::ApplyHealth(float health) {
+void CharacterStatsComponent::ApplyHealth(int health) {
 	m_current_health += health;
 }
 
-float CharacterStatsComponent::GetTotalHealth() {
+int CharacterStatsComponent::GetTotalHealth() {
 	return m_total_health;
 }
 
-void CharacterStatsComponent::SetHealth(float health) {
+void CharacterStatsComponent::SetHealth(int health) {
 	m_total_health = health;
 }
 

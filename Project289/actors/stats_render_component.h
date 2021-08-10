@@ -66,6 +66,8 @@ protected:
 	float m_scale_max;
 	DirectX::XMFLOAT4X4 m_transform;
 	std::shared_ptr<SceneNode> m_root_node;
+	std::vector<std::shared_ptr<SceneNode>> m_full_heart_nodes;
+	std::vector<std::shared_ptr<SceneNode>> m_empty_heart_nodes;
 
 	std::string m_full_one_health_mesh_path;
 	std::string m_empty_one_health_mesh_path;

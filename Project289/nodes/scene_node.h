@@ -57,6 +57,8 @@ public:
 	void SetAlpha(float alpha);
 	float GetAlpha() const;
 
+	void SetActive(bool active);
+
 	void SetSelfTransform(bool is_set);
 
 	void SetName(std::string name);

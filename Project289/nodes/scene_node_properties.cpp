@@ -21,6 +21,7 @@ SceneNodeProperties::SceneNodeProperties() {
 	DirectX::XMStoreFloat4x4(&m_ToWorld, DirectX::XMMatrixIdentity());
 	DirectX::XMStoreFloat4x4(&m_FromWorld, DirectX::XMMatrixIdentity());
 	m_scale = { 1.0f, 1.0f, 1.0f };
+	m_active = true;
 }
 
 const ActorId SceneNodeProperties::ActorId() const {

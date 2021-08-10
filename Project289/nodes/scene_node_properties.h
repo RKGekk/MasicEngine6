@@ -20,6 +20,7 @@ protected:
 	DirectX::XMFLOAT4X4 m_FromWorld;
 	DirectX::XMFLOAT3 m_scale;
 	float m_Radius;
+	bool m_active;
 	
 	RenderPass m_RenderPass;
 	Material m_Material;
