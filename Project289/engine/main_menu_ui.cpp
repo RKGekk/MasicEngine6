@@ -25,7 +25,7 @@ void MainMenuUI::Set(ProcessManager* pm) {
 			static bool first = true;
 			static float start = 0.0f;
 			if (first) { start = mx._43; first = false; };
-			float end = 2.0f;
+			float end = 1.0f;
 			mx._43 = start + (end - start) * n;
 			pTransformComponent->SetTransform(mx);
 
@@ -69,7 +69,7 @@ HRESULT MainMenuUI::VOnRender(double fTime, float fElapsedTime) {
 			StrongActorPtr pActorLogo = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName("logo"));
 			std::shared_ptr<EvtData_Request_Destroy_Actor> pNewGameEvent(new EvtData_Request_Destroy_Actor(pActorLogo->GetId()));
 			IEventManager::Get()->VTriggerEvent(pNewGameEvent);
-
+			g_pApp->GetRenderer()->VSetBackgroundColor4f(0.0f, 0.0f, 0.0f, 1.0f);
 			return true;
 		});
 
@@ -81,7 +81,7 @@ HRESULT MainMenuUI::VOnRender(double fTime, float fElapsedTime) {
 				static bool first = true;
 				static float start = 0.0f;
 				if (first) { start = mx._43; first = false; };
-				float end = 3.0f;
+				float end = 1.5f;
 				mx._43 = start + (end - start) * n;
 				pTransformComponent->SetTransform(mx);
 

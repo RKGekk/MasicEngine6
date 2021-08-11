@@ -1797,5 +1797,29 @@
     <None Include="data\actors\SkyRenderComponent.xml">
       <Filter>Resource Files\actors</Filter>
     </None>
+    <None Include="data\textures\loading2.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\losing .jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\Plants1_Material.001_BaseColor.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\Plants1_Material.001_Normal.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\Plants1_Material.001_OcclusionRoughnessMetallic.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\win.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\objects\Plants1_decimate02.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\Plants1_decimate02.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
   </ItemGroup>
 </Project>
