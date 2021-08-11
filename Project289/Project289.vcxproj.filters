@@ -1771,4 +1771,9 @@
       <Filter>Resource Files\textures</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="World5.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+  </ItemGroup>
 </Project>

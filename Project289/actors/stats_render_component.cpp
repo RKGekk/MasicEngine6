@@ -220,7 +220,7 @@ std::shared_ptr<SceneNode> StatsRenderComponent::VCreateSceneNode() {
 	for (int i = 0; i < hearts_count; ++i) {
 		float i_f = (float)i;
 		float pos = start_pos_x + m_gap * i_f + radius * i_f;
-		std::shared_ptr<SceneNode> n = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixTranslation(pos, 0.0f, 0.0f), XMMatrixIdentity(), true);
+		std::shared_ptr<SceneNode> n = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixMultiply(XMMatrixScaling(m_scale.x, m_scale.y, m_scale.z), XMMatrixTranslation(pos, 0.0f, 0.0f)), XMMatrixIdentity(), true);
 		n->SetSelfTransform(true);
 
 		std::shared_ptr<SceneNode> full_heart_node = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixIdentity(), XMMatrixIdentity(), true);
@@ -335,8 +335,9 @@ std::shared_ptr<SceneNode> StatsRenderComponent::ProcessMesh(aiMesh* mesh, const
 	float z = std::fabsf(max_z) > std::fabsf(min_z) ? std::fabsf(max_z) : std::fabsf(min_z);
 	float radius = DirectX::XMVectorGetX(DirectX::XMVector3Length(DirectX::XMVectorSet(x, y, z, 0.0f)));
 	//result->SetRadius(radius * m_scale_max);
+	result->SetRadius(radius * m_scale_max * 6.0f);
 	//result->SetRadius(radius);
-	result->SetRadius(radius * 3.0f);
+	//result->SetRadius(radius * 3.0f);
 	
 	return result;
 }
@@ -407,7 +408,7 @@ std::vector<MaterialTexture> StatsRenderComponent::LoadMaterialTexures(ID3D11Dev
 				materialTextures.push_back(MaterialTexture(device, MaterialColor(aiColor.r * 255, aiColor.g * 255, aiColor.b * 255), textureType));
 			}
 		}
-								  break;
+		break;
 		}
 	}
 	else {
@@ -420,17 +421,17 @@ std::vector<MaterialTexture> StatsRenderComponent::LoadMaterialTexures(ID3D11Dev
 				int index = GetTextureIndex(&path);
 				materialTextures.push_back(MaterialTexture(device, reinterpret_cast<uint8_t*>(pScene->mTextures[index]->pcData), pScene->mTextures[index]->mWidth, textureType));
 			}
-															break;
+			break;
 			case TextureStorageType::EmbeddedCompressed: {
 				const aiTexture* pTexture = pScene->GetEmbeddedTexture(path.C_Str());
 				materialTextures.push_back(MaterialTexture(device, reinterpret_cast<uint8_t*>(pTexture->pcData), pTexture->mWidth, textureType));
 			}
-													   break;
+			break;
 			case TextureStorageType::Disk: {
 				std::string fileName = path.C_Str();
 				materialTextures.push_back(MaterialTexture(device, fileName, textureType));
 			}
-										 break;
+			break;
 			}
 		}
 	}
