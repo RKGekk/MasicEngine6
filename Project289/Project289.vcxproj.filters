@@ -621,6 +621,12 @@
     <ClCompile Include="nodes\d3d_11_stat_pipeline.cpp">
       <Filter>Source Files\nodes</Filter>
     </ClCompile>
+    <ClCompile Include="actors\sky_render_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\d3d_11_sky_pipeline.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard\keyboard_event.h">
@@ -1271,6 +1277,12 @@
     <ClInclude Include="nodes\d3d_11_stat_pipeline.h">
       <Filter>Header Files\nodes</Filter>
     </ClInclude>
+    <ClInclude Include="actors\sky_render_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\d3d_11_sky_pipeline.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shaders\pixel_shader.hlsl">
@@ -1316,6 +1328,12 @@
       <Filter>Resource Files\shaders</Filter>
     </FxCompile>
     <FxCompile Include="data\shaders\pixel_shader_light_basic.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\vertex_shader_sky.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="data\shaders\pixel_shader_sky.hlsl">
       <Filter>Resource Files\shaders</Filter>
     </FxCompile>
   </ItemGroup>
@@ -1770,10 +1788,14 @@
     <None Include="data\textures\empty_heart.png">
       <Filter>Resource Files\textures</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="World5.xml">
+    <None Include="data\textures\10.dds">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="World5.xml">
       <Filter>Resource Files</Filter>
-    </Xml>
+    </None>
+    <None Include="data\actors\SkyRenderComponent.xml">
+      <Filter>Resource Files\actors</Filter>
+    </None>
   </ItemGroup>
 </Project>

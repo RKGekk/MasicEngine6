@@ -161,6 +161,7 @@
     <ClCompile Include="actors\pers_texture_anim_state_component.cpp" />
     <ClCompile Include="actors\enemy_component.cpp" />
     <ClCompile Include="actors\character_stats_component.cpp" />
+    <ClCompile Include="nodes\d3d_11_sky_pipeline.cpp" />
     <ClCompile Include="nodes\d3d_11_stat_pipeline.cpp" />
     <ClCompile Include="events\evt_data_sphere_particle_contact.cpp" />
     <ClCompile Include="physics\particle_sphere_contact_evet_gen.cpp" />
@@ -185,6 +186,7 @@
     <ClCompile Include="actors\spawn_relation_component.cpp" />
     <ClCompile Include="actors\spawn_component.cpp" />
     <ClCompile Include="actors\stats_render_component.cpp" />
+    <ClCompile Include="actors\sky_render_component.cpp" />
     <ClCompile Include="tools\geometry_generator.cpp" />
     <ClCompile Include="physics\aero_control.cpp" />
     <ClCompile Include="physics\aero.cpp" />
@@ -329,6 +331,7 @@
     <ClInclude Include="actors\pers_current_state_enum.h" />
     <ClInclude Include="actors\enemy_component.h" />
     <ClInclude Include="actors\character_stats_component.h" />
+    <ClInclude Include="nodes\d3d_11_sky_pipeline.h" />
     <ClInclude Include="nodes\d3d_11_stat_pipeline.h" />
     <ClInclude Include="events\evt_data_sphere_particle_contact.h" />
     <ClInclude Include="physics\particle_sphere_contact_evet_gen.h" />
@@ -358,6 +361,7 @@
     <ClInclude Include="actors\spawn_relation_component.h" />
     <ClInclude Include="actors\spawn_component.h" />
     <ClInclude Include="actors\stats_render_component.h" />
+    <ClInclude Include="actors\sky_render_component.h" />
     <ClInclude Include="tools\geometry_generator.h" />
     <ClInclude Include="graphics\mesh_holder.h" />
     <ClInclude Include="physics\particle_sphere_contact.h" />
@@ -655,6 +659,20 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="data\shaders\pixel_shader_sky.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="data\shaders\vertex_shader_sky.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
   </ItemGroup>
@@ -1109,9 +1127,15 @@
     <None Include="data\textures\full_heart.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="World5.xml" />
+    <None Include="World5.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\textures\10.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\actors\SkyRenderComponent.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

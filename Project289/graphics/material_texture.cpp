@@ -1,5 +1,10 @@
 #include "material_texture.h"
 
+#include <algorithm> 
+#include <string>  
+#include <functional>
+#include <cctype>
+
 MaterialTexture::MaterialTexture() : m_type(aiTextureType::aiTextureType_UNKNOWN) {}
 
 MaterialTexture::MaterialTexture(ID3D11Device* device, const std::string& fileName) : MaterialTexture(device, fileName, aiTextureType::aiTextureType_UNKNOWN){}
@@ -20,8 +25,9 @@ MaterialTexture::MaterialTexture(ID3D11Device* device, const std::string& fileNa
 	if (!std::filesystem::is_regular_file(status)) {
 		InitializeColorMaterial(device, MaterialColors::UnloadedTextureColor, type);
 	}
-
-	if (p.extension().string() == "DDS") {
+	std::string upper_ext = p.extension().string();
+	std::for_each(upper_ext.begin(), upper_ext.end(), [](char& c) { c = ::toupper(c); });
+	if (upper_ext == ".DDS") {
 		HRESULT hr = DirectX::CreateDDSTextureFromFile(device, s2w(fileName).c_str(), reinterpret_cast<ID3D11Resource**>(m_texture.GetAddressOf()), m_texture_view.GetAddressOf());
 		if (FAILED(hr)) {
 			InitializeColorMaterial(device, MaterialColors::UnloadedTextureColor, type);
