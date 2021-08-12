@@ -71,6 +71,7 @@ void XLogic::VChangeState(BaseEngineState newState) {
 				return true;
 			});
 			std::shared_ptr<ExecProcess> exec3 = std::make_shared<ExecProcess>([]() {
+				g_pApp->GetTimer().Reset();
 				std::shared_ptr<EvtData_Environment_Loaded> pEvent(new EvtData_Environment_Loaded());
 				IEventManager::Get()->VTriggerEvent(pEvent);
 				return true;

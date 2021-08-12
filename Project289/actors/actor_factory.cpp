@@ -18,6 +18,7 @@
 #include "character_stats_component.h"
 #include "stats_render_component.h"
 #include "sky_render_component.h"
+#include "time_out_particle_component.h"
 
 unsigned int ActorFactory::GetNextActorId() {
     return ++m_lastActorId;
@@ -44,6 +45,7 @@ ActorFactory::ActorFactory() {
     m_componentFactory.Register<CharacterStatsComponent>(ActorComponent::GetIdFromName(CharacterStatsComponent::g_Name), CharacterStatsComponent::g_Name);
     m_componentFactory.Register<StatsRenderComponent>(ActorComponent::GetIdFromName(StatsRenderComponent::g_Name), StatsRenderComponent::g_Name);
     m_componentFactory.Register<SkyRenderComponent>(ActorComponent::GetIdFromName(SkyRenderComponent::g_Name), SkyRenderComponent::g_Name);
+    m_componentFactory.Register<TimeOutParticleComponent>(ActorComponent::GetIdFromName(TimeOutParticleComponent::g_Name), TimeOutParticleComponent::g_Name);
 }
 
 std::shared_ptr<Actor> ActorFactory::CreateActor(const char* actorResource, TiXmlElement* overrides, const DirectX::XMFLOAT4X4* pinitialTransform, const ActorId serversActorId) {

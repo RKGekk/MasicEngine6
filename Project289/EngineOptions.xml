@@ -5,7 +5,7 @@
             height="720"
             runfullspeed="no"
             fullscreen="no"
-            screenFar="100"
+            screenFar="10"
             screenNear="0.1"
             fov="45.0"
             gamecamoffsetx ="0.0"

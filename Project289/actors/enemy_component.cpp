@@ -49,7 +49,8 @@ void EnemyComponent::VUpdate(float deltaMs) {
 	//XMVECTOR direction = XMVector3Normalize(tc->GetPosition() - target_tc->GetPosition());
 	if (pc) {
 		Particle& particle = pc->VGetParticle();
-		particle.setAwake(true);
+		//particle.setAwake(true);
+		particle.clearAccumulator();
 		particle.addForce(direction * m_force);
 		particle.integrate(deltaMs);
 	}

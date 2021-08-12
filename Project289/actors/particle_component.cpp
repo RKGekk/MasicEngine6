@@ -5,6 +5,10 @@
 #include "../events/i_event_manager.h"
 #include "../tools/memory_utility.h"
 
+#include <algorithm>
+#include <functional>
+#include <cctype>
+
 const std::string ParticleComponent::g_Name = "ParticleComponent"s;
 
 const std::string& ParticleComponent::VGetName() const {
@@ -18,6 +22,8 @@ ParticleComponent::ParticleComponent() {
     m_particle.setMass(1.0f);
     m_particle.setDamping(0.9f);
     m_particle.setRadius(1.0f);
+    m_particle.setCanSleep(true);
+    m_particle.setAwake(true);
     m_pGamePhysics = nullptr;
 }
 
@@ -74,8 +80,29 @@ bool ParticleComponent::VInit(TiXmlElement* pData) {
         m_particle.setRadius(radius);
     }
 
-    m_particle.setAwake(true);
-    m_particle.setCanSleep(true);
+    TiXmlElement* pIsSleep = pData->FirstChildElement("IsSleep");
+    if (pIsSleep) {
+        std::string sIsSleep = pIsSleep->FirstChild()->Value();
+        std::for_each(sIsSleep.begin(), sIsSleep.end(), [](char& c) { c = ::toupper(c); });
+        if (sIsSleep == "TRUE" || sIsSleep == "1") {
+            m_particle.setAwake(false);
+        }
+        else {
+            m_particle.setAwake(true);
+        }
+    }
+
+    TiXmlElement* pCanSleep = pData->FirstChildElement("CanSleep");
+    if (pCanSleep) {
+        std::string sCanSleep = pCanSleep->FirstChild()->Value();
+        std::for_each(sCanSleep.begin(), sCanSleep.end(), [](char& c) { c = ::toupper(c); });
+        if (sCanSleep == "TRUE" || sCanSleep == "1") {
+            m_particle.setCanSleep(true);
+        }
+        else {
+            m_particle.setCanSleep(false);
+        }
+    }
 
     return true;
 }

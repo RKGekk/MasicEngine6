@@ -6,6 +6,8 @@
 void Particle::integrate(float duration) {
     using namespace DirectX;
 
+    if (!m_is_awake) { return; }
+
     m_time_accum += duration;
     if (m_time_accum > m_ttl) { m_time_accum = m_ttl; }
 

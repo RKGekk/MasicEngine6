@@ -39,7 +39,7 @@ public:
 	IRenderer* GetRenderer();
 	std::shared_ptr<HumanView> GetHumanView();
 	std::shared_ptr<HumanView> GetHumanViewByName(std::string name);
-	const GameTimer& GetTimer();
+	GameTimer& GetTimer();
 
 	bool ProcessMessages();
 	bool Update();

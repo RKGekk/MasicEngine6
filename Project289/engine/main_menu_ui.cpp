@@ -81,7 +81,7 @@ HRESULT MainMenuUI::VOnRender(double fTime, float fElapsedTime) {
 				static bool first = true;
 				static float start = 0.0f;
 				if (first) { start = mx._43; first = false; };
-				float end = 1.5f;
+				float end = 2.0f;
 				mx._43 = start + (end - start) * n;
 				pTransformComponent->SetTransform(mx);
 

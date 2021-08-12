@@ -283,6 +283,6 @@ std::shared_ptr<HumanView> Engine::GetHumanViewByName(std::string name) {
 	return pView;
 }
 
-const GameTimer& Engine::GetTimer() {
+GameTimer& Engine::GetTimer() {
 	return m_timer;
 }

@@ -627,6 +627,9 @@
     <ClCompile Include="nodes\d3d_11_sky_pipeline.cpp">
       <Filter>Source Files\nodes</Filter>
     </ClCompile>
+    <ClCompile Include="actors\time_out_particle_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard\keyboard_event.h">
@@ -1282,6 +1285,9 @@
     </ClInclude>
     <ClInclude Include="nodes\d3d_11_sky_pipeline.h">
       <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\time_out_particle_component.h">
+      <Filter>Header Files\actors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

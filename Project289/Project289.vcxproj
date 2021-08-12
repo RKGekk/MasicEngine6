@@ -187,6 +187,7 @@
     <ClCompile Include="actors\spawn_component.cpp" />
     <ClCompile Include="actors\stats_render_component.cpp" />
     <ClCompile Include="actors\sky_render_component.cpp" />
+    <ClCompile Include="actors\time_out_particle_component.cpp" />
     <ClCompile Include="tools\geometry_generator.cpp" />
     <ClCompile Include="physics\aero_control.cpp" />
     <ClCompile Include="physics\aero.cpp" />
@@ -362,6 +363,7 @@
     <ClInclude Include="actors\spawn_component.h" />
     <ClInclude Include="actors\stats_render_component.h" />
     <ClInclude Include="actors\sky_render_component.h" />
+    <ClInclude Include="actors\time_out_particle_component.h" />
     <ClInclude Include="tools\geometry_generator.h" />
     <ClInclude Include="graphics\mesh_holder.h" />
     <ClInclude Include="physics\particle_sphere_contact.h" />
