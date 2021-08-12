@@ -8,7 +8,7 @@
 #include "../tools/mt_random.h"
 #include "../tools/memory_utility.h"
 
-GeoPhysicsMovementController::GeoPhysicsMovementController(std::shared_ptr<SceneNode> object) : m_object(object) {
+GeoPhysicsMovementController::GeoPhysicsMovementController(std::shared_ptr<SceneNode> object, bool rotateWhenLButtonDown) : m_object(object) {
 	using namespace DirectX;
 
 	m_maxSpeed = 30.0f;
@@ -34,6 +34,9 @@ GeoPhysicsMovementController::GeoPhysicsMovementController(std::shared_ptr<Scene
 	//ReleaseCapture();
 
 	memset(m_bKey, 0x00, sizeof(m_bKey));
+
+	m_mouseRButtonDown = false;
+	m_bRotateWhenRButtonDown = rotateWhenLButtonDown;
 }
 
 void GeoPhysicsMovementController::SetObject(std::shared_ptr<SceneNode> newObject) {
@@ -373,30 +376,60 @@ void GeoPhysicsMovementController::OnUpdate(float elapsed_seconds) {
 bool GeoPhysicsMovementController::VOnPointerMove(int x, int y, const int radius) {
 	using namespace DirectX;
 
-	if (m_lastMousePos_x != x || m_lastMousePos_y != y) {
-		int dx = m_lastMousePos_x - x;
-		//int dy = y - m_lastMousePos_y;
-		int dy = m_lastMousePos_y - y;
+	if (m_bRotateWhenRButtonDown) {
+		if ((m_lastMousePos_x != x || m_lastMousePos_y != y) && m_mouseRButtonDown) {
+			int dx = m_lastMousePos_x - x;
+			//int dy = y - m_lastMousePos_y;
+			int dy = m_lastMousePos_y - y;
 
-		m_lastMousePos_x = x;
-		m_lastMousePos_y = y;
+			m_lastMousePos_x = x;
+			m_lastMousePos_y = y;
 
-		if (!m_object) { return true; }
+			if (!m_object) { return true; }
 
-		ActorId act_id = m_object->VFindMyActor();
-		std::shared_ptr<Actor> act = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(act_id));
-		std::shared_ptr<OrientationRelationComponent> oc;
-		std::shared_ptr<TransformComponent> tc;
-		if (act) {
-			oc = MakeStrongPtr(act->GetComponent<OrientationRelationComponent>(ActorComponent::GetIdFromName("OrientationRelationComponent")));
-			tc = MakeStrongPtr(act->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
+			ActorId act_id = m_object->VFindMyActor();
+			std::shared_ptr<Actor> act = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(act_id));
+			std::shared_ptr<OrientationRelationComponent> oc;
+			std::shared_ptr<TransformComponent> tc;
+			if (act) {
+				oc = MakeStrongPtr(act->GetComponent<OrientationRelationComponent>(ActorComponent::GetIdFromName("OrientationRelationComponent")));
+				tc = MakeStrongPtr(act->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
+			}
+			bool is_octc = oc && tc;
+
+			if (is_octc) {
+				//XMMATRIX new_transform = XMMatrixMultiply(tc->GetTransform(), XMMatrixRotationAxis(oc->VGetUp(), XMConvertToRadians(((float)dy) * 0.1f)));
+				//tc->SetTransform(new_transform);
+				oc->VRotateUp(((float)dx) * 0.5f);
+			}
 		}
-		bool is_octc = oc && tc;
+	}
+	else {
+		if (m_lastMousePos_x != x || m_lastMousePos_y != y) {
+			int dx = m_lastMousePos_x - x;
+			//int dy = y - m_lastMousePos_y;
+			int dy = m_lastMousePos_y - y;
 
-		if (is_octc) {
-			//XMMATRIX new_transform = XMMatrixMultiply(tc->GetTransform(), XMMatrixRotationAxis(oc->VGetUp(), XMConvertToRadians(((float)dy) * 0.1f)));
-			//tc->SetTransform(new_transform);
-			oc->VRotateUp(((float)dx) * 0.5f);
+			m_lastMousePos_x = x;
+			m_lastMousePos_y = y;
+
+			if (!m_object) { return true; }
+
+			ActorId act_id = m_object->VFindMyActor();
+			std::shared_ptr<Actor> act = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(act_id));
+			std::shared_ptr<OrientationRelationComponent> oc;
+			std::shared_ptr<TransformComponent> tc;
+			if (act) {
+				oc = MakeStrongPtr(act->GetComponent<OrientationRelationComponent>(ActorComponent::GetIdFromName("OrientationRelationComponent")));
+				tc = MakeStrongPtr(act->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
+			}
+			bool is_octc = oc && tc;
+
+			if (is_octc) {
+				//XMMATRIX new_transform = XMMatrixMultiply(tc->GetTransform(), XMMatrixRotationAxis(oc->VGetUp(), XMConvertToRadians(((float)dy) * 0.1f)));
+				//tc->SetTransform(new_transform);
+				oc->VRotateUp(((float)dx) * 0.5f);
+			}
 		}
 	}
 
@@ -404,10 +437,20 @@ bool GeoPhysicsMovementController::VOnPointerMove(int x, int y, const int radius
 }
 
 bool GeoPhysicsMovementController::VOnPointerButtonDown(int x, int y, const int radius, const std::string& buttonName) {
+	if (buttonName == "PointerRight") {
+		m_mouseRButtonDown = true;
+		m_lastMousePos_x = x;
+		m_lastMousePos_y = y;
+		return true;
+	}
 	return false;
 }
 
 bool GeoPhysicsMovementController::VOnPointerButtonUp(int x, int y, const int radius, const std::string& buttonName) {
+	if (buttonName == "PointerRight") {
+		m_mouseRButtonDown = false;
+		return true;
+	}
 	return false;
 }
 

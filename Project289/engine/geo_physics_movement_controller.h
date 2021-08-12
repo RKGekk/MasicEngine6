@@ -28,6 +28,10 @@ protected:
 	int m_lastMousePos_y;
 	bool m_bKey[256];
 
+
+	bool m_mouseRButtonDown;
+	bool m_bRotateWhenRButtonDown;
+
 	std::shared_ptr<SceneNode> m_object;
 
 private:
@@ -38,7 +42,7 @@ private:
 	void DefineStateKeyUp(const BYTE c);
 
 public:
-	GeoPhysicsMovementController(std::shared_ptr<SceneNode> object);
+	GeoPhysicsMovementController(std::shared_ptr<SceneNode> object, bool rotateWhenRButtonDown);
 	void SetObject(std::shared_ptr<SceneNode> newObject);
 	
 

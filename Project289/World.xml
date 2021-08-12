@@ -32,13 +32,13 @@
 
     <Actor name="enemy_spawn" type="BasicTransformComponent" resource="data\actors\BasicTransformComponent.xml">
       <TransformComponent>
-        <Position x="0.0" y="1.0" z="30.0" />
+        <Position x="0.0" y="1.0" z="40.0" />
         <YawPitchRoll x="0.0" y="0.0" z="0.0" />
         <Scale x="0.0" y="0.0" z="0.0" />
       </TransformComponent>
       <SpawnComponent>
         <SpawnType>Sphere</SpawnType>
-        <SpawnRadius>5.0</SpawnRadius>
+        <SpawnRadius>10.0</SpawnRadius>
       </SpawnComponent>
     </Actor>
     
@@ -870,7 +870,7 @@
         <Color r="0.9" g="0.9" b="0.9" a="1.0"/>
         <Light type="DirectionalLight" lantern="false">
           <Ambient r="0.05" g="0.05" b="0.05" a="1.0" />
-          <Diffuse r="0.45" g="0.9" b="1.0" a="1.0" />
+          <Diffuse r="0.945" g="0.98" b="1.0" a="1.0" />
           <Specular r="0.2" g="0.2" b="0.2" a="1.0" />
           <Attenuation const="0.1" linear="0.0" exp="0.0" />
           <Shape range="100.0" spot="24.0"/>

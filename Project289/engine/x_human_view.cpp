@@ -75,7 +75,7 @@ void XHumanView::VSetControlledActor(ActorId actorId) {
 		m_keyboard_handlers.clear();
 		m_pointer_handlers.clear();
 		m_pFreeCameraController.reset();
-		m_pGeoPhysicsMovementController.reset(new GeoPhysicsMovementController(m_pTeapot));
+		m_pGeoPhysicsMovementController.reset(new GeoPhysicsMovementController(m_pTeapot, true));
 		m_keyboard_handlers.push_back(m_pGeoPhysicsMovementController);
 		m_pointer_handlers.push_back(m_pGeoPhysicsMovementController);
 

@@ -34,4 +34,21 @@ private:
 	bool m_transform_exists;
 	DirectX::XMFLOAT4X4 m_transform;
 	std::string m_actor_name;
+
+	DirectX::XMFLOAT4 m_ambient;
+	DirectX::XMFLOAT4 m_diffuse;
+	DirectX::XMFLOAT4 m_specular;
+	float m_const;
+	float m_linear;
+	float m_exp;
+	float m_Range;
+	float m_Spot;
+	bool m_light_exists;
+
+	DirectX::XMFLOAT3 m_yaw_pith_roll;
+
+	bool m_particle_exists;
+	float m_damping;
+	float m_radius;
+	float m_mass;
 };

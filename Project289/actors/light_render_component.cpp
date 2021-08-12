@@ -26,6 +26,20 @@ void LightRenderComponent::SetSpecular4f(const DirectX::XMFLOAT4& color) {
 	m_Props.m_Specular = color;
 }
 
+void LightRenderComponent::SetAttenuation(float c, float l, float e) {
+	m_Props.m_Attenuation[0] = c;
+	m_Props.m_Attenuation[1] = l;
+	m_Props.m_Attenuation[2] = e;
+}
+
+void LightRenderComponent::SetRange(float r) {
+	m_Props.m_Range = r;
+}
+
+void LightRenderComponent::SetSpot(float s) {
+	m_Props.m_Spot = s;
+}
+
 bool LightRenderComponent::VDelegateInit(TiXmlElement* pData) {
 	TiXmlElement* pLight = pData->FirstChildElement("Light");
 

@@ -182,6 +182,10 @@ Texture2D gShadowMap : TEXTURE3 : register(t2);
 SamplerComparisonState ShadowMapSamplerState : SAMPLER3 : register(s2);
 
 float4 main(PS_INPUT input) : SV_TARGET {
+	input.pos.x /= input.pos.w;
+	input.pos.y /= input.pos.w;
+	input.pos.z /= input.pos.w;
+	
 	input.normal = normalize(input.normal);
 	float3 toEye = gEyePosW - input.worldPos;
 	float distToEye = length(toEye);
@@ -223,8 +227,9 @@ float4 main(PS_INPUT input) : SV_TARGET {
 		[unroll]
 		for(int i = 0; i < gPointLightCount; ++i) {
 			float4 A, D, S;
-			ComputePointLight(gMaterial, gPointLights[i], input.pos.xyz, bumpedNormalW, toEye, A, D, S);
-			ambient += A; diffuse += D; spec += S;
+			ComputePointLight(gMaterial, gPointLights[i], input.worldPos, bumpedNormalW, toEye, A, D, S);
+			//ambient += A; diffuse += D; spec += S;
+			ambient += A; diffuse += (shadow + A) * D; spec += (shadow + A) * S;
 		}
 
 		litColor += texColor * (ambient + diffuse) + spec;
@@ -238,8 +243,9 @@ float4 main(PS_INPUT input) : SV_TARGET {
 		[unroll]
 		for(int i = 0; i < gSpotLightCount; ++i) {
 			float4 A, D, S;
-			ComputeSpotLight(gMaterial, gSpotLights[i], input.pos.xyz, bumpedNormalW, toEye, A, D, S);
-			ambient += A; diffuse += D; spec += S;
+			ComputeSpotLight(gMaterial, gSpotLights[i], input.worldPos, bumpedNormalW, toEye, A, D, S);
+			//ambient += A; diffuse += D; spec += S;
+			ambient += A; diffuse += (shadow + A) * D; spec += (shadow + A) * S;
 		}
 
 		litColor += texColor * (ambient + diffuse) + spec;

@@ -22,6 +22,9 @@ public:
     void SetAmbient4f(const DirectX::XMFLOAT4& color);
     void SetDiffuse4f(const DirectX::XMFLOAT4& color);
     void SetSpecular4f(const DirectX::XMFLOAT4& color);
+    void SetAttenuation(float c, float l, float e);
+    void SetRange(float r);
+    void SetSpot(float s);
 
 protected:
     virtual bool VDelegateInit(TiXmlElement* pData) override;

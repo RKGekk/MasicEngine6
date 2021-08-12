@@ -46,6 +46,8 @@ public:
     void SetPosition3(DirectX::FXMVECTOR pos);
     void SetPosition4(DirectX::FXMVECTOR pos);
 
+    void SetYawPitchRoll3f(const DirectX::XMFLOAT3& ypr);
+
     void SetScale3f(const DirectX::XMFLOAT3& sclae);
     void SetScale4f(const DirectX::XMFLOAT4& sclae);
     void SetScale(DirectX::FXMVECTOR scale);

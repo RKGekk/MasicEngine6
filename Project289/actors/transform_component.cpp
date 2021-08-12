@@ -122,6 +122,24 @@ void TransformComponent::SetPosition4(DirectX::FXMVECTOR pos) {
     m_transform._44 = temp.w;
 }
 
+void TransformComponent::SetYawPitchRoll3f(const DirectX::XMFLOAT3& ypr) {
+    DirectX::XMFLOAT3 position = GetPosition3f();
+    DirectX::XMFLOAT3 yawPitchRoll = ypr;
+    DirectX::XMFLOAT3 scale = GetScale3f();
+    DirectX::XMMATRIX translationXM = DirectX::XMMatrixTranslation(position.x, position.y, position.z);
+    DirectX::XMMATRIX rotationXM = DirectX::XMMatrixRotationRollPitchYaw(yawPitchRoll.y, yawPitchRoll.x, yawPitchRoll.z);
+    DirectX::XMStoreFloat4x4(
+        &m_transform,
+        DirectX::XMMatrixMultiply(
+            DirectX::XMMatrixMultiply(
+                rotationXM,
+                DirectX::XMMatrixScaling(scale.x, scale.y, scale.z)
+            ),
+            translationXM
+        )
+    );
+}
+
 void TransformComponent::SetScale3f(const DirectX::XMFLOAT3& sclae) {
     m_scale.x = sclae.x;
     m_scale.y = sclae.y;

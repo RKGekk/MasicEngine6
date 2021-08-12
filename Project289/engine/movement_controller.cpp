@@ -158,7 +158,7 @@ bool MovementController::VOnPointerMove(int x, int y, const int radius) {
 }
 
 bool MovementController::VOnPointerButtonDown(int x, int y, const int radius, const std::string& buttonName) {
-	if (buttonName == "PointerLeft") 	{
+	if (buttonName == "PointerLeft") {
 		m_mouseLButtonDown = true;
 		m_lastMousePos_x = x;
 		m_lastMousePos_y = y;
@@ -168,7 +168,7 @@ bool MovementController::VOnPointerButtonDown(int x, int y, const int radius, co
 }
 
 bool MovementController::VOnPointerButtonUp(int x, int y, const int radius, const std::string& buttonName) {
-	if (buttonName == "PointerLeft") 	{
+	if (buttonName == "PointerLeft") {
 		m_mouseLButtonDown = false;
 		return true;
 	}
