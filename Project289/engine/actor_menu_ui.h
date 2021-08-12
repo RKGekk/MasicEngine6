@@ -33,6 +33,8 @@ private:
 
 	bool m_transform_exists;
 	DirectX::XMFLOAT4X4 m_transform;
+	DirectX::XMFLOAT3 m_scale;
+	DirectX::XMFLOAT3 m_yaw_pith_roll;
 	std::string m_actor_name;
 
 	DirectX::XMFLOAT4 m_ambient;
@@ -44,8 +46,6 @@ private:
 	float m_Range;
 	float m_Spot;
 	bool m_light_exists;
-
-	DirectX::XMFLOAT3 m_yaw_pith_roll;
 
 	bool m_particle_exists;
 	float m_damping;

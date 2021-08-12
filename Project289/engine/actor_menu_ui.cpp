@@ -86,10 +86,13 @@ HRESULT ActorMenuUI::VOnRender(double fTime, float fElapsedTime) {
 				m_transform_exists = true;
 				m_transform = tc->GetTransform4x4f();
 				m_yaw_pith_roll = tc->GetYawPitchRoll3f();
+				m_scale = tc->GetScale3f();
 			}
 			else {
 				m_transform_exists = false;
 				DirectX::XMStoreFloat4x4(&m_transform, DirectX::XMMatrixIdentity());
+				m_yaw_pith_roll = { 0.0f, 0.0f, 0.0f };
+				m_scale = { 1.0f, 1.0f, 1.0f };
 			}
 
 			componentId = ActorComponent::GetIdFromName("LightRenderComponent");
@@ -125,6 +128,12 @@ HRESULT ActorMenuUI::VOnRender(double fTime, float fElapsedTime) {
 				m_radius = p.getRadius();
 				m_mass = p.getMass();
 			}
+			else {
+				m_particle_exists = false;
+				m_damping = 1.0f;
+				m_radius = 1.0f;
+				m_mass = 1.0f;
+			}
 		}
 		else {
 			m_transform_exists = false;
@@ -154,6 +163,12 @@ HRESULT ActorMenuUI::VOnRender(double fTime, float fElapsedTime) {
 					tc->SetTransform(m_transform);
 				}
 
+			}
+			if (m_transform_exists && ImGui::SliderFloat3("Scale", ((float*)&m_scale), 0.0f, 3.0f)) {
+				if (tc) {
+					m_transform_exists = true;
+					tc->SetScale3f(m_scale);
+				}
 			}
 			if (m_transform_exists && ImGui::SliderFloat3("Yaw Pith Roll", ((float*)&m_yaw_pith_roll), -DirectX::XM_PI, DirectX::XM_PI)) {
 				if (tc) {

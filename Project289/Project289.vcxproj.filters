@@ -1342,6 +1342,9 @@
     <FxCompile Include="data\shaders\pixel_shader_sky.hlsl">
       <Filter>Resource Files\shaders</Filter>
     </FxCompile>
+    <FxCompile Include="data\shaders\pixel_shader_basic_clip.hlsl">
+      <Filter>Resource Files\shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="data\objects\nanosuit\arm_dif.png">

@@ -205,15 +205,19 @@ float4 main(PS_INPUT input) : SV_TARGET {
 		float4 diffuse = float4(0.0f, 0.0f, 0.0f, 0.0f);
 		float4 spec = float4(0.0f, 0.0f, 0.0f, 0.0f);
 		
+		float4 Am, Di, Sp;
+		ComputeDirectionalLight(gMaterial, gDirLights[0], bumpedNormalW, toEye, Am, Di, Sp);
+		ambient += Am; diffuse += shadow * Di; spec += shadow * Sp;
+		
 		[unroll]
-		for(int i = 0; i < gDirLightCount; ++i) {
+		for(int i = 1; i < gDirLightCount; ++i) {
 			float4 A, D, S;
-			//ComputeDirectionalLight(gMaterial, gDirLights[i], bumpedNormalW, toEye, A, D, S);
-			ComputeDirectionalLight(gMaterial, gDirLights[i], input.normal, toEye, A, D, S);
-			//ambient += A; diffuse += D; spec += S;
+			ComputeDirectionalLight(gMaterial, gDirLights[i], bumpedNormalW, toEye, A, D, S);
+			//ComputeDirectionalLight(gMaterial, gDirLights[i], input.normal, toEye, A, D, S);
+			ambient += A; diffuse += D; spec += S;
 			
 			//ambient += A; diffuse += shadow * D; spec += shadow * S;
-			ambient += A; diffuse += (shadow + A) * D; spec += (shadow + A) * S;
+			//ambient += A; diffuse += (shadow + A) * D; spec += (shadow + A) * S;
 		}
 
 		litColor += texColor * (ambient + diffuse) + spec;
@@ -228,8 +232,8 @@ float4 main(PS_INPUT input) : SV_TARGET {
 		for(int i = 0; i < gPointLightCount; ++i) {
 			float4 A, D, S;
 			ComputePointLight(gMaterial, gPointLights[i], input.worldPos, bumpedNormalW, toEye, A, D, S);
-			//ambient += A; diffuse += D; spec += S;
-			ambient += A; diffuse += (shadow + A) * D; spec += (shadow + A) * S;
+			ambient += A; diffuse += D; spec += S;
+			//ambient += A; diffuse += (shadow + A) * D; spec += (shadow + A) * S;
 		}
 
 		litColor += texColor * (ambient + diffuse) + spec;
@@ -244,8 +248,8 @@ float4 main(PS_INPUT input) : SV_TARGET {
 		for(int i = 0; i < gSpotLightCount; ++i) {
 			float4 A, D, S;
 			ComputeSpotLight(gMaterial, gSpotLights[i], input.worldPos, bumpedNormalW, toEye, A, D, S);
-			//ambient += A; diffuse += D; spec += S;
-			ambient += A; diffuse += (shadow + A) * D; spec += (shadow + A) * S;
+			ambient += A; diffuse += D; spec += S;
+			//ambient += A; diffuse += (shadow + A) * D; spec += (shadow + A) * S;
 		}
 
 		litColor += texColor * (ambient + diffuse) + spec;
