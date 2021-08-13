@@ -15,6 +15,7 @@ void ShadowManager::BuildShadowTransform(Scene* pScene) {
     ISceneNode* actor_render_pass = pScene->GetRootNode()->GetRenderPass(RenderPass::RenderPass_Actor);
 
     float scene_bounds_radius = actor_render_pass->VGet().Radius();
+    //float scene_bounds_radius = 4.0f;
     XMFLOAT3 scene_bounds_center = actor_render_pass->VGet().Position3();
 
     const std::vector<DirectionalLight>& dl = light_manager->GetDirLights();

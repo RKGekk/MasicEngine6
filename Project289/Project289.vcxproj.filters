@@ -1830,5 +1830,11 @@
     <None Include="data\objects\Plants1_decimate02.obj">
       <Filter>Resource Files\models</Filter>
     </None>
+    <None Include="data\textures\note.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\danger.png">
+      <Filter>Resource Files\textures</Filter>
+    </None>
   </ItemGroup>
 </Project>

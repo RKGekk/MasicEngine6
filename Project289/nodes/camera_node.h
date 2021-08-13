@@ -18,7 +18,7 @@ public:
 	virtual HRESULT VOnRestore(Scene* pScene) override;
 	virtual bool VIsVisible(Scene* pScene) const override;
 
-	const Frustum& GetFrustum();
+	Frustum& GetFrustum();
 	void SetTarget(std::shared_ptr<SceneNode> pTarget);
 	void ClearTarget();
 	std::shared_ptr<SceneNode> GetTarget();

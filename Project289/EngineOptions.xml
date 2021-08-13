@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlayerOptions>
-  <Graphics renderer="Direct3D 11"
-            width="1280"
-            height="720"
-            runfullspeed="no"
-            fullscreen="no"
-            screenFar="10"
-            screenNear="0.1"
-            fov="45.0"
-            gamecamoffsetx ="0.0"
-            gamecamoffsety ="1.0"
-            gamecamoffsetz ="-2.0"
-            gamecamrotatex ="22.5"
-  />
+  <Graphics>
+    <Renderer>Direct3D 11</Renderer>
+    <Width>1280</Width>
+    <Height>720</Height>
+    <RunFullSpeed>no</RunFullSpeed>
+    <FullScreen>no</FullScreen>
+  </Graphics>
+  <Camera>
+    <ScreenFar>10</ScreenFar>
+    <ScreenNear>0.1</ScreenNear>
+    <Fov>45.0</Fov>
+    <GameCameraOffsetX>0.0</GameCameraOffsetX>
+    <GameCameraOffsetY>1.0</GameCameraOffsetY>
+    <GameCameraOffsetZ>-2.0</GameCameraOffsetZ>
+    <GameCameraRotateX>22.5</GameCameraRotateX>
+  </Camera>
+  <Fog>
+    <FogStart>2.0</FogStart>
+    <FogRange>3.5</FogRange>
+    <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+  </Fog>
   <Sound sfxVolume="50" musicVolume="25"/>
 </PlayerOptions>

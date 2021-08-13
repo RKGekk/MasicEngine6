@@ -51,4 +51,17 @@ private:
 	float m_damping;
 	float m_radius;
 	float m_mass;
+
+	float m_screenNear;
+	float m_screenFar;
+	float m_fov;
+	float m_aspectRatio;
+	float m_game_cam_offset_x;
+	float m_game_cam_offset_y;
+	float m_game_cam_offset_z;
+	float m_game_cam_rotate_x;
+
+	float m_fog_start;
+	float m_fog_range;
+	DirectX::XMFLOAT4 m_fog_color;
 };

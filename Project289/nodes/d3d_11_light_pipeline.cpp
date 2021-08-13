@@ -333,9 +333,13 @@ HRESULT D3D11LightPipeline::VPreRender(Scene* pScene) {
 	LightManager* lightManager = pScene->GetLightManager();
 	CB_PS_PixelShader_Light_All lt;
 	lightManager->CopyLighting(&lt, this);
-	lt.gFogStart = pMeshComponent->GetFogStart();
-	lt.gFogRange = pMeshComponent->GetFogRange();
-	lt.gFogColor = pMeshComponent->GetFogColor();
+	//lt.gFogStart = pMeshComponent->GetFogStart();
+	//lt.gFogRange = pMeshComponent->GetFogRange();
+	//lt.gFogColor = pMeshComponent->GetFogColor();
+	const EngineOptions& options = g_pApp->GetConfig();
+	lt.gFogStart = options.m_fog_start;
+	lt.gFogRange = options.m_fog_range;
+	lt.gFogColor = options.m_fog_color;
 	lt.gEyePosW = camera->GetPosition3();
 
 	D3D11_MAPPED_SUBRESOURCE psmsr;

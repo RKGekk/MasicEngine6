@@ -38,7 +38,7 @@ bool CameraNode::VIsVisible(Scene* pScene) const {
 	return m_bActive;
 }
 
-const Frustum& CameraNode::GetFrustum() {
+Frustum& CameraNode::GetFrustum() {
 	return m_Frustum;
 }
 

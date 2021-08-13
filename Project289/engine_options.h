@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include <DirectXMath.h>
+
 #include "engine/renderer_enum.h"
 
 struct EngineOptions {
@@ -11,6 +13,7 @@ struct EngineOptions {
 	bool m_fullScreen;
 	int m_screenWidth;
 	int m_screenHeight;
+
 	float m_screenNear;
 	float m_screenFar;
 	float m_fov;
@@ -19,6 +22,10 @@ struct EngineOptions {
 	float m_game_cam_offset_y;
 	float m_game_cam_offset_z;
 	float m_game_cam_rotate_x;
+
+	float m_fog_start;
+	float m_fog_range;
+	DirectX::XMFLOAT4 m_fog_color;
 
 	float m_soundEffectsVolume;
 	float m_musicVolume;

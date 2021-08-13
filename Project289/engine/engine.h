@@ -31,7 +31,7 @@ public:
 	LRESULT OnAltEnter();
 	LRESULT OnNcCreate(LPCREATESTRUCT cs);
 
-	const EngineOptions& GetConfig();
+	EngineOptions& GetConfig();
 	const RenderWindow& GetRenderWindow();
 	static Renderer GetRendererImpl();
 

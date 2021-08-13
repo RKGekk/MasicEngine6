@@ -182,7 +182,7 @@ LRESULT Engine::OnNcCreate(LPCREATESTRUCT cs) {
 	return true;
 }
 
-const EngineOptions& Engine::GetConfig() {
+EngineOptions& Engine::GetConfig() {
 	return m_options;
 }
 
