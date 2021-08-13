@@ -68,9 +68,11 @@ protected:
 	std::shared_ptr<SceneNode> m_root_node;
 	std::vector<std::shared_ptr<SceneNode>> m_full_heart_nodes;
 	std::vector<std::shared_ptr<SceneNode>> m_empty_heart_nodes;
+	std::shared_ptr<SceneNode> m_danger_node;
 
 	std::string m_full_one_health_mesh_path;
 	std::string m_empty_one_health_mesh_path;
+	std::string m_danger_mesh_path;
 	std::string m_pixel_shader_resource;
 	std::string m_vertex_shader_resource;
 
@@ -79,6 +81,9 @@ protected:
 
 	Assimp::Importer m_importer2;
 	const aiScene* m_pSceneEmptyHealthScene;
+
+	Assimp::Importer m_importer3;
+	const aiScene* m_pSceneDangerScene;
 
 	static constexpr float m_max = std::numeric_limits<float>::max();
 	static constexpr float m_min = std::numeric_limits<float>::min();

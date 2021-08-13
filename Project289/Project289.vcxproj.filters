@@ -1836,5 +1836,9 @@
     <None Include="data\textures\danger.png">
       <Filter>Resource Files\textures</Filter>
     </None>
+    <None Include="data\objects\danger.mtl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="data\objects\danger.obj" />
   </ItemGroup>
 </Project>

@@ -28,9 +28,15 @@ public:
 	int GetTotalHealth();
 	void SetHealth(int health);
 
+	bool GetDanger();
+
 	virtual TiXmlElement* VGenerateXml() override;
 
 protected:
 	int m_current_health;
 	int m_total_health;
+
+	bool m_danger;
+	bool m_danger_is_defined;
+	float m_danger_radius;
 };

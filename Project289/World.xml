@@ -52,9 +52,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_basic_light_alpha.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -89,9 +86,22 @@
       <SpawnRelationComponent>
         <RelateTo>pers_spawn</RelateTo>
       </SpawnRelationComponent>
+      <CharacterStatsComponent>
+        <Danger>false</Danger>
+        <DangerRadius>2.0</DangerRadius>
+      </CharacterStatsComponent>
+      <StatsRenderComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="0.500000" />
+        <Scale x="0.0625" y="0.0625" z="0.0625" />
+        <StatsType>BasicDanger</StatsType>
+        <Height>0.3</Height>
+        <DangerMeshObj>data\objects\danger.obj</DangerMeshObj>
+        <PixelShader>pixel_shader_basic_clip.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+      </StatsRenderComponent>
     </Actor>
 
-    <Actor name="emenmy1" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+    <Actor name="enemy1" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
         <Position x="3.000000" y="0.000000" z="0.000000" />
         <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
@@ -101,9 +111,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light_inv_ny.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -144,7 +151,7 @@
       </TimeOutParticleComponent>
     </Actor>
 
-    <Actor name="emenmy2" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+    <Actor name="enemy2" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
         <Position x="3.000000" y="0.000000" z="0.000000" />
         <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
@@ -154,9 +161,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light_inv_ny.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -197,7 +201,7 @@
       </TimeOutParticleComponent>
     </Actor>
 
-    <Actor name="emenmy3" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+    <Actor name="enemy3" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
         <Position x="3.000000" y="0.000000" z="0.000000" />
         <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
@@ -207,9 +211,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light_inv_ny.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -250,7 +251,7 @@
       </TimeOutParticleComponent>
     </Actor>
 
-    <Actor name="emenmy4" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+    <Actor name="enemy4" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
         <Position x="3.000000" y="0.000000" z="0.000000" />
         <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
@@ -260,9 +261,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light_inv_ny.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -313,9 +311,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light_basic.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -343,11 +338,8 @@
         <Gap>0.1</Gap>
         <FullOneHealthMeshObj>data\objects\full_heart.obj</FullOneHealthMeshObj>
         <EmptyOneHealthMeshObj>data\objects\empty_heart.obj</EmptyOneHealthMeshObj>
-        <PixelShader>pixel_shader_basic_light_alpha.cso</PixelShader>
+        <PixelShader>pixel_shader_basic_clip.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>10.0</FogStart>
-        <FogRange>100.0</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
       </StatsRenderComponent>
     </Actor>
 
@@ -361,9 +353,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -391,9 +380,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -421,9 +407,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -451,9 +434,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -481,9 +461,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -511,9 +488,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -541,9 +515,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -571,9 +542,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -601,9 +569,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -631,9 +596,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -661,9 +623,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -691,9 +650,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -721,9 +677,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -751,9 +704,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -781,9 +731,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -811,9 +758,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>
@@ -841,9 +785,6 @@
         <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
         <PixelShader>pixel_shader_light.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
-        <FogStart>2.0</FogStart>
-        <FogRange>3.5</FogRange>
-        <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
         <Radius>auto</Radius>
       </MeshRenderLightComponent>
       <MeshComponent>

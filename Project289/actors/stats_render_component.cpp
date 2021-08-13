@@ -51,6 +51,11 @@ bool StatsRenderComponent::VDelegateInit(TiXmlElement* pData) {
 		m_empty_one_health_mesh_path = pEmptyOneHealthMeshObj->FirstChild()->Value();
 	}
 
+	TiXmlElement* pDangerMeshObj = pData->FirstChildElement("DangerMeshObj");
+	if (pDangerMeshObj) {
+		m_danger_mesh_path = pDangerMeshObj->FirstChild()->Value();
+	}
+
 	TiXmlElement* pStatsType = pData->FirstChildElement("StatsType");
 	if (pStatsType) {
 		m_stats_type = pStatsType->FirstChild()->Value();
@@ -110,6 +115,7 @@ bool StatsRenderComponent::VDelegateInit(TiXmlElement* pData) {
 
 	m_pSceneFullHealthScene = m_importer1.ReadFile(m_full_one_health_mesh_path, aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_ConvertToLeftHanded);
 	m_pSceneEmptyHealthScene = m_importer2.ReadFile(m_empty_one_health_mesh_path, aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_ConvertToLeftHanded);
+	m_pSceneDangerScene = m_importer3.ReadFile(m_danger_mesh_path, aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_ConvertToLeftHanded);
 
 	return true;
 }
@@ -170,16 +176,26 @@ void StatsRenderComponent::VUpdate(float deltaMs) {
 
 	m_root_node->VSetTransform(transform, XMMatrixIdentity(), true);
 
-	int hearts_count = pCharacterStatsComponent->GetTotalHealth();
-	int hearts_current = pCharacterStatsComponent->GetCurrentHealth();
-	for (int i = 0; i < hearts_count; ++i) {
-		if (i < hearts_current) {
-			m_full_heart_nodes[i]->SetActive(true);
-			m_empty_heart_nodes[i]->SetActive(false);
+	if (m_stats_type == "BasicHealth") {
+		int hearts_count = pCharacterStatsComponent->GetTotalHealth();
+		int hearts_current = pCharacterStatsComponent->GetCurrentHealth();
+		for (int i = 0; i < hearts_count; ++i) {
+			if (i < hearts_current) {
+				m_full_heart_nodes[i]->SetActive(true);
+				m_empty_heart_nodes[i]->SetActive(false);
+			}
+			else {
+				m_full_heart_nodes[i]->SetActive(false);
+				m_empty_heart_nodes[i]->SetActive(true);
+			}
+		}
+	}
+	else if (m_stats_type == "BasicDanger") {
+		if (pCharacterStatsComponent->GetDanger()) {
+			m_danger_node->SetActive(true);
 		}
 		else {
-			m_full_heart_nodes[i]->SetActive(false);
-			m_empty_heart_nodes[i]->SetActive(true);
+			m_danger_node->SetActive(false);
 		}
 	}
 }
@@ -187,7 +203,6 @@ void StatsRenderComponent::VUpdate(float deltaMs) {
 void StatsRenderComponent::UpdateFromScenePrerender(float deltaMs) {
 	
 }
-
 
 std::shared_ptr<SceneNode> StatsRenderComponent::VCreateSceneNode() {
 	using namespace DirectX;
@@ -198,13 +213,6 @@ std::shared_ptr<SceneNode> StatsRenderComponent::VCreateSceneNode() {
 	//const aiScene* pSceneFullHealthScene = importer.ReadFile(m_full_one_health_mesh_path, aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_ConvertToLeftHanded);
 	//m_pSceneFullHealthScene = m_importer1.ReadFile(m_full_one_health_mesh_path, aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_ConvertToLeftHanded);
 	//m_pSceneEmptyHealthScene = m_importer2.ReadFile(m_empty_one_health_mesh_path, aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_ConvertToLeftHanded);
-	
-	float full_herat_radius = m_scale_max * 2.0f;
-	//float empty_herat_radius = empty_heart_node->GetRadius();
-	//float radius = full_herat_radius > empty_herat_radius ? full_herat_radius : empty_herat_radius;
-	//float radius = 1.0f / full_herat_radius;
-	float radius = full_herat_radius;
-	//float radius = 10;
 
 	XMFLOAT4X4 transform;
 	XMStoreFloat4x4(&transform, XMMatrixIdentity());
@@ -212,37 +220,60 @@ std::shared_ptr<SceneNode> StatsRenderComponent::VCreateSceneNode() {
 	m_root_node = std::shared_ptr<SceneNode>(new SceneNode(this, RenderPass::RenderPass_Actor, &transform));
 	m_root_node->SetSelfTransform(true);
 
-	int hearts_count = pCharacterStatsComponent->GetTotalHealth();
-	int hearts_current = pCharacterStatsComponent->GetCurrentHealth();
-	if (hearts_current > hearts_count) { hearts_count = hearts_current;	}
-	float hearts_count_f = (float)hearts_count;
-	float start_pos_x = -1.0f * (hearts_count_f * radius + m_gap * (hearts_count_f - 1.0f)) * 0.5f;
-	for (int i = 0; i < hearts_count; ++i) {
-		float i_f = (float)i;
-		float pos = start_pos_x + m_gap * i_f + radius * i_f;
+	if (m_stats_type == "BasicHealth") {
+		float full_herat_radius = m_scale_max * 2.0f;
+		//float empty_herat_radius = empty_heart_node->GetRadius();
+		//float radius = full_herat_radius > empty_herat_radius ? full_herat_radius : empty_herat_radius;
+		//float radius = 1.0f / full_herat_radius;
+		float radius = full_herat_radius;
+		//float radius = 10;
+		int hearts_count = pCharacterStatsComponent->GetTotalHealth();
+		int hearts_current = pCharacterStatsComponent->GetCurrentHealth();
+		if (hearts_current > hearts_count) { hearts_count = hearts_current; }
+		float hearts_count_f = (float)hearts_count;
+		float start_pos_x = -1.0f * (hearts_count_f * radius + m_gap * (hearts_count_f - 1.0f)) * 0.5f;
+		for (int i = 0; i < hearts_count; ++i) {
+			float i_f = (float)i;
+			float pos = start_pos_x + m_gap * i_f + radius * i_f;
+			std::shared_ptr<SceneNode> n = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixMultiply(XMMatrixScaling(m_scale.x, m_scale.y, m_scale.z), XMMatrixTranslation(pos, 0.0f, 0.0f)), XMMatrixIdentity(), true);
+			n->SetSelfTransform(true);
+
+			std::shared_ptr<SceneNode> full_heart_node = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixIdentity(), XMMatrixIdentity(), true);
+			ProcessNode(m_pSceneFullHealthScene->mRootNode, m_pSceneFullHealthScene, full_heart_node);
+
+			std::shared_ptr<SceneNode> empty_heart_node = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixIdentity(), XMMatrixIdentity(), true);
+			ProcessNode(m_pSceneEmptyHealthScene->mRootNode, m_pSceneEmptyHealthScene, empty_heart_node);
+
+			if (i < hearts_current) {
+				full_heart_node->SetActive(true);
+				empty_heart_node->SetActive(false);
+			}
+			else {
+				full_heart_node->SetActive(false);
+				empty_heart_node->SetActive(true);
+			}
+
+			m_full_heart_nodes.push_back(full_heart_node);
+			m_empty_heart_nodes.push_back(empty_heart_node);
+
+			n->VAddChild(empty_heart_node);
+			n->VAddChild(full_heart_node);
+			m_root_node->VAddChild(n);
+		}
+	}
+	else if (m_stats_type == "BasicDanger") {
+		
+		float danger_radius = m_scale_max * 2.0f;
+		float radius = danger_radius;
+		float start_pos_x = -1.0f * radius * 0.5f;
+		float pos = start_pos_x;
 		std::shared_ptr<SceneNode> n = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixMultiply(XMMatrixScaling(m_scale.x, m_scale.y, m_scale.z), XMMatrixTranslation(pos, 0.0f, 0.0f)), XMMatrixIdentity(), true);
 		n->SetSelfTransform(true);
 
-		std::shared_ptr<SceneNode> full_heart_node = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixIdentity(), XMMatrixIdentity(), true);
-		ProcessNode(m_pSceneFullHealthScene->mRootNode, m_pSceneFullHealthScene, full_heart_node);
+		m_danger_node = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixIdentity(), XMMatrixIdentity(), true);
+		ProcessNode(m_pSceneDangerScene->mRootNode, m_pSceneDangerScene, m_danger_node);
 
-		std::shared_ptr<SceneNode> empty_heart_node = std::make_shared<SceneNode>(nullptr, RenderPass::RenderPass_Actor, XMMatrixIdentity(), XMMatrixIdentity(), true);
-		ProcessNode(m_pSceneEmptyHealthScene->mRootNode, m_pSceneEmptyHealthScene, empty_heart_node);
-
-		if (i < hearts_current) {
-			full_heart_node->SetActive(true);
-			empty_heart_node->SetActive(false);
-		}
-		else {
-			full_heart_node->SetActive(false);
-			empty_heart_node->SetActive(true);
-		}
-
-		m_full_heart_nodes.push_back(full_heart_node);
-		m_empty_heart_nodes.push_back(empty_heart_node);
-
-		n->VAddChild(empty_heart_node);
-		n->VAddChild(full_heart_node);
+		n->VAddChild(m_danger_node);
 		m_root_node->VAddChild(n);
 	}
 

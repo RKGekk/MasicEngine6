@@ -1,6 +1,7 @@
 #pragma once
 
 #include <unordered_map>
+#include <unordered_set>
 #include <string>
 #include <memory>
 
@@ -21,6 +22,7 @@ class ActorFactory;
 class LevelManager;
 
 typedef std::unordered_map<ActorId, StrongActorPtr> ActorMap;
+typedef std::unordered_map<ComponentId, std::unordered_set<ActorId>> ComponentsMap;
 
 class BaseEngineLogic : IEngineLogic {
 	friend class Engine;
@@ -35,6 +37,7 @@ protected:
 	std::unique_ptr<LevelManager> m_level_manager;
 	MTRandom m_random;
 	ActorMap m_actors;
+	ComponentsMap m_components;
 	std::unordered_map<std::string, StrongActorPtr> m_actors_names;
 	ActorId m_last_actor_id;
 	BaseEngineState m_state;
@@ -62,6 +65,8 @@ public:
 	virtual void VDestroyActor(const ActorId actorId) override;
 	virtual WeakActorPtr VGetActor(const ActorId actorId) override;
 	virtual WeakActorPtr VGetActorByName(const std::string& actor_name);
+	virtual const std::unordered_set<ActorId>& VGetActorsByComponent(ComponentId cid);
+	virtual bool VCheckActorsExistByComponent(ComponentId cid);
 	virtual void VModifyActor(const ActorId actorId, TiXmlElement* overrides);
 	virtual void VMoveActor(const ActorId id, DirectX::FXMMATRIX mat) override;
 	virtual void VMoveActor4x4f(const ActorId id, const DirectX::XMFLOAT4X4& mat) override;

@@ -36,6 +36,7 @@ BaseEngineLogic::~BaseEngineLogic() {
 	}
 	m_actors.clear();
 	m_actors_names.clear();
+	m_components.clear();
 
 	IEventManager::Get()->VRemoveListener({ connect_arg<&BaseEngineLogic::RequestDestroyActorDelegate>, this }, EvtData_Request_Destroy_Actor::sk_EventType);
 }
@@ -76,8 +77,13 @@ StrongActorPtr BaseEngineLogic::VCreateActor(const std::string& actorResource, T
 StrongActorPtr BaseEngineLogic::VCreateActor(const std::string& actorResource, TiXmlElement* overrides, const DirectX::XMFLOAT4X4* initialTransform, const ActorId serversActorId) {
 	StrongActorPtr pActor = m_actor_factory->CreateActor(actorResource, overrides, initialTransform, serversActorId);
 	if (pActor) {
-		m_actors.insert(std::make_pair(pActor->GetId(), pActor));
+		ActorId actid = pActor->GetId();
+		m_actors.insert(std::make_pair(actid, pActor));
 		if (pActor->GetName() != "NoName") { m_actors_names.insert(std::make_pair(pActor->GetName(), pActor)); }
+		const ActorComponents& components = pActor->GetComponents();
+		for (const auto&[k, v] : components) {
+			m_components[k].insert(actid);
+		}
 		return pActor;
 	}
 	else {
@@ -91,10 +97,12 @@ void BaseEngineLogic::VDestroyActor(const ActorId actorId) {
 
 	auto findIt = m_actors.find(actorId);
 	if (findIt != m_actors.end()) {
-		findIt->second->Destroy();
-		if (findIt->second->GetName() != "NoName") {
-			m_actors_names.erase(findIt->second->GetName());
+		if (findIt->second->GetName() != "NoName") { m_actors_names.erase(findIt->second->GetName()); }
+		const ActorComponents& components = findIt->second->GetComponents();
+		for (const auto& [k, v] : components) {
+			m_components[k].erase(actorId);
 		}
+		findIt->second->Destroy();
 		m_actors.erase(findIt);
 	}
 }
@@ -113,6 +121,14 @@ WeakActorPtr BaseEngineLogic::VGetActorByName(const std::string& actor_name) {
 		return findIt->second;
 	}
 	return WeakActorPtr();
+}
+
+const std::unordered_set<ActorId>& BaseEngineLogic::VGetActorsByComponent(ComponentId cid) {
+	return m_components.at(cid);
+}
+
+bool BaseEngineLogic::VCheckActorsExistByComponent(ComponentId cid) {
+	return m_components.count(cid);
 }
 
 void BaseEngineLogic::VModifyActor(const ActorId actorId, TiXmlElement* overrides) {
