@@ -55,11 +55,11 @@ bool Engine::Initialize(const RenderWindowConfig& cfg) {
 		return false;
 	}
 
-	LPCWSTR a = L"open data/sound/space_ambient122.mp3 type mpegvideo";
+	LPCWSTR a = L"open data/sound/space_ambient122_2.mp3 type mpegvideo";
 	int error = 99;
 	error = mciSendString(a, NULL, 0, 0);
 	int error2;
-	LPCWSTR b = L"play data/sound/space_ambient122.mp3";
+	LPCWSTR b = L"play data/sound/space_ambient122_2.mp3";
 	error2 = mciSendString(b, NULL, 0, 0);
 
 	return true;

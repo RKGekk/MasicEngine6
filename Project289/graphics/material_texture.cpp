@@ -1,7 +1,7 @@
 #include "material_texture.h"
 
-#include <algorithm> 
-#include <string>  
+#include <algorithm>
+#include <string>
 #include <functional>
 #include <cctype>
 
