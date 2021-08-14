@@ -140,6 +140,14 @@ void TransformComponent::SetYawPitchRoll3f(const DirectX::XMFLOAT3& ypr) {
     );
 }
 
+void TransformComponent::SetYawPitchRollDeg3f(const DirectX::XMFLOAT3& ypr) {
+    DirectX::XMFLOAT3 ypr_rad;
+    ypr_rad.x = DirectX::XMConvertToRadians(ypr.x);
+    ypr_rad.y = DirectX::XMConvertToRadians(ypr.y);
+    ypr_rad.z = DirectX::XMConvertToRadians(ypr.z);
+    SetYawPitchRoll3f(ypr_rad);
+}
+
 void TransformComponent::SetScale3f(const DirectX::XMFLOAT3& scale) {
     m_scale.x = scale.x;
     m_scale.y = scale.y;

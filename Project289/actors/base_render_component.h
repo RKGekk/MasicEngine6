@@ -40,6 +40,6 @@ protected:
     virtual TiXmlElement* VCreateBaseElement();
     virtual void VCreateInheritedXmlElements(TiXmlElement* pBaseElement) = 0;
 
-private:
+public:
     virtual std::shared_ptr<SceneNode> VGetSceneNode() override;
 };

@@ -2,11 +2,34 @@
 <World>
   <Actors>
 
+    <Actor name="memo1" type="MeshRenderComponent" resource="data\actors\MeshRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.0" y="1.0" z="0.0" />
+        <YawPitchRoll x="0.0" y="0.0" z="0.0" />
+        <Scale x="0.3" y="0.3" z="0.3" />
+      </TransformComponent>
+      <MeshRenderComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <!--<PixelShader>pixel_shader_basic_clip.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>-->
+        <PixelShader>pixel_shader_basic_clip.cso</PixelShader>
+        <VertexShader>logo_vs.cso</VertexShader>
+      </MeshRenderComponent>
+      <MemoComponent>
+        <StartTime>0.0f</StartTime>
+        <Duration>5.0f</Duration>
+        <Distance>1.0f</Distance>
+      </MemoComponent>
+      <MeshComponent>
+        <Obj>data\objects\note.obj</Obj>
+      </MeshComponent>
+    </Actor>
+
     <Actor name="sky" type="SkyRenderComponent" resource="data\actors\SkyRenderComponent.xml">
       <TransformComponent>
         <Position x="0.0" y="1.0" z="20.0" />
         <YawPitchRoll x="0.0" y="0.0" z="0.0" />
-        <Scale x="0.0" y="0.0" z="0.0" />
+        <Scale x="1.0" y="1.0" z="1.0" />
       </TransformComponent>
       <SkyRenderComponent>
         <SkySphereRadius>500.0f</SkySphereRadius>
@@ -22,7 +45,7 @@
       <TransformComponent>
         <Position x="0.0" y="0.0" z="0.0" />
         <YawPitchRoll x="0.0" y="0.0" z="0.0" />
-        <Scale x="0.0" y="0.0" z="0.0" />
+        <Scale x="1.0" y="1.0" z="1.0" />
       </TransformComponent>
       <SpawnComponent>
         <SpawnType>Sphere</SpawnType>
@@ -34,7 +57,7 @@
       <TransformComponent>
         <Position x="0.0" y="1.0" z="40.0" />
         <YawPitchRoll x="0.0" y="0.0" z="0.0" />
-        <Scale x="0.0" y="0.0" z="0.0" />
+        <Scale x="1.0" y="1.0" z="1.0" />
       </TransformComponent>
       <SpawnComponent>
         <SpawnType>Sphere</SpawnType>
@@ -370,6 +393,114 @@
       </OrientationRelationComponent>
     </Actor>
 
+    <Actor name="plant2" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="0.5463315" y="1.363296" z="7.5980455" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="0.3000" y="0.3000" z="0.3000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\Plants1_decimate02.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="1.000000" y="0.000000" z="1.000000" />
+        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
+        <Mass>1000000000.0</Mass>
+        <Damping>0.4</Damping>
+        <Radius>0.2</Radius>
+      </ParticleComponent>
+      <OrientationRelationComponent>
+        <RelateTo>ground</RelateTo>
+      </OrientationRelationComponent>
+    </Actor>
+
+    <Actor name="plant3" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="0.555936" y="-1.4893968" z="11.78064" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="0.2000" y="0.2000" z="0.2000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\Plants1_decimate02.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="1.000000" y="0.000000" z="1.000000" />
+        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
+        <Mass>1000000000.0</Mass>
+        <Damping>0.4</Damping>
+        <Radius>0.2</Radius>
+      </ParticleComponent>
+      <OrientationRelationComponent>
+        <RelateTo>ground</RelateTo>
+      </OrientationRelationComponent>
+    </Actor>
+
+    <Actor name="plant4" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="-0.1667776" y="0.119568" z="13.1867888" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="0.2000" y="0.2000" z="0.2000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\Plants1_decimate02.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="1.000000" y="0.000000" z="1.000000" />
+        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
+        <Mass>1000000000.0</Mass>
+        <Damping>0.4</Damping>
+        <Radius>0.2</Radius>
+      </ParticleComponent>
+      <OrientationRelationComponent>
+        <RelateTo>ground</RelateTo>
+      </OrientationRelationComponent>
+    </Actor>
+
+    <Actor name="plant5" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="0.1001011" y="-1.4046046" z="7.3476039" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="0.3000" y="0.3000" z="0.3000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\Plants1_decimate02.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="1.000000" y="0.000000" z="1.000000" />
+        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
+        <Mass>1000000000.0</Mass>
+        <Damping>0.4</Damping>
+        <Radius>0.2</Radius>
+      </ParticleComponent>
+      <OrientationRelationComponent>
+        <RelateTo>ground</RelateTo>
+      </OrientationRelationComponent>
+    </Actor>
+
     <Actor name="mount1" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
         <Position x="-1.98297" y="1.98297" z="8.0116" />
@@ -390,7 +521,7 @@
         <Acceleration x="0.000000" y="0.000000" z="0.000000" />
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
-        <Radius>0.5</Radius>
+        <Radius>0.4</Radius>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -505,9 +636,36 @@
       </OrientationRelationComponent>
     </Actor>
 
+    <Actor name="mount6" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="0.0746725" y="-1.6952468" z="8.1972231" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="0.4000" y="0.4000" z="0.4000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\mount.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="1.000000" y="0.000000" z="1.000000" />
+        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
+        <Mass>1000000000.0</Mass>
+        <Damping>0.4</Damping>
+        <Radius>0.4</Radius>
+      </ParticleComponent>
+      <OrientationRelationComponent>
+        <RelateTo>ground</RelateTo>
+      </OrientationRelationComponent>
+    </Actor>
+
     <Actor name="rock1" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
-        <Position x="0.1679983" y="1.2887785" z="7.6054112" />
+        <Position x="0.1266722" y="-1.20519785" z="7.48359205" />
         <YawPitchRoll x="0.000000" y="90.000000" z="0.000000" />
         <Scale x="0.1000" y="0.1000" z="0.1000" />
       </TransformComponent>
@@ -525,7 +683,7 @@
         <Acceleration x="0.000000" y="0.000000" z="0.000000" />
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
-        <Radius>0.1</Radius>
+        <Radius>0.05</Radius>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -534,7 +692,7 @@
 
     <Actor name="rock2" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
-        <Position x="0.59315865" y="0" z="7.017986" />
+        <Position x="1.365984" y="0.6725202" z="11.84035065" />
         <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
         <Scale x="0.1000" y="0.1000" z="0.1000" />
       </TransformComponent>
@@ -606,7 +764,7 @@
         <Acceleration x="0.000000" y="0.000000" z="0.000000" />
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
-        <Radius>0.2</Radius>
+        <Radius>0.15</Radius>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -633,7 +791,7 @@
         <Acceleration x="0.000000" y="0.000000" z="0.000000" />
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
-        <Radius>0.2</Radius>
+        <Radius>0.1</Radius>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -714,7 +872,7 @@
         <Acceleration x="0.000000" y="0.000000" z="0.000000" />
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
-        <Radius>0.2</Radius>
+        <Radius>0.15</Radius>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -741,7 +899,7 @@
         <Acceleration x="0.000000" y="0.000000" z="0.000000" />
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
-        <Radius>0.2</Radius>
+        <Radius>0.15</Radius>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -768,7 +926,34 @@
         <Acceleration x="0.000000" y="0.000000" z="0.000000" />
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
-        <Radius>0.3</Radius>
+        <Radius>0.2</Radius>
+      </ParticleComponent>
+      <OrientationRelationComponent>
+        <RelateTo>ground</RelateTo>
+      </OrientationRelationComponent>
+    </Actor>
+
+    <Actor name="rock11" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="-0.3222636" y="0" z="13.06613095" />
+        <YawPitchRoll x="0.000000" y="90.000000" z="0.000000" />
+        <Scale x="0.1000" y="0.1000" z="0.1000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\rock1.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="1.000000" y="0.000000" z="1.000000" />
+        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
+        <Mass>1000000000.0</Mass>
+        <Damping>0.1</Damping>
+        <Radius>0.05</Radius>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -833,6 +1018,61 @@
           <Specular r="0.087647" g="0.138235" b="0.130588" a="1.0" />
           <Attenuation const="0.1" linear="0.0" exp="0.0" />
           <Shape range="100.0" spot="24.0"/>
+        </Light>
+      </LightRenderComponent>
+    </Actor>
+
+    <Actor name="PointLight1" type="LightRenderComponent" resource="data\actors\LightRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="0.000000" z="6.850000" />
+        <YawPitchRoll x="00.000000" y="0.000000" z="0.000000" />
+        <Scale x="1.000000" y="1.000000" z="1.000000" />
+      </TransformComponent>
+      <LightRenderComponent>
+        <Color r="0.9" g="0.9" b="0.9" a="1.0"/>
+        <Light type="PointLight" lantern="false">
+          <Ambient r="0.142" g="0.000" b="0.167" a="1.0" />
+          <Diffuse r="0.456" g="0.000" b="0.000" a="1.0" />
+          <Specular r="0.000" g="0.088" b="0.044" a="1.0" />
+          <Attenuation const="0.0" linear="0.334" exp="0.0" />
+          <Shape range="10.0" spot="6.0"/>
+        </Light>
+      </LightRenderComponent>
+    </Actor>
+
+    <Actor name="PointLight2" type="LightRenderComponent" resource="data\actors\LightRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.694000" y="-1.300000" z="14" />
+        <YawPitchRoll x="00.000000" y="0.000000" z="0.000000" />
+        <Scale x="2.000000" y="2.000000" z="2.000000" />
+      </TransformComponent>
+      <LightRenderComponent>
+        <Color r="0.9" g="0.9" b="0.9" a="1.0"/>
+        <Light type="PointLight" lantern="false">
+          <Ambient r="0.050" g="0.000" b="0.142" a="1.0" />
+          <Diffuse r="0.216" g="0.074" b="0.074" a="1.0" />
+          <Specular r="0.093" g="0.027" b="0.027" a="1.0" />
+          <Attenuation const="0.0" linear="0.040" exp="0.033" />
+          <Shape range="10.0" spot="6.0"/>
+        </Light>
+      </LightRenderComponent>
+    </Actor>
+
+
+    <Actor name="PointLight3" type="LightRenderComponent" resource="data\actors\LightRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.000000" y="0.000000" z="6.70000" />
+        <YawPitchRoll x="00.000000" y="0.000000" z="0.000000" />
+        <Scale x="1.000000" y="1.000000" z="1.000000" />
+      </TransformComponent>
+      <LightRenderComponent>
+        <Color r="0.9" g="0.9" b="0.9" a="1.0"/>
+        <Light type="PointLight" lantern="false">
+          <Ambient r="0.000" g="0.000" b="0.000" a="1.0" />
+          <Diffuse r="0.382" g="0.322" b="0.322" a="1.0" />
+          <Specular r="0.000" g="0.000" b="0.000" a="1.0" />
+          <Attenuation const="0.0" linear="4.364" exp="0.0" />
+          <Shape range="0.435" spot="0.241"/>
         </Light>
       </LightRenderComponent>
     </Actor>

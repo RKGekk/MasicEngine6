@@ -38,6 +38,9 @@ class MeshRenderComponent : public BaseRenderComponent {
     float m_max_x = m_min; float m_max_y = m_min; float m_max_z = m_min;
     float m_min_x = m_max; float m_min_y = m_max; float m_min_z = m_max;
 
+    float m_scale;
+    DirectX::XMFLOAT3 m_scale3f;
+
 public:
     static const std::string g_Name;
     virtual const std::string& VGetName() const;

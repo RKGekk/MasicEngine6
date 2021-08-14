@@ -185,7 +185,7 @@ void PhysicsComponent::RemoveAngularAcceleration() {
 }
 
 DirectX::XMFLOAT3 PhysicsComponent::GetVelocity3f() {
-    DirectX::XMFLOAT3 res;
+    DirectX::XMFLOAT3 res = {0.0f, 0.0f, 0.0f};
     //DirectX::XMStoreFloat3(&res, m_pGamePhysics->VGetVelocity(m_pOwner->GetId()));
     return res;
 }

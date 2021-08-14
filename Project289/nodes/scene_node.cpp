@@ -324,7 +324,7 @@ DirectX::XMVECTOR SceneNode::GetWorldPosition() const {
 	return DirectX::XMLoadFloat3(&res);
 }
 
-DirectX::XMFLOAT3 SceneNode::GetDirection() const {
+DirectX::XMFLOAT3 SceneNode::GetDirection3f() const {
 	DirectX::XMFLOAT4X4 justRot4x4 = m_Props.m_ToWorld;
 	justRot4x4.m[3][0] = 0.0f;
 	justRot4x4.m[3][1] = 0.0f;
@@ -338,6 +338,32 @@ DirectX::XMFLOAT3 SceneNode::GetDirection() const {
 	DirectX::XMStoreFloat3(&result, out);
 
 	return result;
+}
+
+DirectX::XMVECTOR SceneNode::GetDirection() const {
+	DirectX::XMFLOAT3 res = GetDirection3f();
+	return DirectX::XMLoadFloat3(&res);
+}
+
+DirectX::XMFLOAT3 SceneNode::GetUp3f() const {
+	DirectX::XMFLOAT4X4 justRot4x4 = m_Props.m_ToWorld;
+	justRot4x4.m[3][0] = 0.0f;
+	justRot4x4.m[3][1] = 0.0f;
+	justRot4x4.m[3][2] = 0.0f;
+	justRot4x4.m[3][3] = 1.0f;
+	DirectX::XMMATRIX justRot = DirectX::XMLoadFloat4x4(&justRot4x4);
+
+	DirectX::XMVECTOR up = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+	DirectX::XMVECTOR out = DirectX::XMVector4Transform(up, justRot);
+	DirectX::XMFLOAT3 result;
+	DirectX::XMStoreFloat3(&result, out);
+
+	return result;
+}
+
+DirectX::XMVECTOR SceneNode::GetUp() const {
+	DirectX::XMFLOAT3 res = GetUp3f();
+	return DirectX::XMLoadFloat3(&res);
 }
 
 float SceneNode::GetRadius() const {

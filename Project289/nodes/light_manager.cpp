@@ -22,7 +22,7 @@ void LightManager::CalcLighting(Scene* pScene) {
 				dl.Ambient = props.m_Ambient;
 				dl.Diffuse = props.m_Diffuse;
 				dl.Specular = props.m_Specular;
-				dl.Direction = light->GetDirection();
+				dl.Direction = light->GetDirection3f();
 				gDirLights.push_back(dl);
 			}
 			break;
@@ -49,7 +49,7 @@ void LightManager::CalcLighting(Scene* pScene) {
 				sl.Att.y = props.m_Attenuation[1];
 				sl.Att.z = props.m_Attenuation[2];
 				sl.Range = props.m_Range;
-				sl.Direction = light->GetDirection();
+				sl.Direction = light->GetDirection3f();
 				sl.Spot = props.m_Spot;
 				gSpotLights.push_back(sl);
 			}

@@ -124,17 +124,17 @@ HRESULT ActorMenuUI::VOnRender(double fTime, float fElapsedTime) {
 
 	if (ImGui::CollapsingHeader("Fog")) {
 		m_fog_start = g_pApp->GetConfig().m_fog_start;
-		if (ImGui::SliderFloat("Start", ((float*)&m_fog_start), 0.1f, 10.0f)) {
+		if (ImGui::SliderFloat("Fog Start At", ((float*)&m_fog_start), 0.1f, 10.0f)) {
 			g_pApp->GetConfig().m_fog_start = m_fog_start;
 		}
 
 		m_fog_range = g_pApp->GetConfig().m_fog_range;
-		if (ImGui::SliderFloat("Range", ((float*)&m_fog_range), 0.5f, 30.0f)) {
+		if (ImGui::SliderFloat("Fog Range To", ((float*)&m_fog_range), 0.5f, 30.0f)) {
 			g_pApp->GetConfig().m_fog_range = m_fog_range;
 		}
 		
 		m_fog_color = g_pApp->GetConfig().m_fog_color;
-		if (ImGui::ColorEdit4("Color", ((float*)&m_fog_color))) {
+		if (ImGui::ColorEdit4("Fog Color", ((float*)&m_fog_color))) {
 			g_pApp->GetConfig().m_fog_color = m_fog_color;
 		}
 	}
@@ -153,6 +153,9 @@ HRESULT ActorMenuUI::VOnRender(double fTime, float fElapsedTime) {
 					m_transform_exists = true;
 					m_transform = tc->GetTransform4x4f();
 					m_yaw_pith_roll = tc->GetYawPitchRoll3f();
+					m_yaw_pith_roll.x = DirectX::XMConvertToDegrees(m_yaw_pith_roll.x);
+					m_yaw_pith_roll.y = DirectX::XMConvertToDegrees(m_yaw_pith_roll.y);
+					m_yaw_pith_roll.z = DirectX::XMConvertToDegrees(m_yaw_pith_roll.z);
 					m_scale = tc->GetScale3f();
 				}
 				else {
@@ -237,10 +240,10 @@ HRESULT ActorMenuUI::VOnRender(double fTime, float fElapsedTime) {
 						tc->SetScale3f(m_scale);
 					}
 				}
-				if (m_transform_exists && ImGui::SliderFloat3("Yaw Pith Roll", ((float*)&m_yaw_pith_roll), -DirectX::XM_PI, DirectX::XM_PI)) {
+				if (m_transform_exists && ImGui::SliderFloat3("Yaw Pith Roll", ((float*)&m_yaw_pith_roll), -180.0f, 180.0f)) {
 					if (tc) {
 						m_transform_exists = true;
-						tc->SetYawPitchRoll3f(m_yaw_pith_roll);
+						tc->SetYawPitchRollDeg3f(m_yaw_pith_roll);
 					}
 				}
 				if (m_light_exists && ImGui::ColorEdit4("Ambient", ((float*)&m_ambient))) {

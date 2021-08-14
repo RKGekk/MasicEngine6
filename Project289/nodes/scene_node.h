@@ -72,7 +72,10 @@ public:
 	DirectX::XMFLOAT3 GetWorldPosition3() const;
 	DirectX::XMVECTOR GetWorldPosition() const;
 
-	DirectX::XMFLOAT3 GetDirection() const;
+	DirectX::XMFLOAT3 GetDirection3f() const;
+	DirectX::XMVECTOR GetDirection() const;
+	DirectX::XMFLOAT3 GetUp3f() const;
+	DirectX::XMVECTOR GetUp() const;
 
 	float GetRadius() const;
 	void SetRadius(const float radius);

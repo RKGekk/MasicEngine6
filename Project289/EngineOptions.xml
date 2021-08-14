@@ -17,9 +17,9 @@
     <GameCameraRotateX>22.5</GameCameraRotateX>
   </Camera>
   <Fog>
-    <FogStart>2.0</FogStart>
-    <FogRange>3.5</FogRange>
-    <FogColor r="0.000000" g="0.000000" b="0.000000" a="1.000000"/>;
+    <FogStart>1.953</FogStart>
+    <FogRange>4.444</FogRange>
+    <FogColor r="0.374000" g="0.000000" b="0.794000" a="1.000000"/>;
   </Fog>
   <Sound sfxVolume="50" musicVolume="25"/>
 </PlayerOptions>

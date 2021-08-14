@@ -630,6 +630,9 @@
     <ClCompile Include="actors\time_out_particle_component.cpp">
       <Filter>Source Files\actors</Filter>
     </ClCompile>
+    <ClCompile Include="actors\memo_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard\keyboard_event.h">
@@ -1289,6 +1292,9 @@
     <ClInclude Include="actors\time_out_particle_component.h">
       <Filter>Header Files\actors</Filter>
     </ClInclude>
+    <ClInclude Include="actors\memo_component.h">
+      <Filter>Header Files\actors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shaders\pixel_shader.hlsl">
@@ -1836,9 +1842,29 @@
     <None Include="data\textures\danger.png">
       <Filter>Resource Files\textures</Filter>
     </None>
-    <None Include="data\objects\danger.mtl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="data\objects\danger.obj" />
+    <None Include="data\objects\danger.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\danger.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\win.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\win.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\note.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\note.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\losing.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\losing.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -88,6 +88,13 @@ std::shared_ptr<SceneNode> MeshRenderComponent::VCreateSceneNode() {
 	}
 	m_resource_directory = pMeshComponent->GetResourceDirecory();
 
+	DirectX::XMFLOAT3 xm_scale = pTransformComponent->GetScale3f();
+	float scale = xm_scale.x;
+	scale = scale > xm_scale.y ? scale : xm_scale.y;
+	scale = scale > xm_scale.z ? scale : xm_scale.z;
+	m_scale = scale;
+	m_scale3f = xm_scale;
+
 	std::shared_ptr<SceneNode> root_node(new SceneNode(this, RenderPass::RenderPass_Actor, &pTransformComponent->GetTransform4x4f()));
 	const aiScene* pScene = pMeshComponent->GetScene();
 	ProcessNode(pScene->mRootNode, pScene, root_node);
@@ -179,7 +186,8 @@ std::shared_ptr<SceneNode> MeshRenderComponent::ProcessMesh(aiMesh* mesh, const 
 		radius = radius > z ? radius : z;
 		result->SetRadius(radius);*/
 		float radius = DirectX::XMVectorGetX(DirectX::XMVector3Length(DirectX::XMVectorSet(x, y, z, 0.0f)));
-		result->SetRadius(radius);
+		//result->SetRadius(radius);
+		result->SetRadius(radius * m_scale);
 	}
 	return result;
 }
