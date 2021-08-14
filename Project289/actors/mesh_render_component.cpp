@@ -103,6 +103,7 @@ std::shared_ptr<SceneNode> MeshRenderComponent::VCreateSceneNode() {
 	if (pParticleComponent && !m_auto_radius) {
 		root_node->SetRadius(pParticleComponent->VGetParticle().getRadius());
 	}
+	root_node->SetActive(m_active);
 
 	return root_node;
 }

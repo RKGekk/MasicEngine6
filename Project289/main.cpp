@@ -8,6 +8,7 @@
 #pragma comment(lib,"DXGI.lib")
 #pragma comment(lib,"D3DCompiler.lib")
 #pragma comment(lib,"assimp-vc142-mtd.lib")
+#pragma comment(lib, "winmm.lib")
 
 #include "tools/error_logger.h"
 #include "engine/render_window.h"

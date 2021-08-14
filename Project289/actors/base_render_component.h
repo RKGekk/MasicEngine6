@@ -18,6 +18,7 @@ class BaseRenderComponent : public RenderComponentInterface {
 protected:
     DirectX::XMFLOAT4 m_color;
     std::shared_ptr<SceneNode> m_pSceneNode;
+    bool m_active;
 
 public:
     virtual bool VInit(TiXmlElement* pData) override;

@@ -10,6 +10,9 @@
 #include "main_menu_view.h"
 #include "i_engine_view.h"
 
+#include <windows.h>
+#include <Mmsystem.h>
+
 Engine* g_pApp = nullptr;
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -51,6 +54,13 @@ bool Engine::Initialize(const RenderWindowConfig& cfg) {
 	if (!m_game) {
 		return false;
 	}
+
+	LPCWSTR a = L"open data/sound/space_ambient122.mp3 type mpegvideo";
+	int error = 99;
+	error = mciSendString(a, NULL, 0, 0);
+	int error2;
+	LPCWSTR b = L"play data/sound/space_ambient122.mp3";
+	error2 = mciSendString(b, NULL, 0, 0);
 
 	return true;
 }

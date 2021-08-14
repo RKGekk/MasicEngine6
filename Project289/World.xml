@@ -25,6 +25,58 @@
       </MeshComponent>
     </Actor>
 
+    <Actor name="memo2" type="MeshRenderComponent" resource="data\actors\MeshRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.0" y="1.0" z="0.0" />
+        <YawPitchRoll x="0.0" y="0.0" z="0.0" />
+        <Scale x="0.4" y="0.4" z="0.4" />
+      </TransformComponent>
+      <MeshRenderComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <!--<PixelShader>pixel_shader_basic_clip.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>-->
+        <PixelShader>pixel_shader_basic_clip.cso</PixelShader>
+        <VertexShader>logo_vs.cso</VertexShader>
+        <Active>false</Active>
+      </MeshRenderComponent>
+      <MemoComponent>
+        <StartTime>600.0f</StartTime>
+        <Duration>60.0f</Duration>
+        <Distance>0.5f</Distance>
+        <Condition>win</Condition>
+        <Target>enemy_target</Target>
+      </MemoComponent>
+      <MeshComponent>
+        <Obj>data\objects\win.obj</Obj>
+      </MeshComponent>
+    </Actor>
+
+    <Actor name="memo3" type="MeshRenderComponent" resource="data\actors\MeshRenderComponent.xml">
+      <TransformComponent>
+        <Position x="0.0" y="1.0" z="0.0" />
+        <YawPitchRoll x="0.0" y="0.0" z="0.0" />
+        <Scale x="0.4" y="0.4" z="0.4" />
+      </TransformComponent>
+      <MeshRenderComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <!--<PixelShader>pixel_shader_basic_clip.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>-->
+        <PixelShader>pixel_shader_basic_clip.cso</PixelShader>
+        <VertexShader>logo_vs.cso</VertexShader>
+        <Active>false</Active>
+      </MeshRenderComponent>
+      <MemoComponent>
+        <StartTime>600.0f</StartTime>
+        <Duration>60.0f</Duration>
+        <Distance>0.5f</Distance>
+        <Condition>lose</Condition>
+        <Target>enemy_target</Target>
+      </MemoComponent>
+      <MeshComponent>
+        <Obj>data\objects\losing.obj</Obj>
+      </MeshComponent>
+    </Actor>
+
     <Actor name="sky" type="SkyRenderComponent" resource="data\actors\SkyRenderComponent.xml">
       <TransformComponent>
         <Position x="0.0" y="1.0" z="20.0" />

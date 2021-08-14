@@ -1,6 +1,24 @@
 #include "base_render_component.h"
 
+#include <algorithm>
+#include <functional>
+#include <cctype>
+
 bool BaseRenderComponent::VInit(TiXmlElement* pData) {
+	m_active = true;
+
+	TiXmlElement* pActive = pData->FirstChildElement("Active");
+	if (pActive) {
+		std::string sActive = pActive->FirstChild()->Value();
+		std::for_each(sActive.begin(), sActive.end(), [](char& c) { c = ::toupper(c); });
+		if (sActive == "TRUE" || sActive == "1") {
+			m_active = true;
+		}
+		else {
+			m_active = false;
+		}
+	}
+
 	TiXmlElement* pColorNode = pData->FirstChildElement("Color");
 	if (pColorNode) {
 		m_color = LoadColor(pColorNode);

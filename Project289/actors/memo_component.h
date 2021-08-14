@@ -28,4 +28,7 @@ protected:
 	float m_start_time;
 	float m_duration;
 	float m_distance;
+	bool m_condition_present;
+	std::string m_condition;
+	std::string m_target;
 };
