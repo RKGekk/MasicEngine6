@@ -13,6 +13,7 @@ struct EngineOptions {
 	bool m_fullScreen;
 	int m_screenWidth;
 	int m_screenHeight;
+	bool m_debug_ui;
 
 	float m_screenNear;
 	float m_screenFar;

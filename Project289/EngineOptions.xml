@@ -6,6 +6,7 @@
     <Height>720</Height>
     <RunFullSpeed>no</RunFullSpeed>
     <FullScreen>no</FullScreen>
+    <DebugUI>true</DebugUI>
   </Graphics>
   <Camera>
     <ScreenFar>10</ScreenFar>

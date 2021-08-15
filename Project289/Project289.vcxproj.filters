@@ -1953,5 +1953,20 @@
     <None Include="data\textures\drop.png">
       <Filter>Resource Files\textures</Filter>
     </None>
+    <None Include="data\objects\Beetle1.obj">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\objects\Beetle1.mtl">
+      <Filter>Resource Files\models</Filter>
+    </None>
+    <None Include="data\textures\Beetle_Material.001_OcclusionRoughnessMetallic.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\Beetle_Material.001_Normal.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\textures\Beetle_Material.001_BaseColor.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </None>
   </ItemGroup>
 </Project>

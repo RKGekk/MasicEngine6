@@ -4,6 +4,9 @@
 #include "tools/tinyxml/tinyxml.h"
 #include <memory>
 #include <utility>
+#include <algorithm>
+#include <functional>
+#include <cctype>
 
 EngineOptions::EngineOptions() {
 	m_Renderer = Renderer::Renderer_D3D11;
@@ -11,6 +14,7 @@ EngineOptions::EngineOptions() {
 	m_screenHeight = 600;
 	m_runFullSpeed = false;
 	m_fullScreen = false;
+	m_debug_ui = true;
 
 	m_soundEffectsVolume = 1.0f;
 	m_musicVolume = 1.0f;
@@ -72,13 +76,22 @@ void EngineOptions::Init(const std::string& xmlFileName) {
 			TiXmlElement* pRunFullSpeed = pGraphics->FirstChildElement("RunFullSpeed");
 			if (pRunFullSpeed) {
 				std::string sRunFullSpeed = pRunFullSpeed->FirstChild()->Value();
-				m_runFullSpeed = (sRunFullSpeed == "yes") ? true : false;
+				std::for_each(sRunFullSpeed.begin(), sRunFullSpeed.end(), [](char& c) { c = ::toupper(c); });
+				m_runFullSpeed = (sRunFullSpeed == "YES" || sRunFullSpeed == "TRUE" || sRunFullSpeed == "1") ? true : false;
 			}
 
 			TiXmlElement* pFullScreen = pGraphics->FirstChildElement("FullScreen");
 			if (pFullScreen) {
 				std::string sFullScreen = pFullScreen->FirstChild()->Value();
-				m_fullScreen = (sFullScreen == "yes") ? true : false;
+				std::for_each(sFullScreen.begin(), sFullScreen.end(), [](char& c) { c = ::toupper(c); });
+				m_fullScreen = (sFullScreen == "YES" || sFullScreen == "TRUE" || sFullScreen == "1") ? true : false;
+			}
+
+			TiXmlElement* pDebugUI = pGraphics->FirstChildElement("DebugUI");
+			if (pFullScreen) {
+				std::string sDebugUI = pDebugUI->FirstChild()->Value();
+				std::for_each(sDebugUI.begin(), sDebugUI.end(), [](char& c) { c = ::toupper(c); });
+				m_debug_ui = (sDebugUI == "YES" || sDebugUI == "TRUE" || sDebugUI == "1") ? true : false;
 			}
 		}
 

@@ -21,7 +21,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 	bool can_run = engine.Initialize(
 		RenderWindowConfig{EngineOptions("EngineOptions.xml"s)}
 			.set_hInstance(hInstance)
-			.set_window_title("Title")
+			.set_window_title("Nolas Universe")
 			.set_window_class("MyTestWindowsClass")
 	);
 	if (can_run) {
