@@ -5,6 +5,8 @@
 #include <functional>
 #include <cctype>
 
+std::unordered_map<std::string, std::pair<Microsoft::WRL::ComPtr<ID3D11Resource>, Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>>> MaterialTexture::m_texture_cache;
+
 MaterialTexture::MaterialTexture() : m_type(aiTextureType::aiTextureType_UNKNOWN) {}
 
 MaterialTexture::MaterialTexture(ID3D11Device* device, const std::string& fileName) : MaterialTexture(device, fileName, aiTextureType::aiTextureType_UNKNOWN){}
@@ -28,22 +30,42 @@ MaterialTexture::MaterialTexture(ID3D11Device* device, const std::string& fileNa
 	std::string upper_ext = p.extension().string();
 	std::for_each(upper_ext.begin(), upper_ext.end(), [](char& c) { c = ::toupper(c); });
 	if (upper_ext == ".DDS") {
-		HRESULT hr = DirectX::CreateDDSTextureFromFile(device, s2w(fileName).c_str(), reinterpret_cast<ID3D11Resource**>(m_texture.GetAddressOf()), m_texture_view.GetAddressOf());
-		if (FAILED(hr)) {
-			InitializeColorMaterial(device, MaterialColors::UnloadedTextureColor, type);
+		if (m_texture_cache.count(fileName)) {
+			auto& tp = m_texture_cache[fileName];
+			m_texture = tp.first;
+			m_texture_view = tp.second;
+		}
+		else {
+			HRESULT hr = DirectX::CreateDDSTextureFromFile(device, s2w(fileName).c_str(), m_texture.GetAddressOf(), m_texture_view.GetAddressOf());
+			if (FAILED(hr)) {
+				InitializeColorMaterial(device, MaterialColors::UnloadedTextureColor, type);
+			}
+			else {
+				m_texture_cache[fileName] = { m_texture, m_texture_view };
+			}
 		}
 	}
 	else {
-		HRESULT hr = DirectX::CreateWICTextureFromFile(device, s2w(fileName).c_str(), reinterpret_cast<ID3D11Resource**>(m_texture.GetAddressOf()), m_texture_view.GetAddressOf());
-		if (FAILED(hr)) {
-			InitializeColorMaterial(device, MaterialColors::UnloadedTextureColor, type);
+		if (m_texture_cache.count(fileName)) {
+			auto& tp = m_texture_cache[fileName];
+			m_texture = tp.first;
+			m_texture_view = tp.second;
+		}
+		else {
+			HRESULT hr = DirectX::CreateWICTextureFromFile(device, s2w(fileName).c_str(), m_texture.GetAddressOf(), m_texture_view.GetAddressOf());
+			if (FAILED(hr)) {
+				InitializeColorMaterial(device, MaterialColors::UnloadedTextureColor, type);
+			}
+			else {
+				m_texture_cache[fileName] = { m_texture, m_texture_view };
+			}
 		}
 	}
 }
 
 MaterialTexture::MaterialTexture(ID3D11Device* device, const uint8_t* pData, size_t size, aiTextureType type) {
 	m_type = type;
-	HRESULT hr = DirectX::CreateWICTextureFromMemory(device, pData, size, reinterpret_cast<ID3D11Resource**>(m_texture.GetAddressOf()), m_texture_view.GetAddressOf());
+	HRESULT hr = DirectX::CreateWICTextureFromMemory(device, pData, size, m_texture.GetAddressOf(), m_texture_view.GetAddressOf());
 	COM_ERROR_IF_FAILED(hr, "Failed create texture from memory.");
 }
 
@@ -83,7 +105,7 @@ void MaterialTexture::InitializeTextureMaterial(ID3D11Device* device, const Mate
 	ZeroMemory(&init_data, sizeof(init_data));
 	init_data.pSysMem = color_data;
 	init_data.SysMemPitch = width * sizeof(MaterialColor);
-	HRESULT hr = device->CreateTexture2D(&textureDesc, &init_data, m_texture.GetAddressOf());
+	HRESULT hr = device->CreateTexture2D(&textureDesc, &init_data, reinterpret_cast<ID3D11Texture2D**>(m_texture.GetAddressOf()));
 	COM_ERROR_IF_FAILED(hr, "Failed to initialize texture from color data.");
 
 	CD3D11_SHADER_RESOURCE_VIEW_DESC srvDesc(D3D11_SRV_DIMENSION_TEXTURE2D, DXGI_FORMAT_R8G8B8A8_UNORM);

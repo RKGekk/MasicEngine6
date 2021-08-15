@@ -3,6 +3,9 @@
 #include <d3d11.h>
 #include <wrl.h>
 #include <filesystem>
+#include <unordered_map>
+#include <string>
+#include <utility>
 
 #include <assimp/material.h>
 #include <WICTextureLoader.h>
@@ -22,6 +25,8 @@ enum class TextureStorageType {
 	Disk
 };
 
+//using ResourcePair = std::pair<ID3D11Resource*, ID3D11ShaderResourceView*>;
+
 class MaterialTexture {
 public:
 	MaterialTexture();
@@ -39,8 +44,11 @@ private:
 	void InitializeColorMaterial(ID3D11Device* device, const MaterialColor& color, aiTextureType type);
 	void InitializeTextureMaterial(ID3D11Device* device, const MaterialColor* color_data, UINT width, UINT height, aiTextureType type);
 
-	Microsoft::WRL::ComPtr<ID3D11Texture2D> m_texture;
+	Microsoft::WRL::ComPtr<ID3D11Resource> m_texture;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture_view;
+
+	static std::unordered_map<std::string, std::pair<Microsoft::WRL::ComPtr<ID3D11Resource>, Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>>> m_texture_cache;
+	//static std::unordered_map<std::string, std::pair<ID3D11Resource*, ID3D11ShaderResourceView*>> m_texture_cache;
 
 	aiTextureType m_type;
 };
