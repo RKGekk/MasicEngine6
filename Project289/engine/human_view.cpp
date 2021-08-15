@@ -83,6 +83,9 @@ LRESULT HumanView::VOnMsgProc(HWND m_hWnd, UINT m_uMsg, WPARAM m_wParam, LPARAM 
 	LRESULT result = 0;
 	switch (m_uMsg) {
 		case WM_KEYDOWN: {
+			if (((unsigned int)m_wParam) == (VK_ESCAPE)) { 
+				g_pApp->AbortGame();
+			}
 			if (m_keyboard_handlers.size()) {
 				for (auto& handler : m_keyboard_handlers) {
 					result |= handler->VOnKeyDown(static_cast<const BYTE>(m_wParam));

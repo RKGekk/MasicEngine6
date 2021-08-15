@@ -105,6 +105,10 @@ HRESULT MainMenuUI::VOnRender(double fTime, float fElapsedTime) {
 		g_pApp->GetGameLogic()->AttachProcess(exec2);
 	};
 
+	if (ImGui::Button("Quit")) {
+		g_pApp->AbortGame();
+	}
+
 	ImGui::End();
 
 	return S_OK;

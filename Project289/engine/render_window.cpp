@@ -22,31 +22,79 @@ bool RenderWindow::Initialize(Engine& windowContainer, const RenderWindowConfig&
 
 	int screenWidth = GetSystemMetrics(SM_CXSCREEN);
 	int screenHeight = GetSystemMetrics(SM_CYSCREEN);
-	int posX = (GetSystemMetrics(SM_CXSCREEN) - cfg.width) / 2;
-	int posY = (GetSystemMetrics(SM_CYSCREEN) - cfg.height) / 2;
+	int posX = 0;
+	int posY = 0;
 
-	DWORD style = WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU;
-	RECT wr;
-	wr.left = 0;
-	wr.top = 0;
-	wr.right = wr.left + cfg.width;
-	wr.bottom = wr.top + cfg.height;
-	AdjustWindowRect(&wr, style, FALSE);
+	// Setup the screen settings depending on whether it is running in full screen or in windowed mode.
+	if (!cfg.is_windowed_mode) {
 
-	m_handle = CreateWindowEx(
-		0,
-		s2w(m_window_config.window_class).c_str(),
-		s2w(m_window_config.window_title).c_str(),
-		style,
-		posX,
-		posY,
-		wr.right - wr.left,
-		wr.bottom - wr.top,
-		NULL,
-		NULL,
-		m_window_config.hInstance,
-		&windowContainer
-	);
+		m_window_config.height = screenHeight;
+		m_window_config.width = screenWidth;
+
+		// If full screen set the screen to maximum size of the users desktop and 32bit.
+		DEVMODE dmScreenSettings;
+		memset(&dmScreenSettings, 0, sizeof(dmScreenSettings));
+		dmScreenSettings.dmSize = sizeof(dmScreenSettings);
+		dmScreenSettings.dmPelsWidth = (unsigned long)screenWidth;
+		dmScreenSettings.dmPelsHeight = (unsigned long)screenHeight;
+		dmScreenSettings.dmBitsPerPel = 32;
+		dmScreenSettings.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
+
+		// Change the display settings to full screen.
+		ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN);
+
+		// Set the position of the window to the top left corner.
+		posX = posY = 0;
+
+		// Create the window with the screen settings and get the handle to it.
+		m_handle = CreateWindowEx(
+			WS_EX_APPWINDOW,
+			s2w(m_window_config.window_class).c_str(),
+			s2w(m_window_config.window_title).c_str(),
+			//WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP, // окно без рамки
+			WS_OVERLAPPEDWINDOW,
+			posX,
+			posY,
+			screenWidth,
+			screenHeight,
+			NULL,
+			NULL,
+			m_window_config.hInstance,
+			&windowContainer
+		);
+	}
+	else {
+		// If windowed then set it to 800x600 resolution.
+		screenWidth = cfg.width;
+		screenHeight = cfg.height;
+
+		// Place the window in the middle of the screen.
+		posX = (GetSystemMetrics(SM_CXSCREEN) - screenWidth) / 2;
+		posY = (GetSystemMetrics(SM_CYSCREEN) - screenHeight) / 2;
+
+		DWORD style = WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU;
+		RECT wr;
+		wr.left = 0;
+		wr.top = 0;
+		wr.right = wr.left + cfg.width;
+		wr.bottom = wr.top + cfg.height;
+		AdjustWindowRect(&wr, style, FALSE);
+
+		m_handle = CreateWindowEx(
+			0,
+			s2w(m_window_config.window_class).c_str(),
+			s2w(m_window_config.window_title).c_str(),
+			style,
+			posX,
+			posY,
+			wr.right - wr.left,
+			wr.bottom - wr.top,
+			NULL,
+			NULL,
+			m_window_config.hInstance,
+			&windowContainer
+		);
+	}
 
 	if (m_handle == NULL) {
 		ErrorLogger::Log(GetLastError(), L"CreateWindowEx Failed for window: "s + s2w(m_window_config.window_title));
@@ -156,6 +204,13 @@ void RenderWindow::RegisterWindowClass() {
 	wc.cbSize = sizeof(WNDCLASSEX);
 
 	RegisterClassEx(&wc);
+}
+
+RenderWindowConfig::RenderWindowConfig(const EngineOptions& opt) {
+	width = opt.m_screenWidth;
+	height = opt.m_screenHeight;
+	is_windowed_mode = !opt.m_fullScreen;
+	options = opt;
 }
 
 RenderWindowConfig& RenderWindowConfig::set_hInstance(HINSTANCE hInstance) {

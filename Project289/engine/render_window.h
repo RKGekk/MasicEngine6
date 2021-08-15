@@ -16,12 +16,7 @@ class Engine;
 class RenderWindowConfig {
 public:
 	RenderWindowConfig() = default;
-	RenderWindowConfig(const EngineOptions& opt) {
-		width = opt.m_screenWidth;
-		height = opt.m_screenHeight;
-		is_windowed_mode = !opt.m_fullScreen;
-		options = opt;
-	}
+	RenderWindowConfig(const EngineOptions& opt);
 
 	RenderWindowConfig& set_hInstance(HINSTANCE hInstance);
 	RenderWindowConfig& set_window_title(std::string title);

@@ -37,6 +37,8 @@ bool Engine::Initialize(const RenderWindowConfig& cfg) {
 	if (!m_render_window.Initialize(*this, cfg)) {
 		return false;
 	}
+	m_options.m_screenHeight = m_render_window.GetHeight();
+	m_options.m_screenWidth = m_render_window.GetWidth();
 
 	m_renderer = std::make_unique<D3DRenderer11>();
 	if (!m_renderer->Initialize(m_render_window)) {
