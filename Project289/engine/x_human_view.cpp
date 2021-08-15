@@ -8,7 +8,8 @@ const std::string XHumanView::g_Name = "Level"s;
 
 XHumanView::XHumanView(IRenderer* renderer) : HumanView(renderer) {
 	m_bShowUI = false;
-	m_bShowDebugUI = true;
+	//m_bShowDebugUI = true;
+	m_bShowDebugUI = false;
 	if (m_bShowDebugUI) {
 		m_ActorMenuUI = std::make_shared<ActorMenuUI>(m_process_manager.get());
 		VPushElement(m_ActorMenuUI);
