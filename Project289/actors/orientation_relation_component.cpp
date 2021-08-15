@@ -1,8 +1,10 @@
 #include "orientation_relation_component.h"
 #include "../engine/engine.h"
 #include "../tools/memory_utility.h"
+#include "../tools/math_utitity.h"
 #include "particle_component.h"
 #include "transform_component.h"
+#include "enemy_component.h"
 
 const std::string OrientationRelationComponent::g_Name = "OrientationRelationComponent"s;
 
@@ -13,6 +15,7 @@ const std::string& OrientationRelationComponent::VGetName() const {
 OrientationRelationComponent::OrientationRelationComponent() {
     m_relate_to = "NoRelation";
 	m_first = true;
+	m_at_speed = 0.1f;
 }
 
 OrientationRelationComponent::~OrientationRelationComponent() {}
@@ -27,6 +30,12 @@ bool OrientationRelationComponent::VInit(TiXmlElement* pData) {
     if (pRelateElement) {
         m_relate_to = pRelateElement->FirstChild()->Value();
     }
+
+	TiXmlElement* pAtSpeed = pData->FirstChildElement("AtSpeed");
+	if (pAtSpeed) {
+		std::string sAtSpeed = pAtSpeed->FirstChild()->Value();
+		m_at_speed = std::stof(sAtSpeed);;
+	}
 
     return true;
 }
@@ -89,6 +98,8 @@ void OrientationRelationComponent::VUpdate(float deltaMs) {
 		std::shared_ptr<OrientationRelationComponent> oc = MakeStrongPtr(act->GetComponent<OrientationRelationComponent>(ActorComponent::GetIdFromName("OrientationRelationComponent")));
 		std::shared_ptr<Actor> related_act = MakeStrongPtr(oc->VGetRelatedToActor());
 		std::shared_ptr<TransformComponent> related_tc = MakeStrongPtr(related_act->GetComponent<TransformComponent>(ActorComponent::GetIdFromName("TransformComponent")));
+		std::shared_ptr<ParticleComponent> pc = MakeStrongPtr(act->GetComponent<ParticleComponent>(ActorComponent::GetIdFromName("ParticleComponent")));
+		std::shared_ptr<EnemyComponent> ec = MakeStrongPtr(act->GetComponent<EnemyComponent>(ActorComponent::GetIdFromName("EnemyComponent")));
 
 		XMVECTOR pos = tc->GetPosition();
 		XMVECTOR center = related_tc->GetPosition();
@@ -97,8 +108,47 @@ void OrientationRelationComponent::VUpdate(float deltaMs) {
 		XMVECTOR normal = XMVector3Normalize(direction);
 
 		XMVECTOR up = normal;
-		XMVECTOR at = XMVector3Cross(XMVector3Normalize(XMLoadFloat4(&m_right)), up);
+		XMVECTOR at = XMVector3Cross(XMVector3Normalize(XMLoadFloat4(&m_right)), up);;
 		XMVECTOR right = XMVector3Cross(up, at);
+		if (pc && ec) {
+			const Particle& particle = pc->VGetParticle();
+			XMVECTOR velocity = particle.getVelocity() * deltaMs;
+			//if (particle.getAwake() && XMVectorGetX(XMVector3Length(velocity)) > EPSILON * 1000000.0f) {
+			//	XMVECTOR velocity_normal = XMVector3Normalize(pc->VGetParticle().getVelocity());
+			//	float angle = XMVectorGetX(XMVector3AngleBetweenNormals(velocity_normal, at));
+			//	XMMATRIX rotate_at = XMMatrixRotationAxis(up, angle * m_at_speed);
+			//	at = XMVector3Transform(at, rotate_at);
+			//	//at = XMVector3Normalize(at + XMVector3Normalize(related_pc->VGetParticle().getVelocity()));
+			//}
+			float at_proj = XMVectorGetX(XMVector3Dot(at, velocity));
+			float right_proj = XMVectorGetX(XMVector3Dot(right, velocity));
+			float up_proj = XMVectorGetX(XMVector3Dot(up, velocity));
+			//float vel_len = XMVectorGetX(XMVector3Length(velocity));
+			//float vel_len = XMVectorGetX(XMVector3Length(velocity - up_proj * up));
+			XMVECTOR ground_move = at * at_proj + right * right_proj;
+			float ground_move_len = XMVectorGetX(XMVector3Length(ground_move));
+			if (particle.getAwake() && ground_move_len > 0.0005f) {
+				//XMVECTOR velocity_normal = XMVector3Normalize(velocity);
+				XMVECTOR velocity_normal = XMVector3Normalize(ground_move);
+				//XMVECTOR velocity_normal_at = XMVector3Normalize(at * at_proj);
+				//XMVECTOR velocity_normal_right = XMVector3Normalize(right * right_proj);
+				//float angle = XMVectorGetX(XMVector3AngleBetweenNormals(velocity_normal, at));
+				//float angle = XMVectorGetX(XMVector3AngleBetweenNormals(velocity_normal, right));
+				//XMMATRIX rotate_at = XMMatrixRotationAxis(up, angle * m_at_speed);
+				//at = XMVector3Normalize(XMVector3Transform(at, rotate_at));
+				//XMMATRIX rotate_right = XMMatrixRotationAxis(up, angle * m_at_speed);
+				//right = XMVector3Normalize(XMVector3Transform(right, rotate_right));
+				//at = XMVector3Normalize(at + XMVector3Normalize(related_pc->VGetParticle().getVelocity()));
+				//right = XMVector3Cross(up, at);
+				//at = XMVector3Cross(right, up);
+				//at = velocity_normal;
+				//at = XMVector3Cross(velocity_normal, up);
+				right = XMVector3Cross(velocity_normal, up);;
+				//right = XMVector3Cross(up, at);
+				at = XMVector3Cross(right, up);
+			}
+
+		}
 
 		XMStoreFloat4(&m_at, at);
 		XMStoreFloat4(&m_up, up);

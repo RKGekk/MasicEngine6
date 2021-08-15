@@ -150,6 +150,8 @@
         <Mass>100.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.15</Radius>
+        <IsSleep>false</IsSleep>
+        <CanSleep>false</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -284,6 +286,7 @@
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
+        <AtSpeed>0.1</AtSpeed>
       </OrientationRelationComponent>
       <SpawnRelationComponent>
         <RelateTo>enemy_spawn</RelateTo>
@@ -334,6 +337,7 @@
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
+        <AtSpeed>0.1</AtSpeed>
       </OrientationRelationComponent>
       <SpawnRelationComponent>
         <RelateTo>enemy_spawn</RelateTo>
@@ -384,6 +388,7 @@
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
+        <AtSpeed>0.1</AtSpeed>
       </OrientationRelationComponent>
       <SpawnRelationComponent>
         <RelateTo>enemy_spawn</RelateTo>
@@ -434,6 +439,7 @@
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
+        <AtSpeed>0.1</AtSpeed>
       </OrientationRelationComponent>
       <SpawnRelationComponent>
         <RelateTo>enemy_spawn</RelateTo>
@@ -479,6 +485,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.125</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -521,6 +529,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.13</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -548,6 +558,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -575,6 +587,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.13</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -602,6 +616,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.13</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -629,6 +645,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.13</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -656,6 +674,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.15</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -683,6 +703,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.15</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -710,6 +732,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -737,6 +761,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.15</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -764,6 +790,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.15</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -791,6 +819,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.125</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -818,6 +848,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -845,6 +877,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.15</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -873,6 +907,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.3</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -900,6 +936,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.15</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -927,6 +965,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.3</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -954,6 +994,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.3</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -981,6 +1023,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.125</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1008,6 +1052,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1035,6 +1081,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.15</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1062,6 +1110,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.3</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1089,6 +1139,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.3</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1116,6 +1168,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.1</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1143,6 +1197,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1170,6 +1226,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1197,6 +1255,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1224,6 +1284,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1251,6 +1313,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1278,6 +1342,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1305,6 +1371,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.4</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1332,6 +1400,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.3</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1359,6 +1429,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.5</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1386,6 +1458,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.4</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1413,6 +1487,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.4</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1440,6 +1516,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.4</Damping>
         <Radius>0.4</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1467,6 +1545,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
         <Radius>0.05</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1494,6 +1574,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
         <Radius>0.1</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1521,6 +1603,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
         <Radius>0.1</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1548,6 +1632,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
         <Radius>0.15</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1575,6 +1661,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
         <Radius>0.1</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1602,6 +1690,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
         <Radius>0.1</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1629,6 +1719,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1656,6 +1748,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
         <Radius>0.15</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1683,6 +1777,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
         <Radius>0.15</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1710,6 +1806,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
         <Radius>0.2</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>
@@ -1737,6 +1835,8 @@
         <Mass>1000000000.0</Mass>
         <Damping>0.1</Damping>
         <Radius>0.05</Radius>
+        <IsSleep>true</IsSleep>
+        <CanSleep>true</CanSleep>
       </ParticleComponent>
       <OrientationRelationComponent>
         <RelateTo>ground</RelateTo>

@@ -43,5 +43,6 @@ protected:
     DirectX::XMFLOAT4 m_at;
     DirectX::XMFLOAT4 m_right;
     DirectX::XMFLOAT4 m_up;
+    float m_at_speed;
     bool m_first;
 };
