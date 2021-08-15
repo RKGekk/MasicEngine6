@@ -22,6 +22,7 @@
 #include "../processes/delay_process.h"
 #include "../events/evt_data_request_destroy_actor.h"
 #include "../actors/enemy_component.h"
+#include "../actors/drop_component.h"
 
 XLogic::XLogic() {
 	
@@ -190,11 +191,17 @@ void XLogic::SphereParticleContactDelegate(IEventDataPtr pEventData) {
 	std::shared_ptr<EnemyComponent> ec2 = MakeStrongPtr(pActor2->GetComponent<EnemyComponent>(ActorComponent::GetIdFromName("EnemyComponent")));
 	std::shared_ptr<CharacterStatsComponent> pCharacterStatsComponent1 = MakeStrongPtr(pActor1->GetComponent<CharacterStatsComponent>(CharacterStatsComponent::g_Name));
 	std::shared_ptr<CharacterStatsComponent> pCharacterStatsComponent2 = MakeStrongPtr(pActor2->GetComponent<CharacterStatsComponent>(CharacterStatsComponent::g_Name));
+	std::shared_ptr<DropComponent> dc1 = MakeStrongPtr(pActor1->GetComponent<DropComponent>(DropComponent::GetIdFromName("DropComponent")));
+	std::shared_ptr<DropComponent> dc2 = MakeStrongPtr(pActor2->GetComponent<DropComponent>(DropComponent::GetIdFromName("DropComponent")));
 
 	if (ec1 && !ec2) {
 		if (pActor2->GetName() == "pers") {
-			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor1->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
-			rc->Respawn();
+			int current_drops = pCharacterStatsComponent2->GetDrops();
+			if (current_drops > 0) {
+				std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor1->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
+				rc->Respawn();
+				pCharacterStatsComponent2->ApplyDrops(-1);
+			}
 		}
 		if (pActor2->GetName() == ec1->GetTargetName()) {
 			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor1->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
@@ -208,8 +215,12 @@ void XLogic::SphereParticleContactDelegate(IEventDataPtr pEventData) {
 
 	if (ec2 && !ec1) {
 		if (pActor1->GetName() == "pers") {
-			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor2->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
-			rc->Respawn();
+			int current_drops = pCharacterStatsComponent1->GetDrops();
+			if (current_drops > 0) {
+				std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor2->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
+				rc->Respawn();
+				pCharacterStatsComponent1->ApplyDrops(-1);
+			}
 		}
 		if (pActor1->GetName() == ec2->GetTargetName()) {
 			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor2->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
@@ -218,6 +229,22 @@ void XLogic::SphereParticleContactDelegate(IEventDataPtr pEventData) {
 			if (current_health > 0) {
 				pCharacterStatsComponent1->ApplyHealth(-1);
 			}
+		}
+	}
+
+	if (dc1 && !dc2) {
+		if (pActor2->GetName() == "pers") {
+			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor1->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
+			rc->Respawn();
+			pCharacterStatsComponent2->ApplyDrops(1);
+		}
+	}
+
+	if (dc2 && !dc1) {
+		if (pActor1->GetName() == "pers") {
+			std::shared_ptr<SpawnRelationComponent> rc = MakeStrongPtr(pActor2->GetComponent<SpawnRelationComponent>(ActorComponent::GetIdFromName("SpawnRelationComponent")));
+			rc->Respawn();
+			pCharacterStatsComponent1->ApplyDrops(1);
 		}
 	}
 

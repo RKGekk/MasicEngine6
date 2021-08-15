@@ -116,6 +116,18 @@
         <SpawnRadius>10.0</SpawnRadius>
       </SpawnComponent>
     </Actor>
+
+    <Actor name="drop_spawn" type="BasicTransformComponent" resource="data\actors\BasicTransformComponent.xml">
+      <TransformComponent>
+        <Position x="0.0" y="1.0" z="40.0" />
+        <YawPitchRoll x="0.0" y="0.0" z="0.0" />
+        <Scale x="1.0" y="1.0" z="1.0" />
+      </TransformComponent>
+      <SpawnComponent>
+        <SpawnType>Sphere</SpawnType>
+        <SpawnRadius>10.0</SpawnRadius>
+      </SpawnComponent>
+    </Actor>
     
     <Actor name="pers" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
       <TransformComponent>
@@ -174,6 +186,41 @@
         <PixelShader>pixel_shader_basic_clip.cso</PixelShader>
         <VertexShader>vertex_shader_light.cso</VertexShader>
       </StatsRenderComponent>
+    </Actor>
+
+    <Actor name="drop1" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">
+      <TransformComponent>
+        <Position x="3.000000" y="0.000000" z="0.000000" />
+        <YawPitchRoll x="0.000000" y="0.000000" z="0.000000" />
+        <Scale x="0.125000" y="0.125000" z="0.125000" />
+      </TransformComponent>
+      <MeshRenderLightComponent>
+        <Color r="0.400000" g="0.400000" b="0.400000" a="1.000000" />
+        <PixelShader>pixel_shader_light_inv_ny.cso</PixelShader>
+        <VertexShader>vertex_shader_light.cso</VertexShader>
+        <Radius>auto</Radius>
+      </MeshRenderLightComponent>
+      <MeshComponent>
+        <Obj>data\objects\sphere.obj</Obj>
+      </MeshComponent>
+      <ParticleComponent>
+        <Velocity x="1.000000" y="0.000000" z="1.000000" />
+        <Acceleration x="0.000000" y="0.000000" z="0.000000" />
+        <Mass>100.0</Mass>
+        <Damping>0.2</Damping>
+        <Radius>0.125</Radius>
+        <IsSleep>false</IsSleep>
+        <CanSleep>false</CanSleep>
+      </ParticleComponent>
+      <OrientationRelationComponent>
+        <RelateTo>ground</RelateTo>
+      </OrientationRelationComponent>
+      <SpawnRelationComponent>
+        <RelateTo>drop_spawn</RelateTo>
+      </SpawnRelationComponent>
+      <DropComponent>
+        <DropType>Basic</DropType>
+      </DropComponent>
     </Actor>
 
     <Actor name="enemy1" type="MeshParticleRenderLightComponent" resource="data\actors\MeshParticleRenderLightComponent.xml">

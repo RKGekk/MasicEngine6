@@ -636,6 +636,9 @@
     <ClCompile Include="engine\standard_HUD.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="actors\drop_component.cpp">
+      <Filter>Source Files\actors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard\keyboard_event.h">
@@ -1300,6 +1303,9 @@
     </ClInclude>
     <ClInclude Include="engine\standard_HUD.h">
       <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="actors\drop_component.h">
+      <Filter>Header Files\actors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

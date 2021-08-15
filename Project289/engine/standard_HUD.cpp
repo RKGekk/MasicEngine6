@@ -1,6 +1,8 @@
 #include "standard_HUD.h"
 #include "engine.h"
 #include "d3d_renderer11.h"
+#include "../actors/character_stats_component.h"
+#include "../tools/memory_utility.h"
 
 StandardHUD::StandardHUD(ProcessManager* pm) : m_pm(pm) {
 	D3DRenderer11* renderer = static_cast<D3DRenderer11*>(g_pApp->GetRenderer());
@@ -29,7 +31,18 @@ HRESULT StandardHUD::VOnRender(double fTime, float fElapsedTime) {
 
 	std::wstring timerString = L"Remaining time: " + std::to_wstring(600 - ((int)fTime));
 
+	StrongActorPtr pActor = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActorByName("pers"));
+	std::shared_ptr<CharacterStatsComponent> pCharacterStatsComponent;
+	if (pActor) {
+		pCharacterStatsComponent = MakeStrongPtr(pActor->GetComponent<CharacterStatsComponent>(CharacterStatsComponent::g_Name));
+	}
+	std::wstring dropsString = L"Drops: ";
+	if (pCharacterStatsComponent) {
+		dropsString += std::to_wstring(pCharacterStatsComponent->GetDrops());
+	}
+
 	m_sprite_batch->Begin();
+
 	DirectX::XMVECTOR fps_pos = DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
 	DirectX::XMVECTOR fps_color = DirectX::XMVectorSet(1.0f, 1.0f, 1.0f, 1.0f);
 	DirectX::XMVECTOR fps_origin = DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
@@ -43,6 +56,13 @@ HRESULT StandardHUD::VOnRender(double fTime, float fElapsedTime) {
 	DirectX::XMVECTOR timer_origin = DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
 	DirectX::XMVECTOR timer_scale = DirectX::XMVectorSet(0.5f, 0.5f, 0.5f, 1.0f);
 	m_sprite_font->DrawString(m_sprite_batch.get(), timerString.c_str(), timer_pos, DirectX::Colors::White, 0.0f, timer_origin, timer_scale);
+
+	DirectX::XMVECTOR drop_pos = DirectX::XMVectorSet(screen_width * 0.5f, 0.0f, 10.0f, 0.0f);
+	DirectX::XMVECTOR drop_color = DirectX::XMVectorSet(1.0f, 1.0f, 1.0f, 1.0f);
+	DirectX::XMVECTOR drop_origin = DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
+	DirectX::XMVECTOR drop_scale = DirectX::XMVectorSet(0.5f, 0.5f, 0.5f, 1.0f);
+	m_sprite_font->DrawString(m_sprite_batch.get(), dropsString.c_str(), drop_pos, DirectX::Colors::White, 0.0f, drop_origin, drop_scale);
+
 	m_sprite_batch->End();
 
 	return S_OK;

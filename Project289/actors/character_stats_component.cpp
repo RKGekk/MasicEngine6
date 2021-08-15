@@ -18,7 +18,9 @@ CharacterStatsComponent::CharacterStatsComponent() {
 	m_current_health = 1.0f;
 	m_total_health = 1.0f;
 	m_danger = false;
+	m_danger_radius = 1.0f;
 	m_danger_is_defined = false;
+	m_drops_counter = 0;
 }
 
 CharacterStatsComponent::~CharacterStatsComponent() {}
@@ -116,6 +118,14 @@ void CharacterStatsComponent::SetHealth(int health) {
 
 bool CharacterStatsComponent::GetDanger() {
 	return m_danger;
+}
+
+int CharacterStatsComponent::GetDrops() {
+	return m_drops_counter;
+}
+
+void CharacterStatsComponent::ApplyDrops(int drops) {
+	m_drops_counter += drops;
 }
 
 TiXmlElement* CharacterStatsComponent::VGenerateXml() {

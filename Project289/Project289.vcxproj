@@ -162,6 +162,7 @@
     <ClCompile Include="actors\pers_texture_anim_state_component.cpp" />
     <ClCompile Include="actors\enemy_component.cpp" />
     <ClCompile Include="actors\character_stats_component.cpp" />
+    <ClCompile Include="actors\drop_component.cpp" />
     <ClCompile Include="nodes\d3d_11_sky_pipeline.cpp" />
     <ClCompile Include="nodes\d3d_11_stat_pipeline.cpp" />
     <ClCompile Include="events\evt_data_sphere_particle_contact.cpp" />
@@ -335,6 +336,7 @@
     <ClInclude Include="actors\pers_current_state_enum.h" />
     <ClInclude Include="actors\enemy_component.h" />
     <ClInclude Include="actors\character_stats_component.h" />
+    <ClInclude Include="actors\drop_component.h" />
     <ClInclude Include="nodes\d3d_11_sky_pipeline.h" />
     <ClInclude Include="nodes\d3d_11_stat_pipeline.h" />
     <ClInclude Include="events\evt_data_sphere_particle_contact.h" />
