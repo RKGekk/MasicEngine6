@@ -633,6 +633,9 @@
     <ClCompile Include="actors\memo_component.cpp">
       <Filter>Source Files\actors</Filter>
     </ClCompile>
+    <ClCompile Include="engine\standard_HUD.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard\keyboard_event.h">
@@ -1295,6 +1298,9 @@
     <ClInclude Include="actors\memo_component.h">
       <Filter>Header Files\actors</Filter>
     </ClInclude>
+    <ClInclude Include="engine\standard_HUD.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shaders\pixel_shader.hlsl">
@@ -1919,6 +1925,9 @@
     </None>
     <None Include="data\textures\plant2_Material.003_OcclusionRoughnessMetallic.jpg">
       <Filter>Resource Files\textures</Filter>
+    </None>
+    <None Include="data\fonts\mefont.spritefont">
+      <Filter>Resource Files\fonts</Filter>
     </None>
   </ItemGroup>
 </Project>

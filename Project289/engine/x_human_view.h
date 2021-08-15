@@ -6,6 +6,7 @@
 #include "movement_controller.h"
 #include "geo_physics_movement_controller.h"
 #include "actor_menu_ui.h"
+#include "standard_HUD.h"
 
 class XHumanView : public HumanView {
 private:
@@ -16,6 +17,7 @@ protected:
 	bool m_bShowDebugUI;
 	std::wstring m_gameplayText;
 	std::shared_ptr<ActorMenuUI> m_ActorMenuUI;
+	std::shared_ptr<StandardHUD> m_StandardHUD;
 
 	std::shared_ptr<MovementController> m_pFreeCameraController;
 	std::shared_ptr<GeoPhysicsMovementController> m_pGeoPhysicsMovementController;

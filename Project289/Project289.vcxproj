@@ -189,6 +189,7 @@
     <ClCompile Include="actors\stats_render_component.cpp" />
     <ClCompile Include="actors\sky_render_component.cpp" />
     <ClCompile Include="actors\time_out_particle_component.cpp" />
+    <ClCompile Include="engine\standard_HUD.cpp" />
     <ClCompile Include="tools\geometry_generator.cpp" />
     <ClCompile Include="physics\aero_control.cpp" />
     <ClCompile Include="physics\aero.cpp" />
@@ -366,6 +367,7 @@
     <ClInclude Include="actors\stats_render_component.h" />
     <ClInclude Include="actors\sky_render_component.h" />
     <ClInclude Include="actors\time_out_particle_component.h" />
+    <ClInclude Include="engine\standard_HUD.h" />
     <ClInclude Include="tools\geometry_generator.h" />
     <ClInclude Include="graphics\mesh_holder.h" />
     <ClInclude Include="physics\particle_sphere_contact.h" />
@@ -689,6 +691,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="data\fonts\comic_sans_ms_16.sprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\fonts\mefont.spritefont">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\light.fbx">

@@ -13,6 +13,8 @@ XHumanView::XHumanView(IRenderer* renderer) : HumanView(renderer) {
 		m_ActorMenuUI = std::make_shared<ActorMenuUI>(m_process_manager.get());
 		VPushElement(m_ActorMenuUI);
 	}
+	m_StandardHUD = std::make_shared<StandardHUD>(m_process_manager.get());
+	VPushElement(m_StandardHUD);
 	RegisterAllDelegates();
 }
 
